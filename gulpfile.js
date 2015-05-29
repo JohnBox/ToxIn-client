@@ -8,6 +8,7 @@ path = {
   html: ['src/index.html'],
   css: ['src/styles/*.less'],
   js: ['src/components/index.js'],
+  asset: ['src/assets/**'],
   build: 'build/'
 };
 
@@ -23,11 +24,13 @@ gulp.task('less', function () {
     .pipe(gulp.dest(path.build));
 });
 
-gulp.task('html', function () {
+gulp.task('static', function () {
   gulp.src(path.html)
     .pipe(gulp.dest(path.build));
+  gulp.src(path.asset)
+    .pipe(gulp.dest(path.build));
 });
-gulp.task('build', ['jsx', 'less', 'html'], function () {
+gulp.task('build', ['jsx', 'less', 'static'], function () {
   gulp.src(path.js)
     .pipe(browserify())
     .pipe(gulp.dest(path.build));

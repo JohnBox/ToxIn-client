@@ -1,10 +1,12 @@
 var React = require('react');
 var StartPage = require('../StartPage/StartPage');
 var SideBar = require('../SideBar/SideBar');
+var MessageBar = require('../MessageBar/MessageBar');
+
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return {logined: false};
+    return {logined: !false};
   },
   onLogin: function (logined) {
     this.setState({logined: logined});
@@ -14,6 +16,7 @@ module.exports = React.createClass({
       return (
         <div className="app">
           <SideBar/>
+          <MessageBar/>
         </div>
       );
     } else {

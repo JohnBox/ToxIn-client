@@ -1,39 +1,65 @@
-@import "node_modules/material-ui/src/less/scaffolding.less";
-@import "node_modules/material-ui/src/less/components.less";
-
-* {
-
-}
-
 body {
-  background-color: #eeeeee;
+  background-color: #eee;
+  margin: 0;
+  padding: 0;
 }
 
 .app {
-}
-
-.start_page {
-  background-color: @teal-700;
-  height: 100vh;
-  .start_header {
-    background-color: @teal-700;
-  }
-  .start_logo {
-    float: left;
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    img {
-      width: 500px;
-      height: 500px;
+  .start_page {
+    background-color: darkturquoise;
+    height: 100vh;
+    .start_header {
+      background-color: white;
+    }
+    .start_logo {
+      float: left;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 500px;
+        height: 500px;
+      }
+    }
+    .start_form {
+      float: right;
+      width: 50%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
     }
   }
-  .start_form {
-    float: right;
-    width: 50%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+  .side_bar {
+    width: 25vw;
+    min-width: 300px;
+    height: 100vh;
+    float: left;
+    border: solid 1px red;
+    background-color: #fff;
+    .user_header {
+      height: 10vh;
+      .user_logo {
+        float: left;
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 100%;
+          border: solid 2px green;
+        }
+      }
+      .user_name {
+        float: left;
+      }
+    }
   }
+  .message_bar {
+    width: 75vw;
+    height: 100vh;
+    float: right;
+  }
+}
+
+.full {
+  height: 100vh;
 }
