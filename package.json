@@ -1,0 +1,19 @@
+{
+  "name": "toxin",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gott",
+  "license": "ISC",
+  "dependencies": {
+    "flux": "^2.0.3",
+    "gulp": "^3.8.11",
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean": "^0.3.1",
+    "gulp-react": "^3.0.1",
+    "react": "^0.13.3"
+  }
+}
