@@ -1,0 +1,40 @@
+@import "node_modules/material-ui/src/less/scaffolding.less";
+@import "node_modules/material-ui/src/less/components.less";
+
+* {
+
+}
+
+body {
+  background-color: #eeeeee;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+
+}
+
+.start_page {
+  background-color: @teal-500;
+  min-height: 100vh;
+  .start_logo {
+    float: left;
+    width: 50%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 500px;
+      height: 500px;
+    }
+  }
+  .start_form {
+    float: right;
+    width: 50%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+}
