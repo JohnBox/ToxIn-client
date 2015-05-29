@@ -1,12 +1,18 @@
 var React = require('react');
+var StartPage = require('../StartPage/StartPage');
 
 module.exports = React.createClass({
+  getInitialState: function () {
+    return {logined: false};
+  },
+  onLogin: function (logined) {
+    this.setState({logined: logined});
+  },
   render: function () {
     return (
       <div className="app">
-        <h1>App</h1>
+        <StartPage onLogin={this.onLogin}/>
       </div>
     );
   }
 });
-
