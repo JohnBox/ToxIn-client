@@ -4,21 +4,11 @@ var mui = require('material-ui');
 module.exports = React.createClass({
   render: function () {
     return (
-      <mui.Paper>
-        <div className="start_page">
-          <StartLogo />
+      <div className="start_page">
+        <mui.Paper>
+          <StartLogo/>
           <StartForm onLogin={this.props.onLogin}/>
-        </div>
-      </mui.Paper>
-    );
-  }
-});
-
-var StartLogo = React.createClass({
-  render: function () {
-    return (
-      <div className="start_logo">
-        <img src="go.png" alt=""/>
+        </mui.Paper>
       </div>
     );
   }
@@ -49,13 +39,22 @@ var StartForm = React.createClass({
     return (
       <div className="start_form">
         <form onSubmit={this.onSubmit}>
-          <mui.TextField hint="Логін" onChange={this.loginInput} />
+          <mui.TextField hint={'Логін'} onChange={this.loginInput}/>
           <br/>
-          <mui.TextField type="password" hint="Пароль" onChange={this.passwordInput} />
+          <mui.TextField type="password" hint={'Пароль'} onChange={this.passwordInput}/>
           <br/>
-          <mui.RaisedButton label="Війти" />
-          <mui.RaisedButton label="Зареєструватися" />
+          <mui.RaisedButton label="Війти"/>
+          <mui.RaisedButton label="Зареєструватися"/>
         </form>
+      </div>
+    );
+  }
+});
+
+var StartLogo = React.createClass({
+  render: function () {
+    return (
+      <div className="start_logo">
       </div>
     );
   }

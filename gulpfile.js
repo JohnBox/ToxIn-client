@@ -36,6 +36,8 @@ gulp.task('build', ['jsx', 'less', 'html'], function () {
 gulp.task('clean', function () {
   gulp.src(path.build)
     .pipe(clean());
+  gulp.src(['src/components/**/*.js', 'src/components/*.js'])
+    .pipe(clean());
 });
 
 gulp.task('watch less', function () {

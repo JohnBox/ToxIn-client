@@ -4,21 +4,11 @@ var mui = require('material-ui');
 module.exports = React.createClass({displayName: "exports",
   render: function () {
     return (
-      React.createElement(mui.Paper, null, 
-        React.createElement("div", {className: "start_page"}, 
+      React.createElement("div", {className: "start_page"}, 
+        React.createElement(mui.Paper, null, 
           React.createElement(StartLogo, null), 
           React.createElement(StartForm, {onLogin: this.props.onLogin})
         )
-      )
-    );
-  }
-});
-
-var StartLogo = React.createClass({displayName: "StartLogo",
-  render: function () {
-    return (
-      React.createElement("div", {className: "start_logo"}, 
-        React.createElement("img", {src: "go.png", alt: ""})
       )
     );
   }
@@ -49,13 +39,22 @@ var StartForm = React.createClass({displayName: "StartForm",
     return (
       React.createElement("div", {className: "start_form"}, 
         React.createElement("form", {onSubmit: this.onSubmit}, 
-          React.createElement(mui.TextField, {hint: "Логін", onChange: this.loginInput}), 
+          React.createElement(mui.TextField, {hint: 'Логін', onChange: this.loginInput}), 
           React.createElement("br", null), 
-          React.createElement(mui.TextField, {type: "password", hint: "Пароль", onChange: this.passwordInput}), 
+          React.createElement(mui.TextField, {type: "password", hint: 'Пароль', onChange: this.passwordInput}), 
           React.createElement("br", null), 
           React.createElement(mui.RaisedButton, {label: "Війти"}), 
           React.createElement(mui.RaisedButton, {label: "Зареєструватися"})
         )
+      )
+    );
+  }
+});
+
+var StartLogo = React.createClass({displayName: "StartLogo",
+  render: function () {
+    return (
+      React.createElement("div", {className: "start_logo"}
       )
     );
   }
