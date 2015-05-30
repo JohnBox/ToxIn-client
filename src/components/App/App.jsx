@@ -1,4 +1,6 @@
 var React = require('react');
+var Router = require('react-router');
+var { Route, RouteHandler, Link } = Router;
 var StartPage = require('../StartPage/StartPage');
 var SideBar = require('../SideBar/SideBar');
 var MessageBar = require('../MessageBar/MessageBar');
@@ -6,7 +8,7 @@ var MessageBar = require('../MessageBar/MessageBar');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return {logined: !false};
+    return {logined: false};
   },
   onLogin: function (logined) {
     this.setState({logined: logined});
@@ -17,12 +19,14 @@ module.exports = React.createClass({
         <div className="app">
           <SideBar/>
           <MessageBar/>
+          <RouteHandler/>
         </div>
       );
     } else {
       return (
         <div className="app">
           <StartPage onLogin={this.onLogin}/>
+          <RouteHandler/>
         </div>
       );
     }

@@ -1,3 +1,5 @@
+html {
+}
 body {
   background-color: #eee;
   margin: 0;
@@ -6,12 +8,20 @@ body {
 
 .app {
   .start_page {
-    background-color: darkturquoise;
-    height: 100vh;
-    .start_header {
-      background-color: white;
+    background-color: #999;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+    border: solid 1px navy;
+    .paper {
+    }
+    .register_button {
+      margin-top: 6px !important;
+      margin-right: 4px !important;
     }
     .start_logo {
+      //border: solid 1px red;
       float: left;
       width: 50%;
       display: flex;
@@ -23,6 +33,16 @@ body {
       }
     }
     .start_form {
+      //border: solid 1px green;
+      float: right;
+      width: 50%;
+      display: flex;
+      align-items: center;
+    }
+  }
+  .register_page {
+    height: 100vh;
+    .register_form {
       float: right;
       width: 50%;
       min-height: 100vh;
