@@ -21,8 +21,11 @@ module.exports = React.createClass({displayName: "exports",
       React.createElement("div", {className: "start_page"}, 
         React.createElement(mui.Paper, {className: "paper"}, 
           React.createElement(AppBar, {title: "ToxIn", iconElementRight: React.createElement(RegisterButton, null)}), 
-          React.createElement(StartLogo, null), 
-          React.createElement(StartForm, {onLogin: this.props.onLogin})
+          React.createElement("div", {className: "start_main"}, 
+            React.createElement(StartLogo, null), 
+            React.createElement(StartForm, {onLogin: this.props.onLogin})
+          ), 
+          React.createElement(About, null)
         ), 
         React.createElement(RouteHandler, null)
       )
@@ -30,11 +33,11 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-var Logo = React.createClass({displayName: "Logo",
+var About = React.createClass({displayName: "About",
   render: function () {
     return (
-      React.createElement("div", {className: "logo"}, 
-        "ToxIn"
+      React.createElement("div", {className: "about"}, 
+        "GitHub"
       )
     );
   }
@@ -73,10 +76,8 @@ var StartForm = React.createClass({displayName: "StartForm",
     return (
       React.createElement("div", {className: "start_form"}, 
         React.createElement("form", {onSubmit: this.onSubmit}, 
-          React.createElement(mui.TextField, {hintText: 'Логін', onChange: this.loginInput}), 
-          React.createElement("br", null), 
-          React.createElement(mui.TextField, {type: "password", hintText: 'Пароль', onChange: this.passwordInput}), 
-          React.createElement("br", null), 
+          React.createElement(mui.TextField, {hintText: 'Логін', onChange: this.loginInput}), React.createElement("br", null), 
+          React.createElement(mui.TextField, {type: "password", hintText: 'Пароль', onChange: this.passwordInput}), React.createElement("br", null), 
           React.createElement(mui.RaisedButton, {label: "Війти"})
         )
       )
@@ -93,3 +94,4 @@ var StartLogo = React.createClass({displayName: "StartLogo",
     );
   }
 });
+

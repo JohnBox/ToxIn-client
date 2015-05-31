@@ -21,8 +21,11 @@ module.exports = React.createClass({
       <div className="start_page">
         <mui.Paper className="paper">
           <AppBar title='ToxIn' iconElementRight={<RegisterButton/>}/>
-          <StartLogo/>
-          <StartForm onLogin={this.props.onLogin}/>
+          <div className="start_main">
+            <StartLogo/>
+            <StartForm onLogin={this.props.onLogin}/>
+          </div>
+          <About/>
         </mui.Paper>
         <RouteHandler/>
       </div>
@@ -30,11 +33,11 @@ module.exports = React.createClass({
   }
 });
 
-var Logo = React.createClass({
+var About = React.createClass({
   render: function () {
     return (
-      <div className="logo">
-        ToxIn
+      <div className="about">
+        GitHub
       </div>
     );
   }
@@ -73,10 +76,8 @@ var StartForm = React.createClass({
     return (
       <div className="start_form">
         <form onSubmit={this.onSubmit}>
-          <mui.TextField hintText={'Логін'} onChange={this.loginInput}/>
-          <br/>
-          <mui.TextField type="password" hintText={'Пароль'} onChange={this.passwordInput}/>
-          <br/>
+          <mui.TextField hintText={'Логін'} onChange={this.loginInput}/><br/>
+          <mui.TextField type="password" hintText={'Пароль'} onChange={this.passwordInput}/><br/>
           <mui.RaisedButton label="Війти"/>
         </form>
       </div>
@@ -93,3 +94,4 @@ var StartLogo = React.createClass({
     );
   }
 });
+
