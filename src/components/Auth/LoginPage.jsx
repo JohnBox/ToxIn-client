@@ -2,7 +2,7 @@ var React = require('react');
 var Router = require('react-router');
 var { RouteHandler, Navigation } = Router;
 var mui = require('material-ui');
-var { AppBar, Paper } = mui;
+var { AppBar, Paper, RaisedButton } = mui;
 var About = require('./About');
 var RightButton = require('./RightButton');
 var LoginForm = require('./LoginForm');
@@ -21,6 +21,7 @@ module.exports = React.createClass({
       <div className="start_page">
         <Paper className="paper">
           <AppBar title='ToxIn' iconElementRight={<RightButton link={'register'} label={'Зареєструватися'}/>}/>
+          <RaisedButton onClick={this.props.theme}/>
           <LoginForm setUser={this.props.setUser}/>
           <About/>
         </Paper>
