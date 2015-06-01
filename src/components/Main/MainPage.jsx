@@ -3,15 +3,16 @@ var Router = require('react-router');
 var { Route, RouteHandler, Link } = Router;
 var $ = require('jquery');
 var mui = require('material-ui');
-var { AppBar, FlatButton } = mui;
+var { AppBar, Paper } = mui;
+var OutButton = require('./OutButton');
 
 module.exports = React.createClass({
   render: function () {
     return (
       <div className="main_page">
-        <mui.Paper className="paper">
-          <AppBar title='ToxIn'/>
-        </mui.Paper>
+        <Paper className="paper">
+          <AppBar title='' iconElementRight={<OutButton label={'Вийти'}/>}/>
+        </Paper>
         </div>
     );
   }

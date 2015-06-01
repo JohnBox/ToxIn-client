@@ -14,23 +14,23 @@ module.exports = React.createClass({
     };
   },
   getInitialState: function () {
-    return {logined: false, theme: true};
+    return {user: null, logined: false, theme: true};
   },
-  userLogined: function (logined) {
-    this.setState({logined: logined});
+  setUser: function (user = null, logined =null) {
+    if (!user) {
+      return {user: this.state.user, logined: this.state.logined};
+    } else {
+      this.setState({user: user, logined: logined});
+    }
   },
   theme: function () {
-    if (this.state.theme) {
-      ThemeManager.setTheme(ThemeManager.types.LIGHT);
-    } else {
-      ThemeManager.setTheme(ThemeManager.types.DARK);
-    }
+    ThemeManager.setTheme(this.state.theme?ThemeManager.types.LIGHT:ThemeManager.types.DARK);
     this.setState({theme: !this.state.theme});
   },
   render: function () {
     return (
       <div className="app">
-        <RouteHandler onLogin={this.userLogined} theme={this.theme}/>
+        <RouteHandler setUser={this.setUser} theme={this.theme}/>
       </div>
     );
   }
