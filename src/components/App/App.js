@@ -1,34 +1,37 @@
 var React = require('react');
 var Router = require('react-router');
 var $__0=      Router,Route=$__0.Route,RouteHandler=$__0.RouteHandler,Link=$__0.Link;
-var StartPage = require('../StartPage/StartPage');
-var SideBar = require('../SideBar/SideBar');
-var MessageBar = require('../MessageBar/MessageBar');
-
+var ThemeManager = require('material-ui/lib/styles/theme-manager')();
+var Colors = require('material-ui/lib/styles/colors');
 
 module.exports = React.createClass({displayName: "exports",
-  getInitialState: function () {
-    return {logined: false};
+  childContextTypes: {
+    muiTheme: React.PropTypes.object
   },
-  onLogin: function (logined) {
+  getChildContext: function() {
+    return {
+      muiTheme: ThemeManager.getCurrentTheme()
+    };
+  },
+  getInitialState: function () {
+    return {logined: false, theme: true};
+  },
+  userLogined: function (logined) {
     this.setState({logined: logined});
   },
-  render: function () {
-    if (this.state.logined) {
-      return (
-        React.createElement("div", {className: "app"}, 
-          React.createElement(SideBar, null), 
-          React.createElement(MessageBar, null), 
-          React.createElement(RouteHandler, null)
-        )
-      );
+  theme: function () {
+    if (this.state.theme) {
+      ThemeManager.setTheme(ThemeManager.types.LIGHT);
     } else {
-      return (
-        React.createElement("div", {className: "app"}, 
-          React.createElement(StartPage, {onLogin: this.onLogin}), 
-          React.createElement(RouteHandler, null)
-        )
-      );
+      ThemeManager.setTheme(ThemeManager.types.DARK);
     }
+    this.setState({theme: !this.state.theme});
+  },
+  render: function () {
+    return (
+      React.createElement("div", {className: "app"}, 
+        React.createElement(RouteHandler, {onLogin: this.userLogined, theme: this.theme})
+      )
+    );
   }
 });
