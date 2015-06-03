@@ -4,8 +4,8 @@ var { RouteHandler, Navigation } = Router;
 var mui = require('material-ui');
 var { AppBar, Paper, RaisedButton } = mui;
 var About = require('./About');
-var RightButton = require('./RightButton');
-var LoginForm = require('./LoginForm');
+var RightButton = require('./../Button/RightButton');
+var LoginForm = require('./../Form/LoginForm');
 
 module.exports = React.createClass({
   mixins: [Navigation],

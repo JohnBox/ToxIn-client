@@ -5,6 +5,7 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var clean = require('gulp-clean');
 var less = require('gulp-less');
+var concatCss = require('gulp-concat-css');
 
 path = {
   static: ['src/index.html', 'src/assets/**'],

@@ -2,7 +2,7 @@ body {
   background-color: #eee;
   margin: 0;
   padding: 0;
-  //overflow-y: hidden;
+  overflow-y: hidden;
 }
 
 .start_page {
@@ -64,24 +64,41 @@ body {
   }
 }
 .main_page {
-  //height: 100vh;
-  display: flex;
+  height: 100vh;
+  background-color: #fff;
   .appbar_button {
     margin-top: 6px !important;
     margin-right: 4px !important;
   }
-  .left_panel {
-    width: 30%;
-    flex: 1;
-    //margin-right: 10px;
-  }
-  .container {
-    width: 70%;
-    flex: 2;
-    background-color: #eeeeee !important;
+
+  .cover_button {
+    margin-left: 50px !important;
   }
 }
-
-.hidden {
-  visibility: hidden;
+.panel {
+  width: 28%;
+  margin-right: 24px;
+  float: left;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .icon_button {
+    //border: solid 1px red;
+    height: 52px;
+    img {
+      cursor: pointer;
+      border-radius: 100%;
+      background-color: #fff;
+      height: 48px;
+      width: 48px;
+    }
+  }
+  .tab_container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    .tab {
+      height: 100%;
+    }
+  }
 }

@@ -10,10 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "browserify": "^10.2.3",
-    "flux": "^2.0.3",
     "gulp": "^3.8.11",
-    "gulp-browserify": "^0.5.1",
     "gulp-clean": "^0.3.1",
+    "gulp-concat-css": "^2.2.0",
     "gulp-less": "^3.0.3",
     "gulp-react": "^3.0.1",
     "jquery": "^2.1.4",
@@ -22,7 +21,6 @@
     "react": "^0.13.3",
     "react-async": "^2.1.0",
     "react-router": "^0.13.3",
-    "react-router-component": "^0.24.4",
     "react-tap-event-plugin": "^0.1.7",
     "run-sequence": "^1.1.0",
     "vinyl-source-stream": "^1.1.0"

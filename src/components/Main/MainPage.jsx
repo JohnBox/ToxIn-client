@@ -3,10 +3,10 @@ var Router = require('react-router');
 var { Route, RouteHandler, Link } = Router;
 var $ = require('jquery');
 var mui = require('material-ui');
-var { AppBar, Paper, RaisedButton } = mui;
-var OutButton = require('./OutButton');
-var LeftPanel = require('./Panel');
-var Container = require('./Container');
+var { AppBar, Paper, RaisedButton, FontIcon } = mui;
+var OutButton = require('./../Button/OutButton');
+var ToggleButton = require('./../Button/ToggleButton');
+var Panel = require('./Panel');
 
 module.exports = React.createClass({
   getInitialState: function () {
@@ -16,11 +16,14 @@ module.exports = React.createClass({
     this.setState({openPanel: !this.state.openPanel});
   },
   render: function () {
-    var panel = this.state.openPanel?<LeftPanel/>:'';
+    var panel = this.state.openPanel?<Panel/>:'';
     return (
       <Paper className="main_page">
         {panel}
-        <Container togglePanel={this.togglePanel}/>
+        <AppBar title='ToxIn'
+                iconElementLeft={<ToggleButton toggle={this.togglePanel}/>}
+                iconElementRight={<FontIcon className="muidocs-icon-action-home"/>}
+                zDepth={0}/>
       </Paper>
     );
   }

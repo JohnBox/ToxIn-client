@@ -4,8 +4,8 @@ var $__0=     Router,RouteHandler=$__0.RouteHandler,Navigation=$__0.Navigation;
 var mui = require('material-ui');
 var $__1=     mui,AppBar=$__1.AppBar,Paper=$__1.Paper;
 var About = require('./About');
-var RightButton = require('./RightButton');
-var RegisterForm = require('./RegisterForm');
+var RightButton = require('./../Button/RightButton');
+var RegisterForm = require('./../Form/RegisterForm');
 
 module.exports = React.createClass({displayName: "exports",
   mixins: [Navigation],

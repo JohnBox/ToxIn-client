@@ -2,7 +2,7 @@ var React = require('react');
 var Router = require('react-router');
 var { Route, RouteHandler, Link } = Router;
 var ThemeManager = require('material-ui/lib/styles/theme-manager')();
-var Colors = require('material-ui/lib/styles/colors');
+require("react-tap-event-plugin")();
 
 module.exports = React.createClass({
   childContextTypes: {
