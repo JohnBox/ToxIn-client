@@ -7,7 +7,7 @@ module.exports = React.createClass({
     return (
       <div className="appbar_button">
       <Link to='login'>
-        <RaisedButton label={this.props.label}/>
+        <i className="material-icons x20">arrow_back</i>
       </Link>
       </div>
     );

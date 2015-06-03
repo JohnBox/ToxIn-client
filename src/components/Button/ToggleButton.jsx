@@ -13,7 +13,7 @@ module.exports = React.createClass({
     var label = this.state.state?'<':'>';
     return (
       <div className="toggle_button">
-        <FloatingActionButton onClick={this.toggleState} label={label} mini={true}/>
+        <i className="material-icons x20">arrow_back</i>
       </div>
     );
   }

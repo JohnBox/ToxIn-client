@@ -7,7 +7,7 @@ module.exports = React.createClass({displayName: "exports",
     return (
       React.createElement("div", {className: "appbar_button"}, 
       React.createElement(Link, {to: "login"}, 
-        React.createElement(RaisedButton, {label: this.props.label})
+        React.createElement("i", {className: "material-icons x20"}, "arrow_back")
       )
       )
     );

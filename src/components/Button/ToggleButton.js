@@ -13,7 +13,7 @@ module.exports = React.createClass({displayName: "exports",
     var label = this.state.state?'<':'>';
     return (
       React.createElement("div", {className: "toggle_button"}, 
-        React.createElement(FloatingActionButton, {onClick: this.toggleState, label: label, mini: true})
+        React.createElement("i", {className: "material-icons x20"}, "arrow_back")
       )
     );
   }

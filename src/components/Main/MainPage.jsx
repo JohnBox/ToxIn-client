@@ -22,7 +22,7 @@ module.exports = React.createClass({
         {panel}
         <AppBar title='ToxIn'
                 iconElementLeft={<ToggleButton toggle={this.togglePanel}/>}
-                iconElementRight={<FontIcon className="muidocs-icon-action-home"/>}
+                iconClassNameRight=''
                 zDepth={0}/>
       </Paper>
     );
