@@ -1,14 +1,14 @@
 var React = require('react');
-var { RaisedButton } = require('material-ui');
+var $__0=    require('material-ui'),RaisedButton=$__0.RaisedButton;
 
-module.exports = React.createClass({
-  getInitialState() {
+module.exports = React.createClass({displayName: "exports",
+  getInitialState:function() {
     return {state: 0};
   },
-  changeState() {
+  changeState:function() {
     this.setState({state: (this.state.state+1)%3});
   },
-  render() {
+  render:function() {
     var style='';
     switch (this.state.state) {
       case 0:
@@ -22,9 +22,9 @@ module.exports = React.createClass({
         break;
     }
     return (
-      <div className="icon_button">
-        <img src="go.png" style={{border: style}} onClick={this.changeState}/>
-      </div>
+      React.createElement("div", {className: "logo_button"}, 
+        React.createElement("img", {src: "go.png", style: {border: style}, onClick: this.changeState})
+      )
     );
   }
 });

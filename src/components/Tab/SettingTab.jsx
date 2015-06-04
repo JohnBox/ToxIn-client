@@ -7,8 +7,7 @@ var { AppBar, Paper, Tabs, Tab } = mui;
 module.exports = React.createClass({
   render() {
     return (
-      <div className="panel_container">
-        <h1>Setting Tab</h1>
+      <div className="setting_tab">
       </div>
     );
   }

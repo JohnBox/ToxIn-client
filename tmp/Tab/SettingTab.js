@@ -7,8 +7,7 @@ var $__1=       mui,AppBar=$__1.AppBar,Paper=$__1.Paper,Tabs=$__1.Tabs,Tab=$__1.
 module.exports = React.createClass({displayName: "exports",
   render:function() {
     return (
-      React.createElement("div", {className: "panel_container"}, 
-        React.createElement("h1", null, "Search Tab")
+      React.createElement("div", {className: "setting_tab"}
       )
     );
   }

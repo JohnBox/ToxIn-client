@@ -10,7 +10,7 @@ var concatCss = require('gulp-concat-css');
 path = {
   static: ['src/index.html', 'src/assets/**'],
   css: ['src/styles/*.less'],
-  main_js: ['src/components/index.js'],
+  main_js: ['tmp/index.js'],
   js: ['src/components/**/*.js', 'src/components/*.js'],
   jsx: ['src/components/**/*.jsx', 'src/components/*.jsx'],
   build: 'build/'
@@ -19,7 +19,7 @@ path = {
 gulp.task('jsx', function () {
   return gulp.src(path.jsx)
     .pipe(react({harmony: true}))
-    .pipe(gulp.dest('src/components'));
+    .pipe(gulp.dest('tmp'));
 });
 
 gulp.task('browserify', function () {
@@ -29,7 +29,6 @@ gulp.task('browserify', function () {
       debug: true
     })
     .bundle()
-    //.ignore('mdi')
     .pipe(source('index.js'))
     .pipe(gulp.dest(path.build));
 });
@@ -45,7 +44,6 @@ gulp.task('static', function () {
 });
 gulp.task('build', function () {
   runSequence(
-    'clean js',
     ['jsx', 'clean build'],
     ['less', 'static'],
     'browserify');
@@ -56,7 +54,7 @@ gulp.task('clean build', function () {
     .pipe(clean());
 });
 gulp.task('clean js', function () {
-  return gulp.src(path.js)
+  return gulp.src(['tmp/**', 'tmp/*.*'])
     .pipe(clean());
 });
 

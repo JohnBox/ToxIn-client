@@ -20,9 +20,9 @@ module.exports = React.createClass({displayName: "exports",
     return (
       React.createElement(Paper, {className: "main_page"}, 
         panel, 
-        React.createElement(AppBar, {title: "ToxIn", 
+        React.createElement(AppBar, {title: "", 
                 iconElementLeft: React.createElement(ToggleButton, {toggle: this.togglePanel}), 
-                iconClassNameRight: "", 
+                iconElementRight: React.createElement(OutButton, null), 
                 zDepth: 0})
       )
     );

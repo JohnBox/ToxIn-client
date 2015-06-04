@@ -20,9 +20,9 @@ module.exports = React.createClass({
     return (
       <Paper className="main_page">
         {panel}
-        <AppBar title='ToxIn'
+        <AppBar title=''
                 iconElementLeft={<ToggleButton toggle={this.togglePanel}/>}
-                iconClassNameRight=''
+                iconElementRight={<OutButton/>}
                 zDepth={0}/>
       </Paper>
     );
