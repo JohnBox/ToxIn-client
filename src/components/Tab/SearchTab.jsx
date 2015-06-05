@@ -1,4 +1,5 @@
 var React = require('react');
+var ScrollBar = require('react-scrollbar');
 var { Paper, TextField, Menu } = require('material-ui');
 
 
@@ -26,7 +27,11 @@ module.exports = React.createClass({
     return (
       <div className="search_tab">
         <TextField hintText='Пошук' style={{width: '100%'}}/>
-        <Menu onItemClick={this.onUserClick} menuItems={users} autoWidth={false} zDepth={0}/>
+        <div className="scroll">
+        <ScrollBar>
+          <Menu onItemClick={this.onUserClick} menuItems={users} autoWidth={false} zDepth={0}/>
+        </ScrollBar>
+        </div>
       </div>
     );
   }

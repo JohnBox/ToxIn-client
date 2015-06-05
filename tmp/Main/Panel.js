@@ -3,6 +3,7 @@ var Router = require('react-router');
 var $__0=      Router,Route=$__0.Route,RouteHandler=$__0.RouteHandler,Link=$__0.Link;
 var mui = require('material-ui');
 var $__1=        mui,AppBar=$__1.AppBar,Paper=$__1.Paper,Tabs=$__1.Tabs,Tab=$__1.Tab,SvgIcon=$__1.SvgIcon;
+var Transitions = mui.Styles.Transitions;
 var UserLogoButton = require('./../Button/UserLogoButton');
 var UserProfileButton = require('./../Button/UserProfileButton');
 var $__2=         require('./../Tab/Tab'),HomeTab=$__2.HomeTab,SearchTab=$__2.SearchTab,FavoriteTab=$__2.FavoriteTab,HistoryTab=$__2.HistoryTab,StatisticTab=$__2.StatisticTab,SettingTab=$__2.SettingTab;
@@ -67,21 +68,19 @@ var SettingIcon = React.createClass({displayName: "SettingIcon",
 
 
 module.exports = React.createClass({displayName: "exports",
-  changeTabs:function(i,t) {
-    alert(i);
-  },
-  activeTab:function(t) {
-    alert(t);
+  getStyles:function() {
+    return {};
   },
   render:function() {
+    var style = this.getStyles();
     return (
-      React.createElement(Paper, {className: "panel", zDepth: 2}, 
+      React.createElement(Paper, {className: "panel", zDepth: 2, style: style}, 
         React.createElement(AppBar, {title: "", 
                 iconElementLeft: React.createElement(UserLogoButton, null), 
                 iconElementRight: React.createElement(UserProfileButton, {name: "John Box"}), 
                 zDepth: 0}
           ), 
-        React.createElement(Tabs, {initialSelectedIndex: 5}, 
+        React.createElement(Tabs, {initialSelectedIndex: 1}, 
           React.createElement(Tab, {label: React.createElement(HomeIcon, null)}, 
             React.createElement(HomeTab, null)
           ), 
@@ -98,7 +97,7 @@ module.exports = React.createClass({displayName: "exports",
             React.createElement(StatisticTab, null)
           ), 
           React.createElement(Tab, {label: React.createElement(SettingIcon, null)}, 
-            React.createElement(SettingTab, null)
+            React.createElement(SettingTab, {theme: this.props.theme})
           )
         )
       )

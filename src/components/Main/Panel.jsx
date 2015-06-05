@@ -2,7 +2,8 @@ var React = require('react');
 var Router = require('react-router');
 var { Route, RouteHandler, Link } = Router;
 var mui = require('material-ui');
-var { AppBar, Paper, Tabs, Tab, SvgIcon } = mui;
+var { AppBar, Paper, Tabs, Tab, SvgIcon, } = mui;
+var Transitions = mui.Styles.Transitions;
 var UserLogoButton = require('./../Button/UserLogoButton');
 var UserProfileButton = require('./../Button/UserProfileButton');
 var { HomeTab, SearchTab, FavoriteTab, HistoryTab, StatisticTab, SettingTab } = require('./../Tab/Tab');
@@ -67,21 +68,19 @@ var SettingIcon = React.createClass({
 
 
 module.exports = React.createClass({
-  changeTabs(i,t) {
-    alert(i);
-  },
-  activeTab(t) {
-    alert(t);
+  getStyles() {
+    return {};
   },
   render() {
+    var style = this.getStyles();
     return (
-      <Paper className="panel" zDepth={2}>
+      <Paper className="panel" zDepth={2} style={style}>
         <AppBar title=''
                 iconElementLeft={<UserLogoButton/>}
                 iconElementRight={<UserProfileButton name='John Box'/>}
                 zDepth={0}
           />
-        <Tabs initialSelectedIndex={5}>
+        <Tabs initialSelectedIndex={1}>
           <Tab label={<HomeIcon/>}>
             <HomeTab/>
           </Tab>
@@ -98,7 +97,7 @@ module.exports = React.createClass({
             <StatisticTab/>
           </Tab>
           <Tab label={<SettingIcon/>}>
-            <SettingTab/>
+            <SettingTab theme={this.props.theme}/>
           </Tab>
         </Tabs>
       </Paper>

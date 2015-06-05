@@ -16,7 +16,7 @@ module.exports = React.createClass({displayName: "exports",
     this.setState({openPanel: !this.state.openPanel});
   },
   render: function () {
-    var panel = this.state.openPanel?React.createElement(Panel, null):'';
+    var panel = this.state.openPanel?React.createElement(Panel, {theme: this.props.theme}):'';
     return (
       React.createElement(Paper, {className: "main_page"}, 
         panel, 
