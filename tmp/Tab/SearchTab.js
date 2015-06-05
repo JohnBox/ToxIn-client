@@ -15,6 +15,11 @@ module.exports = React.createClass({displayName: "exports",
         {name: 'Tony Grisoni', img: 'go.png'},
         {name: 'Marty Style', img: 'go.png'},
         {name: 'Tony Grisoni', img: 'go.png'},
+        {name: 'John Box', img: 'go.png'},
+        {name: 'Marty Style', img: 'go.png'},
+        {name: 'Tony Grisoni', img: 'go.png'},
+        {name: 'Marty Style', img: 'go.png'},
+        {name: 'Tony Grisoni', img: 'go.png'},
         {name: 'Leila Wong', img: 'go.png'}
       ]
     };
@@ -27,10 +32,8 @@ module.exports = React.createClass({displayName: "exports",
     return (
       React.createElement("div", {className: "search_tab"}, 
         React.createElement(TextField, {hintText: "Пошук", style: {width: '100%'}}), 
-        React.createElement("div", {className: "scroll"}, 
         React.createElement(ScrollBar, null, 
           React.createElement(Menu, {onItemClick: this.onUserClick, menuItems: users, autoWidth: false, zDepth: 0})
-        )
         )
       )
     );

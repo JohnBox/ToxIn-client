@@ -15,6 +15,11 @@ module.exports = React.createClass({
         {name: 'Tony Grisoni', img: 'go.png'},
         {name: 'Marty Style', img: 'go.png'},
         {name: 'Tony Grisoni', img: 'go.png'},
+        {name: 'John Box', img: 'go.png'},
+        {name: 'Marty Style', img: 'go.png'},
+        {name: 'Tony Grisoni', img: 'go.png'},
+        {name: 'Marty Style', img: 'go.png'},
+        {name: 'Tony Grisoni', img: 'go.png'},
         {name: 'Leila Wong', img: 'go.png'}
       ]
     };
@@ -27,11 +32,9 @@ module.exports = React.createClass({
     return (
       <div className="search_tab">
         <TextField hintText='Пошук' style={{width: '100%'}}/>
-        <div className="scroll">
         <ScrollBar>
           <Menu onItemClick={this.onUserClick} menuItems={users} autoWidth={false} zDepth={0}/>
         </ScrollBar>
-        </div>
       </div>
     );
   }

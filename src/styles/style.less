@@ -2,7 +2,7 @@ body {
   background-color: #eee;
   margin: 0;
   padding: 0;
-  //overflow-y: hidden;
+  overflow-y: hidden;
   -moz-user-select: none;
   .mi.x15 { font-size: 18px; }
   .mi.x20 { font-size: 24px; }
@@ -23,6 +23,7 @@ body {
 .scrollarea {
   position: relative;
   overflow: hidden;
+  flex: 1 1 500px;
   .scrollbar-container {
     &.horizontal {
       width: 100%;
@@ -167,18 +168,19 @@ body {
     flex-direction: column;
     .tab {
       height: 100%;
+      display: flex;
+      flex-direction: column;
     }
   }
 }
 
 .search_tab {
-  border: solid 1px red;
-  min-height: 100%;
   flex: 1;
   display: flex;
+  //border: solid 1px red;
   flex-direction: column;
+  margin-bottom: 8px;
   .user {
-    border: solid 1px red;
     width: 100%;
     clear: both;
     img {
@@ -191,9 +193,5 @@ body {
     .username {
       float: left;
     }
-  }
-  .scroll {
-    flex: 1;
-    //border: solid 1px red;
   }
 }
