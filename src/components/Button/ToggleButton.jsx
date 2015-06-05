@@ -1,5 +1,5 @@
 var React = require('react');
-var { FloatingActionButton, IconButton, SvgIcon, IconButton } = require('material-ui');
+var { IconButton, SvgIcon } = require('material-ui');
 
 module.exports = React.createClass({
   getInitialState() {
@@ -13,7 +13,6 @@ module.exports = React.createClass({
     return { width: '36px', height: '36px' };
   },
   render: function () {
-
     var style = this.getStyles(),
         icon;
     if (this.state.state) {

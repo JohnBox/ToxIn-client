@@ -2,18 +2,11 @@ body {
   background-color: #eee;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   overflow-y: hidden;
   -moz-user-select: none;
-  .mi.x15 { font-size: 18px; }
-  .mi.x20 { font-size: 24px; }
-  .mi.x30 { font-size: 36px; }
-  .mi.x40 { font-size: 48px; }
-  .mi.dark { color: rgba(0, 0, 0, 0.54); }
-  .mi.dark.inactive { color: rgba(0, 0, 0, 0.26); }
-  .mi.light { color: rgba(255, 255, 255, 1); }
-  .mi.light.inactive { color: rgba(255, 255, 255, 0.3); }
-
 }
+
 .scrollarea-content{
   margin: 0;
   padding: 0;
@@ -25,18 +18,6 @@ body {
   overflow: hidden;
   flex: 1 1 500px;
   .scrollbar-container {
-    &.horizontal {
-      width: 100%;
-      height: 10px;
-      left: 0;
-      bottom: 0;
-      .scrollbar {
-        width: 20px;
-        height: 8px;
-        background: black;
-        margin-top: 1px;
-      }
-    }
     &.vertical {
       width: 10px;
       height: 100%;
@@ -59,11 +40,11 @@ body {
     transition: all .4s;
     &:hover {
       background: gray;
-      opacity: .6 !important;
+      opacity: .3 !important;
     }
     &.active {
       background: gray;
-      opacity: .6 !important;
+      opacity: .3 !important;
     }
   }
   &:hover .scrollbar-container {
@@ -92,10 +73,11 @@ body {
     justify-content: center;
   }
   .about {
+    text-align: right;
     min-height: 50px;
     max-height: 50px;
-    width: 99.8%;
-    border-top: solid 1px grey;
+    width: 100%;
+    background-color: #00BCD4;
     clear: both;
     align-self: flex-end;
   }
@@ -121,10 +103,12 @@ body {
     justify-content: center;
   }
   .about {
+    text-align: right;
     min-height: 50px;
     max-height: 50px;
-    width: 99.8%;
-    border-top: solid 1px grey;
+    width: 100%;
+    background-color: #00BCD4;
+    //border-top: solid 1px grey;
     clear: both;
     align-self: flex-end;
   }
@@ -147,20 +131,21 @@ body {
   .logo_button {
     margin-top: -2px;
     margin-left: 14px;
-    //border: solid 1px red;
     height: 52px;
     img {
       cursor: pointer;
       border-radius: 100%;
-      background-color: #fff;
       height: 48px;
       width: 48px;
     }
   }
   .profile_button {
     //border: solid 1px red;
-    font-size: 1.6em;
+    font-size: 1.4em;
     cursor: pointer;
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
   }
   .tab_container {
     flex: 1;
@@ -177,7 +162,6 @@ body {
 .search_tab {
   flex: 1;
   display: flex;
-  //border: solid 1px red;
   flex-direction: column;
   margin-bottom: 8px;
   .user {

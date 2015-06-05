@@ -7,29 +7,28 @@ var routes = require('../routes');
 
 module.exports = React.createClass({
   mixins: [Navigation],
-  getInitialState: function () {
+  getInitialState() {
     return {login: '', passwd: ''};
   },
-  onSubmit: function (e) {
+  onSubmit(e) {
     e.preventDefault();
     if (this.state.login === 'gott' && this.state.passwd === 'admin') {
-      this.props.setUser(this.state.login, true);
-      this.transitionTo('main',{user: this.state.login});
+      this.transitionTo('main', {user: this.state.login})
     }
   },
-  loginInput: function (e) {
+  loginInput(e) {
     this.setState({login: e.target.value});
   },
-  passwordInput: function (e) {
+  passwordInput(e) {
     this.setState({passwd: e.target.value});
   },
-  render: function () {
+  render() {
     return (
       <div className="start_form">
         <form onSubmit={this.onSubmit}>
           <TextField hintText={'Логін'} onChange={this.loginInput}/><br/>
-          <TextField type="password" hintText={'Пароль'} onChange={this.passwordInput}/><br/>
-          <RaisedButton label="Війти"/>
+          <TextField type="password" hintText={'Пароль'} onChange={this.passwordInput}/><br/><br/>
+          <RaisedButton label="Війти" style={{width: '100%'}}/>
         </form>
       </div>
     );

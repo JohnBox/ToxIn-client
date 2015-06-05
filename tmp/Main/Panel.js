@@ -72,12 +72,13 @@ module.exports = React.createClass({displayName: "exports",
     return {};
   },
   render:function() {
+    var user = this.props.user();
     var style = this.getStyles();
     return (
-      React.createElement(Paper, {className: "panel", zDepth: 2, style: style}, 
+      React.createElement(Paper, {className: "panel", zDepth: 3, style: style}, 
         React.createElement(AppBar, {title: "", 
                 iconElementLeft: React.createElement(UserLogoButton, null), 
-                iconElementRight: React.createElement(UserProfileButton, {name: "John Box"}), 
+                title: React.createElement(UserProfileButton, {name: user}), 
                 zDepth: 0}
           ), 
         React.createElement(Tabs, {initialSelectedIndex: 1}, 

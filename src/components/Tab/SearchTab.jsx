@@ -1,39 +1,56 @@
 var React = require('react');
 var ScrollBar = require('react-scrollbar');
-var { Paper, TextField, Menu } = require('material-ui');
+var { Paper, TextField, Menu, SvgIcon } = require('material-ui');
+var ghb = require('../Button/GitHubButton');
 
+var Icon = React.createClass({
+  getStyles() {
+    return {
+      marginTop: '5px',
+      marginBottom: '-15px',
+      marginRight: '10px',
+      border: 'solid 1px gray',
+      height: '40px',
+      width: '40px',
+      borderRadius: '50%'
+    }
+  },
+  render() {
+    var style = this.getStyles();
+    return (
+      <img src="go.png" alt="" style={style}/>
+    );
+  }
+});
 
 module.exports = React.createClass({
   getInitialState() {
     return {
       users: [
-        {name: 'John Box', img: 'go.png'},
-        {name: 'Marty Style', img: 'go.png'},
-        {name: 'Tony Grisoni', img: 'go.png'},
-        {name: 'John Box', img: 'go.png'},
-        {name: 'Marty Style', img: 'go.png'},
-        {name: 'Tony Grisoni', img: 'go.png'},
-        {name: 'Marty Style', img: 'go.png'},
-        {name: 'Tony Grisoni', img: 'go.png'},
-        {name: 'John Box', img: 'go.png'},
-        {name: 'Marty Style', img: 'go.png'},
-        {name: 'Tony Grisoni', img: 'go.png'},
-        {name: 'Marty Style', img: 'go.png'},
-        {name: 'Tony Grisoni', img: 'go.png'},
-        {name: 'Leila Wong', img: 'go.png'}
+        {text: 'John Box', icon: <Icon/>},
+        {text: 'Marty Style', icon: <Icon/>},
+        {text: 'Tony Grisoni', icon: <Icon/>},
+        {text: 'John Box', icon: <Icon/>},
+        {text: 'Marty Style', icon: <Icon/>},
+        {text: 'Tony Grisoni', icon: <Icon/>},
+        {text: 'Marty Style', icon: <Icon/>},
+        {text: 'Tony Grisoni', icon: <Icon/>},
+        {text: 'John Box', icon: <Icon/>},
+        {text: 'Marty Style', icon: <Icon/>},
+        {text: 'Tony Grisoni', icon: <Icon/>},
+        {text: 'Marty Style', icon: <Icon/>},
+        {text: 'Tony Grisoni', icon: <Icon/>},
+        {text: 'Leila Wong', icon: <Icon/>}
       ]
     };
   },
-  onUserClick(e,i,u) {
-    alert(i+' | '+u.text);
-  },
   render() {
-    var users = this.state.users.map((user)=>({text: user.name}));
+    var users = this.state.users;
     return (
       <div className="search_tab">
-        <TextField hintText='Пошук' style={{width: '100%'}}/>
+        <TextField hintText='Пошук' style={{width: '100%'}} search={true}/>
         <ScrollBar>
-          <Menu onItemClick={this.onUserClick} menuItems={users} autoWidth={false} zDepth={0}/>
+          <Menu menuItems={users} autoWidth={false} zDepth={0}/>
         </ScrollBar>
       </div>
     );

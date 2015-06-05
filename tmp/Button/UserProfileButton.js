@@ -1,17 +1,27 @@
 var React = require('react');
-var $__0=    require('material-ui'),RaisedButton=$__0.RaisedButton;
+var mui = require('material-ui');
+var $__0=    mui,RaisedButton=$__0.RaisedButton;
+var StylePropable = mui.Mixins.StylePropable;
 
 module.exports = React.createClass({displayName: "exports",
-  getInitialState:function() {
-    return {state: 0};
+  mixins: [StylePropable],
+  contextTypes: {
+    muiTheme: React.PropTypes.object
   },
-  r:function() {
-    alert('');
+  getTheme:function() {
+    return this.context.muiTheme.palette;
+  },
+  getStyles: function() {
+    return {
+      userSelect: 'none',
+      color: this.getTheme().canvasColor
+    };
   },
   render:function() {
+    var style = this.getStyles();
     return (
-      React.createElement("div", {className: "profile_button", onClick: this.r}, 
-        React.createElement("div", null, this.props.name)
+      React.createElement("div", {className: "profile_button", style: style}, 
+        this.props.name
       )
     );
   }

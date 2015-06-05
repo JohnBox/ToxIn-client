@@ -1,5 +1,5 @@
 var React = require('react');
-var $__0=       require('material-ui'),FloatingActionButton=$__0.FloatingActionButton,IconButton=$__0.IconButton,SvgIcon=$__0.SvgIcon,IconButton=$__0.IconButton;
+var $__0=     require('material-ui'),IconButton=$__0.IconButton,SvgIcon=$__0.SvgIcon;
 
 module.exports = React.createClass({displayName: "exports",
   getInitialState:function() {
@@ -13,7 +13,6 @@ module.exports = React.createClass({displayName: "exports",
     return { width: '36px', height: '36px' };
   },
   render: function () {
-
     var style = this.getStyles(),
         icon;
     if (this.state.state) {

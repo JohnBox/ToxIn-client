@@ -1,39 +1,56 @@
 var React = require('react');
 var ScrollBar = require('react-scrollbar');
-var $__0=      require('material-ui'),Paper=$__0.Paper,TextField=$__0.TextField,Menu=$__0.Menu;
+var $__0=       require('material-ui'),Paper=$__0.Paper,TextField=$__0.TextField,Menu=$__0.Menu,SvgIcon=$__0.SvgIcon;
+var ghb = require('../Button/GitHubButton');
 
+var Icon = React.createClass({displayName: "Icon",
+  getStyles:function() {
+    return {
+      marginTop: '5px',
+      marginBottom: '-15px',
+      marginRight: '10px',
+      border: 'solid 1px gray',
+      height: '40px',
+      width: '40px',
+      borderRadius: '50%'
+    }
+  },
+  render:function() {
+    var style = this.getStyles();
+    return (
+      React.createElement("img", {src: "go.png", alt: "", style: style})
+    );
+  }
+});
 
 module.exports = React.createClass({displayName: "exports",
   getInitialState:function() {
     return {
       users: [
-        {name: 'John Box', img: 'go.png'},
-        {name: 'Marty Style', img: 'go.png'},
-        {name: 'Tony Grisoni', img: 'go.png'},
-        {name: 'John Box', img: 'go.png'},
-        {name: 'Marty Style', img: 'go.png'},
-        {name: 'Tony Grisoni', img: 'go.png'},
-        {name: 'Marty Style', img: 'go.png'},
-        {name: 'Tony Grisoni', img: 'go.png'},
-        {name: 'John Box', img: 'go.png'},
-        {name: 'Marty Style', img: 'go.png'},
-        {name: 'Tony Grisoni', img: 'go.png'},
-        {name: 'Marty Style', img: 'go.png'},
-        {name: 'Tony Grisoni', img: 'go.png'},
-        {name: 'Leila Wong', img: 'go.png'}
+        {text: 'John Box', icon: React.createElement(Icon, null)},
+        {text: 'Marty Style', icon: React.createElement(Icon, null)},
+        {text: 'Tony Grisoni', icon: React.createElement(Icon, null)},
+        {text: 'John Box', icon: React.createElement(Icon, null)},
+        {text: 'Marty Style', icon: React.createElement(Icon, null)},
+        {text: 'Tony Grisoni', icon: React.createElement(Icon, null)},
+        {text: 'Marty Style', icon: React.createElement(Icon, null)},
+        {text: 'Tony Grisoni', icon: React.createElement(Icon, null)},
+        {text: 'John Box', icon: React.createElement(Icon, null)},
+        {text: 'Marty Style', icon: React.createElement(Icon, null)},
+        {text: 'Tony Grisoni', icon: React.createElement(Icon, null)},
+        {text: 'Marty Style', icon: React.createElement(Icon, null)},
+        {text: 'Tony Grisoni', icon: React.createElement(Icon, null)},
+        {text: 'Leila Wong', icon: React.createElement(Icon, null)}
       ]
     };
   },
-  onUserClick:function(e,i,u) {
-    alert(i+' | '+u.text);
-  },
   render:function() {
-    var users = this.state.users.map(function(user){return {text: user.name};});
+    var users = this.state.users;
     return (
       React.createElement("div", {className: "search_tab"}, 
-        React.createElement(TextField, {hintText: "Пошук", style: {width: '100%'}}), 
+        React.createElement(TextField, {hintText: "Пошук", style: {width: '100%'}, search: true}), 
         React.createElement(ScrollBar, null, 
-          React.createElement(Menu, {onItemClick: this.onUserClick, menuItems: users, autoWidth: false, zDepth: 0})
+          React.createElement(Menu, {menuItems: users, autoWidth: false, zDepth: 0})
         )
       )
     );

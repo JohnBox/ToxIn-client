@@ -1,10 +1,11 @@
 var React = require('react');
 var Router = require('react-router');
-var { Route, RouteHandler, Link } = Router;
+var { Route, RouteHandler, Link, Navigation } = Router;
 var ThemeManager = require('material-ui/lib/styles/theme-manager')();
 require("react-tap-event-plugin")();
 
 module.exports = React.createClass({
+  mixins: [Navigation],
   childContextTypes: {
     muiTheme: React.PropTypes.object
   },
@@ -14,23 +15,29 @@ module.exports = React.createClass({
     };
   },
   getInitialState: function () {
-    return {user: null, logined: false, theme: true};
+    return {user: null,darkTheme: false};
   },
-  setUser: function (user = null, logined =null) {
+  user: function (user = null) {
+    alert(user);
     if (!user) {
-      return {user: this.state.user, logined: this.state.logined};
-    } else {
-      this.setState({user: user, logined: logined});
+      return this.state.user;
     }
+    this.setState({user: user});
   },
   theme: function () {
-    ThemeManager.setTheme(this.state.theme?ThemeManager.types.LIGHT:ThemeManager.types.DARK);
-    this.setState({theme: !this.state.theme});
+    ThemeManager.setTheme(this.state.darkTheme?ThemeManager.types.DARK:ThemeManager.types.LIGHT);
+    this.setState({darkTheme: !this.state.darkTheme});
+  },
+  shouldComponentUpdate() {
+    if (this.state.user) {
+      return false;
+    }
+    return true;
   },
   render: function () {
     return (
       <div className="app">
-        <RouteHandler setUser={this.setUser} theme={this.theme}/>
+        <RouteHandler user={this.user} theme={this.theme}/>
       </div>
     );
   }

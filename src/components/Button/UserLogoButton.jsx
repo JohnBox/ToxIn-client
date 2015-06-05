@@ -1,29 +1,35 @@
 var React = require('react');
-var { RaisedButton } = require('material-ui');
+var mui = require('material-ui');
+var { RaisedButton } = mui;
+var StylePropable = mui.Mixins.StylePropable;
+
 
 module.exports = React.createClass({
+  mixins: [StylePropable],
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+  getTheme() {
+    return this.context.muiTheme.palette;
+  },
   getInitialState() {
-    return {state: 0};
+    return {border: 0};
+  },
+  getStyles() {
+    var imgBorder = ['green', 'yellow', '#F44'];
+    return {
+      border: 'solid 2px '+imgBorder[this.state.border],
+      backgroundColor: this.getTheme().canvasColor
+    };
   },
   changeState() {
-    this.setState({state: (this.state.state+1)%3});
+    this.setState({border: (this.state.border+1)%3});
   },
   render() {
-    var style='';
-    switch (this.state.state) {
-      case 0:
-        style = 'solid 2px green';
-        break;
-      case 1:
-        style = 'solid 2px yellow';
-        break;
-      case 2:
-        style = 'solid 2px #f44';
-        break;
-    }
+    var style = this.getStyles();
     return (
       <div className="logo_button">
-        <img src="go.png" style={{border: style}} onClick={this.changeState}/>
+        <img src="go.png" style={style} onClick={this.changeState}/>
       </div>
     );
   }

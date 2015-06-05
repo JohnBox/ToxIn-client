@@ -13,16 +13,15 @@ module.exports = React.createClass({displayName: "exports",
     return {url: 'http://0.0.0.0:8000/'};
   },
   render: function () {
-    var user = this.props.setUser();
-    if (user.logined){
-      this.transitionTo('main', {user: user.user});
+    var user = this.props.user();
+    if (user){
+      this.transitionTo('main', {user: user});
     }
     return (
       React.createElement("div", {className: "start_page"}, 
         React.createElement(Paper, {className: "paper"}, 
           React.createElement(AppBar, {title: "ToxIn", iconElementRight: React.createElement(RightButton, {link: 'register', label: 'Зареєструватися'})}), 
-          React.createElement(RaisedButton, {onClick: this.props.theme}), 
-          React.createElement(LoginForm, {setUser: this.props.setUser}), 
+          React.createElement(LoginForm, {setUser: this.props.user}), 
           React.createElement(About, null)
         )
       )

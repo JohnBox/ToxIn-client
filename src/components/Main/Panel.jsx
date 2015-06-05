@@ -72,12 +72,13 @@ module.exports = React.createClass({
     return {};
   },
   render() {
+    var user = this.props.user();
     var style = this.getStyles();
     return (
-      <Paper className="panel" zDepth={2} style={style}>
+      <Paper className="panel" zDepth={3} style={style}>
         <AppBar title=''
                 iconElementLeft={<UserLogoButton/>}
-                iconElementRight={<UserProfileButton name='John Box'/>}
+                title={<UserProfileButton name={user}/>}
                 zDepth={0}
           />
         <Tabs initialSelectedIndex={1}>

@@ -16,7 +16,7 @@ module.exports = React.createClass({displayName: "exports",
     return {};
   },
   render: function () {
-    var user = this.props.setUser();
+    var user = this.props.user();
     if (user.logined){
       this.transitionTo('main', {user: user.user});
     }
