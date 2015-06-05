@@ -21,7 +21,7 @@ module.exports = React.createClass({displayName: "exports",
     this.props.user()
   },
   render:function() {
-    alert(window.location.href.split('/').reverse()[0]);
+    //alert(window.location.href.split('/').reverse()[0]);
     var panel = this.state.openPanel?React.createElement(Panel, {theme: this.props.theme, user: this.props.user}):'';
     return (
       React.createElement(Paper, {className: "main_page"}, 

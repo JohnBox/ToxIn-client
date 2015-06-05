@@ -9,32 +9,29 @@ module.exports = React.createClass({displayName: "exports",
   childContextTypes: {
     muiTheme: React.PropTypes.object
   },
-  getChildContext: function() {
+  getChildContext:function() {
     return {
       muiTheme: ThemeManager.getCurrentTheme()
     };
   },
-  getInitialState: function () {
-    return {user: null,darkTheme: false};
+  getInitialState:function() {
+    return {user: null, darkTheme: false};
   },
-  user: function (user = null) {
-    alert(user);
-    if (!user) {
+  user:function(user) {
+    if (user === undefined) {
       return this.state.user;
     }
     this.setState({user: user});
   },
-  theme: function () {
+  theme:function() {
     ThemeManager.setTheme(this.state.darkTheme?ThemeManager.types.DARK:ThemeManager.types.LIGHT);
     this.setState({darkTheme: !this.state.darkTheme});
   },
   shouldComponentUpdate:function() {
-    if (this.state.user) {
-      return false;
-    }
+    //if (this.state.user) { return false; }
     return true;
   },
-  render: function () {
+  render:function() {
     return (
       React.createElement("div", {className: "app"}, 
         React.createElement(RouteHandler, {user: this.user, theme: this.theme})

@@ -13,6 +13,7 @@ module.exports = React.createClass({
   onSubmit(e) {
     e.preventDefault();
     if (this.state.login === 'gott' && this.state.passwd === 'admin') {
+      this.props.user(this.state.login);
       this.transitionTo('main', {user: this.state.login})
     }
   },

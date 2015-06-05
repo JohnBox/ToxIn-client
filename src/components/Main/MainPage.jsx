@@ -21,7 +21,7 @@ module.exports = React.createClass({
     this.props.user()
   },
   render() {
-    alert(window.location.href.split('/').reverse()[0]);
+    //alert(window.location.href.split('/').reverse()[0]);
     var panel = this.state.openPanel?<Panel theme={this.props.theme} user={this.props.user}/>:'';
     return (
       <Paper className="main_page">
