@@ -1,11 +1,10 @@
 var React = require('react');
-var Router = require('react-router');
-var { Route, RouteHandler, Link, Navigation } = Router;
+var LoginPage = require('../Auth/LoginPage');
+var MainPage = require('../Main/MainPage');
 var ThemeManager = require('material-ui/lib/styles/theme-manager')();
 require("react-tap-event-plugin")();
 
 module.exports = React.createClass({
-  mixins: [Navigation],
   childContextTypes: {
     muiTheme: React.PropTypes.object
   },
@@ -27,14 +26,13 @@ module.exports = React.createClass({
     ThemeManager.setTheme(this.state.darkTheme?ThemeManager.types.DARK:ThemeManager.types.LIGHT);
     this.setState({darkTheme: !this.state.darkTheme});
   },
-  shouldComponentUpdate() {
-    //if (this.state.user) { return false; }
-    return true;
-  },
   render() {
+    var page = this.state.user
+      ? <MainPage user={this.user} theme={this.theme}/>
+      : <LoginPage user={this.user}/>;
     return (
       <div className="app">
-        <RouteHandler user={this.user} theme={this.theme}/>
+        {page}
       </div>
     );
   }

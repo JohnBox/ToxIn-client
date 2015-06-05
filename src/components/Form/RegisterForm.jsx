@@ -3,9 +3,6 @@ var mui = require('material-ui');
 var { RaisedButton, TextField } = mui;
 
 module.exports = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.func
-  },
   getDefaultProps() {
     return {url: 'http://0.0.0.0:8000/'}
   },

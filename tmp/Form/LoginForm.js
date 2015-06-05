@@ -1,12 +1,8 @@
 var React = require('react');
-var Router = require('react-router');
-var $__0=    Router,Navigation=$__0.Navigation;
 var mui = require('material-ui');
-var $__1=     mui,RaisedButton=$__1.RaisedButton,TextField=$__1.TextField;
-var routes = require('../routes');
+var $__0=     mui,RaisedButton=$__0.RaisedButton,TextField=$__0.TextField;
 
 module.exports = React.createClass({displayName: "exports",
-  mixins: [Navigation],
   getInitialState:function() {
     return {login: '', passwd: ''};
   },
@@ -14,7 +10,6 @@ module.exports = React.createClass({displayName: "exports",
     e.preventDefault();
     if (this.state.login === 'gott' && this.state.passwd === 'admin') {
       this.props.user(this.state.login);
-      this.transitionTo('main', {user: this.state.login})
     }
   },
   loginInput:function(e) {

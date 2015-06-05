@@ -1,15 +1,12 @@
 var React = require('react');
-var $__0=    require('react-router'),Navigation=$__0.Navigation;
-var $__1=      require('material-ui'),RaisedButton=$__1.RaisedButton,SvgIcon=$__1.SvgIcon,IconButton=$__1.IconButton;
+var $__0=      require('material-ui'),RaisedButton=$__0.RaisedButton,SvgIcon=$__0.SvgIcon,IconButton=$__0.IconButton;
 
 module.exports = React.createClass({displayName: "exports",
-  mixins: [Navigation],
   getStyles:function() {
     return { width: '36px', height: '36px' };
   },
   logOut:function() {
-    this.props.user();
-    this.transitionTo('login');
+    this.props.user(null);
   },
   render:function() {
     var style = this.getStyles();

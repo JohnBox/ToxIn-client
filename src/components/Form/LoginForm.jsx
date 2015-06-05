@@ -1,12 +1,8 @@
 var React = require('react');
-var Router = require('react-router');
-var { Navigation } = Router;
 var mui = require('material-ui');
 var { RaisedButton, TextField } = mui;
-var routes = require('../routes');
 
 module.exports = React.createClass({
-  mixins: [Navigation],
   getInitialState() {
     return {login: '', passwd: ''};
   },
@@ -14,7 +10,6 @@ module.exports = React.createClass({
     e.preventDefault();
     if (this.state.login === 'gott' && this.state.passwd === 'admin') {
       this.props.user(this.state.login);
-      this.transitionTo('main', {user: this.state.login})
     }
   },
   loginInput(e) {

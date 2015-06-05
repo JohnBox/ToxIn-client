@@ -1,15 +1,12 @@
 var React = require('react');
-var { Navigation } = require('react-router');
 var { RaisedButton, SvgIcon, IconButton } = require('material-ui');
 
 module.exports = React.createClass({
-  mixins: [Navigation],
   getStyles() {
     return { width: '36px', height: '36px' };
   },
   logOut() {
-    this.props.user();
-    this.transitionTo('login');
+    this.props.user(null);
   },
   render() {
     var style = this.getStyles();
