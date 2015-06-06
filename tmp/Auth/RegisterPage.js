@@ -9,16 +9,10 @@ var RegisterForm = require('./../Form/RegisterForm');
 
 module.exports = React.createClass({displayName: "exports",
   mixins: [Navigation],
-  getDefaultProps: function() {
-    return {url: 'http://0.0.0.0:8000/'};
-  },
-  getInitialState: function () {
-    return {};
-  },
-  render: function () {
+  render:function() {
     var user = this.props.user();
-    if (user.logined){
-      this.transitionTo('main', {user: user.user});
+    if (user){
+      this.transitionTo('main', {user: user});
     }
     return (
       React.createElement("div", {className: "register_page"}, 

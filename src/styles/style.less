@@ -64,7 +64,7 @@ body {
     margin-top: 6px !important;
     margin-right: 4px !important;
   }
-  .start_form {
+  .start_form, .register_form {
     float: right;
     width: 100%;
     flex: 1;
@@ -116,6 +116,9 @@ body {
 
 .main_page {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   background-color: #fff;
   .toggle_button,.out_button {
     margin-top: -6px !important;
@@ -123,7 +126,6 @@ body {
 }
 .panel {
   width: 28%;
-  margin-right: 24px;
   float: left;
   height: 100vh;
   display: flex;
@@ -156,6 +158,18 @@ body {
       display: flex;
       flex-direction: column;
     }
+  }
+}
+.container {
+  flex: 1 1 auto;
+  width: 72%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px red;
+  img {
+    height: 300px;
+    width: 300px;
   }
 }
 

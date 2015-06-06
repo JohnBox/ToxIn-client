@@ -8,28 +8,40 @@ var Transitions = mui.Styles.Transitions;
 var OutButton = require('./../Button/OutButton');
 var ToggleButton = require('./../Button/ToggleButton');
 var Panel = require('./Panel');
+var Container = require('./Container');
 
 module.exports = React.createClass({
-  mixins: [Navigation],
+  contextTypes: {
+    router: React.PropTypes.func
+  },
   getInitialState() {
     return {openPanel: true};
   },
   togglePanel() {
     this.setState({openPanel: !this.state.openPanel});
   },
-  componentWillMount() {
-    this.props.user()
+  getStyles() {
+    return {
+      panel: {
+        display: this.state.openPanel?'flex':'none',
+      },
+      container: {
+        width: this.state.openPanel?'72%':'100%',
+        transition: Transitions.easeOut('200ms')
+      }
+    };
   },
   render() {
-    alert(window.location.href.split('/').reverse()[0]);
-    var panel = this.state.openPanel?<Panel theme={this.props.theme} user={this.props.user}/>:'';
+    var style = this.getStyles();
     return (
       <Paper className="main_page">
-        {panel}
+        <Panel theme={this.props.theme} user={this.props.user} style={style.panel}/>
         <AppBar title=''
                 iconElementLeft={<ToggleButton toggle={this.togglePanel}/>}
                 iconElementRight={<OutButton user={this.props.user}/>}
+                style={style.container}
                 zDepth={0}/>
+        <Container style={style.container}/>
       </Paper>
     );
   }

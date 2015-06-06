@@ -9,10 +9,7 @@ var LoginForm = require('./../Form/LoginForm');
 
 module.exports = React.createClass({displayName: "exports",
   mixins: [Navigation],
-  getDefaultProps: function() {
-    return {url: 'http://0.0.0.0:8000/'};
-  },
-  render: function () {
+  render:function() {
     var user = this.props.user();
     if (user){
       this.transitionTo('main', {user: user});

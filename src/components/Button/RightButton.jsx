@@ -5,11 +5,9 @@ var { RaisedButton } = require('material-ui');
 module.exports = React.createClass({
   render: function () {
     return (
-      <Link to={this.props.link}>
-        <div className="appbar_button">
-          <RaisedButton label={this.props.label}/>
-        </div>
-      </Link>
+      <div className="appbar_button">
+        <RaisedButton label={this.props.label} onClick={this.props.onClick}/>
+      </div>
     );
   }
 });

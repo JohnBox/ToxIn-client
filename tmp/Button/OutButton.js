@@ -8,7 +8,6 @@ module.exports = React.createClass({displayName: "exports",
     return { width: '36px', height: '36px' };
   },
   logOut:function() {
-    this.props.user();
     this.transitionTo('login');
   },
   render:function() {

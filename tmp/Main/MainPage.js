@@ -8,28 +8,40 @@ var Transitions = mui.Styles.Transitions;
 var OutButton = require('./../Button/OutButton');
 var ToggleButton = require('./../Button/ToggleButton');
 var Panel = require('./Panel');
+var Container = require('./Container');
 
 module.exports = React.createClass({displayName: "exports",
-  mixins: [Navigation],
+  contextTypes: {
+    router: React.PropTypes.func
+  },
   getInitialState:function() {
     return {openPanel: true};
   },
   togglePanel:function() {
     this.setState({openPanel: !this.state.openPanel});
   },
-  componentWillMount:function() {
-    this.props.user()
+  getStyles:function() {
+    return {
+      panel: {
+        display: this.state.openPanel?'flex':'none',
+      },
+      container: {
+        width: this.state.openPanel?'72%':'100%',
+        transition: Transitions.easeOut('200ms')
+      }
+    };
   },
   render:function() {
-    alert(window.location.href.split('/').reverse()[0]);
-    var panel = this.state.openPanel?React.createElement(Panel, {theme: this.props.theme, user: this.props.user}):'';
+    var style = this.getStyles();
     return (
       React.createElement(Paper, {className: "main_page"}, 
-        panel, 
+        React.createElement(Panel, {theme: this.props.theme, user: this.props.user, style: style.panel}), 
         React.createElement(AppBar, {title: "", 
                 iconElementLeft: React.createElement(ToggleButton, {toggle: this.togglePanel}), 
                 iconElementRight: React.createElement(OutButton, {user: this.props.user}), 
-                zDepth: 0})
+                style: style.container, 
+                zDepth: 0}), 
+        React.createElement(Container, {style: style.container})
       )
     );
   }

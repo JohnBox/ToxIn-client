@@ -68,14 +68,13 @@ var SettingIcon = React.createClass({
 
 
 module.exports = React.createClass({
-  getStyles() {
-    return {};
+  contextTypes: {
+    router: React.PropTypes.func
   },
   render() {
-    var user = this.props.user();
-    var style = this.getStyles();
+    var user = this.context.router.getCurrentParams().user;
     return (
-      <Paper className="panel" zDepth={3} style={style}>
+      <Paper className="panel" zDepth={3} style={this.props.style}>
         <AppBar title=''
                 iconElementLeft={<UserLogoButton/>}
                 title={<UserProfileButton name={user}/>}
@@ -93,9 +92,6 @@ module.exports = React.createClass({
           </Tab>
           <Tab label={<HistoryIcon/>}>
             <HistoryTab/>
-          </Tab>
-          <Tab label={<StatisticIcon/>}>
-            <StatisticTab/>
           </Tab>
           <Tab label={<SettingIcon/>}>
             <SettingTab theme={this.props.theme}/>
