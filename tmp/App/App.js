@@ -15,13 +15,7 @@ module.exports = React.createClass({displayName: "exports",
     };
   },
   getInitialState:function() {
-    return {user: null, darkTheme: false};
-  },
-  user:function(user) {
-    if (user === undefined) {
-      return this.state.user;
-    }
-    this.setState({user: user});
+    return {darkTheme: false};
   },
   theme:function() {
     ThemeManager.setTheme(this.state.darkTheme?ThemeManager.types.DARK:ThemeManager.types.LIGHT);
@@ -30,7 +24,7 @@ module.exports = React.createClass({displayName: "exports",
   render:function() {
     return (
       React.createElement("div", {className: "app"}, 
-        React.createElement(RouteHandler, {user: this.user, theme: this.theme})
+        React.createElement(RouteHandler, {theme: this.theme})
       )
     );
   }

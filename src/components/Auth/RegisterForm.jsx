@@ -1,4 +1,5 @@
 var React = require('react');
+var { ajax } = require('jquery');
 var mui = require('material-ui');
 var { RaisedButton, TextField } = mui;
 
@@ -10,29 +11,39 @@ module.exports = React.createClass({
     return {url: 'http://0.0.0.0:8000/'}
   },
   getInitialState() {
-    return {name: '', login: '', passwd: '', confirm_passwd: '', email: ''};
+    return {username: '', login: '', passwd: '', confirm_passwd: '', email: ''};
   },
-  onSubmit() {
-    alert(this.props.url);
-    if (this.state.login && this.state.passwd && this.state.confirm_passwd && this.state.email) {
+  onSubmit(e) {
+    var that = this;
+    e.preventDefault();
+    if (this.state.username &&
+      this.state.login &&
+      this.state.passwd &&
+      this.state.confirm_passwd &&
+      this.state.email) {
       if (this.state.passwd === this.state.confirm_passwd) {
-        $.ajax({
-          url: this.props.url+'register/',
+        ajax({
+          url: this.props.url + 'register/',
           method: 'POST',
+          crossDomain: true,
           data: {
+            username: this.state.username,
             login: this.state.login,
             passwd: this.state.passwd,
             email: this.state.email
           },
           success: function (data) {
-            alert(data.s);
+            that.props.toggleLogin();
+          },
+          error: function (e) {
+            alert(e.message());
           }
         });
       }
     }
   },
   nameInput(e) {
-    this.setState({name: e.target.value});
+    this.setState({username: e.target.value});
   },
   loginInput(e) {
     this.setState({login: e.target.value});

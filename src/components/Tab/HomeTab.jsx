@@ -1,14 +1,56 @@
 var React = require('react');
-var Router = require('react-router');
-var { Route, RouteHandler, Link } = Router;
-var mui = require('material-ui');
-var { AppBar, Paper, Tabs, Tab } = mui;
+var ScrollBar = require('react-scrollbar');
+var { Paper, TextField, Menu, SvgIcon } = require('material-ui');
+
+var Icon = React.createClass({
+  getStyles() {
+    return {
+      marginTop: '5px',
+      marginBottom: '-15px',
+      marginRight: '10px',
+      border: 'solid 1px gray',
+      height: '40px',
+      width: '40px',
+      borderRadius: '50%'
+    }
+  },
+  render() {
+    var style = this.getStyles();
+    return (
+      <img src="static/go.png" alt="" style={style}/>
+    );
+  }
+});
 
 module.exports = React.createClass({
+  getInitialState() {
+    return {
+      users: [
+        {text: 'John Box', icon: <Icon/>},
+        {text: 'Marty Style', icon: <Icon/>},
+        {text: 'Tony Grisoni', icon: <Icon/>},
+        {text: 'John Box', icon: <Icon/>},
+        {text: 'Marty Style', icon: <Icon/>},
+        {text: 'Tony Grisoni', icon: <Icon/>},
+        {text: 'Marty Style', icon: <Icon/>},
+        {text: 'Tony Grisoni', icon: <Icon/>},
+        {text: 'John Box', icon: <Icon/>},
+        {text: 'Marty Style', icon: <Icon/>},
+        {text: 'Tony Grisoni', icon: <Icon/>},
+        {text: 'Marty Style', icon: <Icon/>},
+        {text: 'Tony Grisoni', icon: <Icon/>},
+        {text: 'Leila Wong', icon: <Icon/>}
+      ]
+    };
+  },
   render() {
+    var users = this.state.users;
     return (
-      <div className='home_tab'>
-        Контакти
+      <div className="search_tab">
+
+        <ScrollBar>
+          <Menu menuItems={users} autoWidth={false} zDepth={0}/>
+        </ScrollBar>
       </div>
     );
   }

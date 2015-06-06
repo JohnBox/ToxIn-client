@@ -20,7 +20,7 @@ module.exports = React.createClass({
   render() {
     var style = this.getStyles();
     return (
-      <div className="profile_button" style={style}>
+      <div className="profile_button" style={style} onClick={this.props.onClick}>
         {this.props.name}
       </div>
     );

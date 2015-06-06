@@ -1,7 +1,7 @@
 var React = require('react');
 var ScrollBar = require('react-scrollbar');
+var $ = require('jquery');
 var { Paper, TextField, Menu, SvgIcon } = require('material-ui');
-var ghb = require('../Button/GitHubButton');
 
 var Icon = React.createClass({
   getStyles() {
@@ -18,39 +18,42 @@ var Icon = React.createClass({
   render() {
     var style = this.getStyles();
     return (
-      <img src="go.png" alt="" style={style}/>
+      <img src="static/go.png" alt="" style={style}/>
     );
   }
 });
 
 module.exports = React.createClass({
+  getDefaultProps() {
+    return {url: 'http://0.0.0.0:8000/'};
+  },
   getInitialState() {
-    return {
-      users: [
-        {text: 'John Box', icon: <Icon/>},
-        {text: 'Marty Style', icon: <Icon/>},
-        {text: 'Tony Grisoni', icon: <Icon/>},
-        {text: 'John Box', icon: <Icon/>},
-        {text: 'Marty Style', icon: <Icon/>},
-        {text: 'Tony Grisoni', icon: <Icon/>},
-        {text: 'Marty Style', icon: <Icon/>},
-        {text: 'Tony Grisoni', icon: <Icon/>},
-        {text: 'John Box', icon: <Icon/>},
-        {text: 'Marty Style', icon: <Icon/>},
-        {text: 'Tony Grisoni', icon: <Icon/>},
-        {text: 'Marty Style', icon: <Icon/>},
-        {text: 'Tony Grisoni', icon: <Icon/>},
-        {text: 'Leila Wong', icon: <Icon/>}
-      ]
-    };
+    return {users: null};
+  },
+  getAllUsers() {
+    return new Promise((resolve, reject)=>{
+      $.ajax({
+        url: this.props.url + 'getallusers/',
+        method: 'POST',
+        success: resolve,
+        error: reject
+      });
+    });
+
   },
   render() {
-    var users = this.state.users;
+    alert(this.state.users);
+    var users;
+    if (!this.state.users) {
+      this.getAllUsers().then((data)=> {this.setState({users: data.a})}, (e)=> {alert(e)});
+    } else {
+      users = this.state.users.map((u)=>{text: u});
+    }
     return (
       <div className="search_tab">
         <TextField hintText='Пошук' style={{width: '100%'}} search={true}/>
         <ScrollBar>
-          <Menu menuItems={users} autoWidth={false} zDepth={0}/>
+          <Menu menuItems={users} onItemClick={this.Info} autoWidth={false} zDepth={0}/>
         </ScrollBar>
       </div>
     );

@@ -17,16 +17,13 @@ module.exports = React.createClass({
     this.setState({login: !this.state.login});
   },
   render() {
-    var button, form, user = this.props.user();
+    var button, form;
     if (this.state.login) {
       button = <RightButton label={'Зареєструватися'} onClick={this.toggleLogin}/>;
-      form = <LoginForm setUser={this.props.user}/>;
+      form = <LoginForm/>;
     } else {
       button = <RightButton label={'Війти'} onClick={this.toggleLogin}/>;
-      form = <RegisterForm/>
-    }
-    if (user) {
-      this.transitionTo('app');
+      form = <RegisterForm toggleLogin={this.toggleLogin}/>
     }
     return (
       <div className="start_page">
@@ -44,7 +41,7 @@ var ToxInIcon = React.createClass({
   render() {
     var style = {width: '50px', height: '50px'};
     return (
-      <img src="ti.png" alt="" style={style}/>
+      <img src="static/ti.png" alt="" style={style}/>
     );
   }
 });

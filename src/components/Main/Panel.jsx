@@ -75,11 +75,9 @@ module.exports = React.createClass({
     var user = this.context.router.getCurrentParams().user;
     return (
       <Paper className="panel" zDepth={3} style={this.props.style}>
-        <AppBar title=''
-                iconElementLeft={<UserLogoButton/>}
-                title={<UserProfileButton name={user}/>}
-                zDepth={0}
-          />
+        <AppBar iconElementLeft={<UserLogoButton/>}
+                title={<UserProfileButton name={user} onClick={this.props.userInfo}/>}
+                zDepth={0} />
         <Tabs initialSelectedIndex={1}>
           <Tab label={<HomeIcon/>}>
             <HomeTab/>

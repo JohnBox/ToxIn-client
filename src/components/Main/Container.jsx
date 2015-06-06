@@ -5,18 +5,20 @@ var $ = require('jquery');
 var mui = require('material-ui');
 var { AppBar, Paper, RaisedButton, FontIcon } = mui;
 var Transitions = mui.Styles.Transitions;
-var OutButton = require('./../Button/OutButton');
-var ToggleButton = require('./../Button/ToggleButton');
-var Panel = require('./Panel');
+var UserWindow = require('../Window/UserWindow');
 
 module.exports = React.createClass({
   contextTypes: {
     router: React.PropTypes.func
   },
   render() {
+    var window = <img src="static/ti.png"/>;
+    if (this.props.user) {
+      window = <UserWindow/>;
+    }
     return (
       <div className='container' style={this.props.style}>
-        <img src="ti.png" alt=""/>
+        {window}
       </div>
     );
   }

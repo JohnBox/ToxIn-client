@@ -15,7 +15,7 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
   getInitialState() {
-    return {openPanel: true};
+    return {openPanel: true, showUser: false};
   },
   togglePanel() {
     this.setState({openPanel: !this.state.openPanel});
@@ -27,21 +27,25 @@ module.exports = React.createClass({
       },
       container: {
         width: this.state.openPanel?'72%':'100%',
-        transition: Transitions.easeOut('200ms')
+        transition: Transitions.easeOut('0ms')
       }
     };
   },
+  userInfo() {
+    this.setState({showUser: true});
+  },
   render() {
     var style = this.getStyles();
+    var user = this.state.showUser;
     return (
       <Paper className="main_page">
-        <Panel theme={this.props.theme} user={this.props.user} style={style.panel}/>
+        <Panel theme={this.props.theme} style={style.panel} userInfo={this.userInfo}/>
         <AppBar title=''
                 iconElementLeft={<ToggleButton toggle={this.togglePanel}/>}
                 iconElementRight={<OutButton user={this.props.user}/>}
                 style={style.container}
                 zDepth={0}/>
-        <Container style={style.container}/>
+        <Container style={style.container} user={user}/>
       </Paper>
     );
   }

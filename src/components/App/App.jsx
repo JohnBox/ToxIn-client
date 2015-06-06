@@ -15,13 +15,7 @@ module.exports = React.createClass({
     };
   },
   getInitialState() {
-    return {user: null, darkTheme: false};
-  },
-  user(user) {
-    if (user === undefined) {
-      return this.state.user;
-    }
-    this.setState({user: user});
+    return {darkTheme: false};
   },
   theme() {
     ThemeManager.setTheme(this.state.darkTheme?ThemeManager.types.DARK:ThemeManager.types.LIGHT);
@@ -30,7 +24,7 @@ module.exports = React.createClass({
   render() {
     return (
       <div className="app">
-        <RouteHandler user={this.user} theme={this.theme}/>
+        <RouteHandler theme={this.theme}/>
       </div>
     );
   }

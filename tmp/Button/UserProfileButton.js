@@ -20,7 +20,7 @@ module.exports = React.createClass({displayName: "exports",
   render:function() {
     var style = this.getStyles();
     return (
-      React.createElement("div", {className: "profile_button", style: style}, 
+      React.createElement("div", {className: "profile_button", style: style, onClick: this.props.onClick}, 
         this.props.name
       )
     );

@@ -75,11 +75,9 @@ module.exports = React.createClass({displayName: "exports",
     var user = this.context.router.getCurrentParams().user;
     return (
       React.createElement(Paper, {className: "panel", zDepth: 3, style: this.props.style}, 
-        React.createElement(AppBar, {title: "", 
-                iconElementLeft: React.createElement(UserLogoButton, null), 
-                title: React.createElement(UserProfileButton, {name: user}), 
-                zDepth: 0}
-          ), 
+        React.createElement(AppBar, {iconElementLeft: React.createElement(UserLogoButton, null), 
+                title: React.createElement(UserProfileButton, {name: user, onClick: this.props.userInfo}), 
+                zDepth: 0}), 
         React.createElement(Tabs, {initialSelectedIndex: 1}, 
           React.createElement(Tab, {label: React.createElement(HomeIcon, null)}, 
             React.createElement(HomeTab, null)

@@ -9,7 +9,7 @@ var prefix = '/';
 var routes = (
   React.createElement(Route, {name: "app", handler: App, path: prefix}, 
     React.createElement(Route, {name: "main", path: ":user", handler: MainPage}), 
-    React.createElement(Route, {name: "login", handler: StartPage}), 
+    React.createElement(Route, {name: "login", path: "login", handler: StartPage}), 
     React.createElement(DefaultRoute, {handler: StartPage})
   )
 );

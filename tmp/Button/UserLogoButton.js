@@ -29,7 +29,7 @@ module.exports = React.createClass({displayName: "exports",
     var style = this.getStyles();
     return (
       React.createElement("div", {className: "logo_button"}, 
-        React.createElement("img", {src: "go.png", style: style, onClick: this.changeState})
+        React.createElement("img", {src: "static/go.png", style: style, onClick: this.changeState})
       )
     );
   }
