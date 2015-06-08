@@ -9,6 +9,8 @@ module.exports = React.createClass({
     return (
       <Paper className='window' zDepth={1} rounded={false}>
         <img src="static/go.png" alt=""/>
+        contact
+        <RaisedButton label='close' onClick={this.props.close}/>
 
       </Paper>
     );

@@ -10,6 +10,9 @@ var OutButton = require('./../Button/OutButton');
 var ToggleButton = require('./../Button/ToggleButton');
 var Panel = require('./Panel');
 var Container = require('./Container');
+var UserWindow = require('../Window/UserWindow');
+var ContactWindow = require('../Window/ContactWindow');
+
 
 module.exports = React.createClass({
   mixins: [Navigation],
@@ -17,7 +20,7 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
   getInitialState() {
-    return {openPanel: true, showUser: false};
+    return {openPanel: true, window: null};
   },
   togglePanel() {
     this.setState({openPanel: !this.state.openPanel});
@@ -34,24 +37,25 @@ module.exports = React.createClass({
     };
   },
   userInfo() {
-    this.setState({showUser: true});
+    this.setState({window: UserWindow });
+  },
+  contactInfo(e,i,p) {
+    this.setState({window: ContactWindow });
+  },
+  closeWindow() {
+    this.setState({window: null});
   },
   render() {
     var username = Cookie.getJSON('user')[0];
     if (!username) {
-      this.replace('login');
+      this.transitionTo('login');
     }
     var style = this.getStyles();
-    var user = this.state.showUser;
     return (
       <Paper className="main_page">
-        <Panel theme={this.props.theme} style={style.panel} userInfo={this.userInfo}/>
-        <AppBar title=''
-                iconElementLeft={<ToggleButton toggle={this.togglePanel}/>}
-                iconElementRight={<OutButton user={this.props.user}/>}
-                style={style.container}
-                zDepth={0}/>
-        <Container style={style.container} user={user}/>
+        <Panel theme={this.props.theme} style={style.panel} userInfo={this.userInfo} contactInfo={this.contactInfo}/>
+        <AppBar title='' iconElementLeft={<ToggleButton toggle={this.togglePanel}/>} iconElementRight={<OutButton/>} style={style.container} zDepth={0}/>
+        <Container style={style.container} window={this.state.window} close={this.closeWindow}/>
       </Paper>
     );
   }

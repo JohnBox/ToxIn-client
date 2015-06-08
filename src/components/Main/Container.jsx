@@ -12,9 +12,11 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
   render() {
-    var window = <img src="static/ti.png"/>;
-    if (this.props.user) {
-      window = <UserWindow/>;
+    var window;
+    if (!this.props.window) {
+      window = <img src="static/ti.png"/>;
+    } else {
+      window = <this.props.window close={this.props.close}/>;
     }
     return (
       <div className='container' style={this.props.style}>

@@ -47,20 +47,24 @@ module.exports = React.createClass({
     });
 
   },
+  contactInfo(e,i,p) {
+    alert(i);
+    alert(this.state.users[i][1]);
+    this.props.contactInfo(e,i,p);
+  },
   render() {
     var users = [];
     if (!this.state.users) {
       this.getAllUsers().then((data)=>{this.setState({users: data.a})});
     } else {
-      users = this.state.users.map((u)=>({text: u[1], icon: <Icon/>, iconRight: <AddIcon user={u}/>}));
+      users = this.state.users.map((u)=>({text: u[1], icon: <Icon/>}));
     }
     return (
       <div className="search_tab">
         <TextField hintText='Пошук' style={{width: '100%'}} search={true}/>
         <ScrollBar>
-          <Menu menuItems={users} menuItemClassName='menu_item' onItemClick={this.Info} autoWidth={false} zDepth={0}/>
+          <Menu menuItems={users} menuItemClassName='menu_item' onItemClick={this.contactInfo} autoWidth={false} zDepth={0}/>
         </ScrollBar>
-        <Snackbar ref='snack' message='lolka'/>
       </div>
     );
   }

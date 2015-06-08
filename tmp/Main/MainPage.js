@@ -10,6 +10,9 @@ var OutButton = require('./../Button/OutButton');
 var ToggleButton = require('./../Button/ToggleButton');
 var Panel = require('./Panel');
 var Container = require('./Container');
+var UserWindow = require('../Window/UserWindow');
+var ContactWindow = require('../Window/ContactWindow');
+
 
 module.exports = React.createClass({displayName: "exports",
   mixins: [Navigation],
@@ -17,7 +20,7 @@ module.exports = React.createClass({displayName: "exports",
     router: React.PropTypes.func
   },
   getInitialState:function() {
-    return {openPanel: true, showUser: false};
+    return {openPanel: true, window: null};
   },
   togglePanel:function() {
     this.setState({openPanel: !this.state.openPanel});
@@ -34,24 +37,25 @@ module.exports = React.createClass({displayName: "exports",
     };
   },
   userInfo:function() {
-    this.setState({showUser: true});
+    this.setState({window: UserWindow });
+  },
+  contactInfo:function(e,i,p) {
+    this.setState({window: ContactWindow });
+  },
+  closeWindow:function() {
+    this.setState({window: null});
   },
   render:function() {
     var username = Cookie.getJSON('user')[0];
     if (!username) {
-      this.replace('login');
+      this.transitionTo('login');
     }
     var style = this.getStyles();
-    var user = this.state.showUser;
     return (
       React.createElement(Paper, {className: "main_page"}, 
-        React.createElement(Panel, {theme: this.props.theme, style: style.panel, userInfo: this.userInfo}), 
-        React.createElement(AppBar, {title: "", 
-                iconElementLeft: React.createElement(ToggleButton, {toggle: this.togglePanel}), 
-                iconElementRight: React.createElement(OutButton, {user: this.props.user}), 
-                style: style.container, 
-                zDepth: 0}), 
-        React.createElement(Container, {style: style.container, user: user})
+        React.createElement(Panel, {theme: this.props.theme, style: style.panel, userInfo: this.userInfo, contactInfo: this.contactInfo}), 
+        React.createElement(AppBar, {title: "", iconElementLeft: React.createElement(ToggleButton, {toggle: this.togglePanel}), iconElementRight: React.createElement(OutButton, null), style: style.container, zDepth: 0}), 
+        React.createElement(Container, {style: style.container, window: this.state.window, close: this.closeWindow})
       )
     );
   }

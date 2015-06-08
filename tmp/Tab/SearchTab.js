@@ -47,20 +47,24 @@ module.exports = React.createClass({displayName: "exports",
     }.bind(this));
 
   },
+  contactInfo:function(e,i,p) {
+    alert(i);
+    alert(this.state.users[i][1]);
+    this.props.contactInfo(e,i,p);
+  },
   render:function() {
     var users = [];
     if (!this.state.users) {
       this.getAllUsers().then(function(data){this.setState({users: data.a})}.bind(this));
     } else {
-      users = this.state.users.map(function(u){return {text: u[1], icon: React.createElement(Icon, null), iconRight: React.createElement(AddIcon, {user: u})};});
+      users = this.state.users.map(function(u){return {text: u[1], icon: React.createElement(Icon, null)};});
     }
     return (
       React.createElement("div", {className: "search_tab"}, 
         React.createElement(TextField, {hintText: "Пошук", style: {width: '100%'}, search: true}), 
         React.createElement(ScrollBar, null, 
-          React.createElement(Menu, {menuItems: users, menuItemClassName: "menu_item", onItemClick: this.Info, autoWidth: false, zDepth: 0})
-        ), 
-        React.createElement(Snackbar, {ref: "snack", message: "lolka"})
+          React.createElement(Menu, {menuItems: users, menuItemClassName: "menu_item", onItemClick: this.contactInfo, autoWidth: false, zDepth: 0})
+        )
       )
     );
   }
