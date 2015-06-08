@@ -1,4 +1,5 @@
 var React = require('react');
+var $ = require('jquery');
 var ScrollBar = require('react-scrollbar');
 var { Paper, TextField, Menu, SvgIcon } = require('material-ui');
 
@@ -23,33 +24,35 @@ var Icon = React.createClass({
 });
 
 module.exports = React.createClass({
+  getDefaultProps() {
+    return {url: 'http://0.0.0.0:8000/'};
+  },
   getInitialState() {
-    return {
-      users: [
-        {text: 'John Box', icon: <Icon/>},
-        {text: 'Marty Style', icon: <Icon/>},
-        {text: 'Tony Grisoni', icon: <Icon/>},
-        {text: 'John Box', icon: <Icon/>},
-        {text: 'Marty Style', icon: <Icon/>},
-        {text: 'Tony Grisoni', icon: <Icon/>},
-        {text: 'Marty Style', icon: <Icon/>},
-        {text: 'Tony Grisoni', icon: <Icon/>},
-        {text: 'John Box', icon: <Icon/>},
-        {text: 'Marty Style', icon: <Icon/>},
-        {text: 'Tony Grisoni', icon: <Icon/>},
-        {text: 'Marty Style', icon: <Icon/>},
-        {text: 'Tony Grisoni', icon: <Icon/>},
-        {text: 'Leila Wong', icon: <Icon/>}
-      ]
-    };
+    return {contacts: null};
+  },
+  getAllContacts() {
+    return new Promise((resolve, reject)=>{
+      $.ajax({
+        url: this.props.url + 'getallcontacts/',
+        method: 'POST',
+        data: {user: 'gott'},
+        success: resolve,
+        error: reject
+      });
+    });
   },
   render() {
-    var users = this.state.users;
-    return (
-      <div className="search_tab">
 
+    var contacts = [];
+    if (!this.state.contacts) {
+      this.getAllContacts().then((data)=>{this.setState({contacts: data.a})});
+    } else {
+      contacts = this.state.contacts.map((c)=>({text: c, icon: <Icon/>}));
+    }
+    return (
+      <div className="home_tab">
         <ScrollBar>
-          <Menu menuItems={users} autoWidth={false} zDepth={0}/>
+          <Menu menuItems={contacts} autoWidth={false} zDepth={0}/>
         </ScrollBar>
       </div>
     );

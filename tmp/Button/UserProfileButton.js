@@ -1,7 +1,10 @@
 var React = require('react');
 var mui = require('material-ui');
-var $__0=    mui,RaisedButton=$__0.RaisedButton;
+var $__0=     mui,RaisedButton=$__0.RaisedButton,Snackbar=$__0.Snackbar;
 var StylePropable = mui.Mixins.StylePropable;
+var $ = require('jquery');
+var Cookie = require('js-cookie');
+
 
 module.exports = React.createClass({displayName: "exports",
   mixins: [StylePropable],
@@ -19,9 +22,10 @@ module.exports = React.createClass({displayName: "exports",
   },
   render:function() {
     var style = this.getStyles();
+    var fullname = Cookie.getJSON('user')[1];
     return (
       React.createElement("div", {className: "profile_button", style: style, onClick: this.props.onClick}, 
-        this.props.name
+        fullname
       )
     );
   }

@@ -20,7 +20,7 @@ module.exports = React.createClass({
     var button, form;
     if (this.state.login) {
       button = <RightButton label={'Зареєструватися'} onClick={this.toggleLogin}/>;
-      form = <LoginForm/>;
+      form = <LoginForm goTo={this.transitionTo}/>;
     } else {
       button = <RightButton label={'Війти'} onClick={this.toggleLogin}/>;
       form = <RegisterForm toggleLogin={this.toggleLogin}/>

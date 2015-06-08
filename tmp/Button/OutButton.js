@@ -1,6 +1,8 @@
 var React = require('react');
 var $__0=    require('react-router'),Navigation=$__0.Navigation;
 var $__1=      require('material-ui'),RaisedButton=$__1.RaisedButton,SvgIcon=$__1.SvgIcon,IconButton=$__1.IconButton;
+var Cookie = require('js-cookie');
+
 
 module.exports = React.createClass({displayName: "exports",
   mixins: [Navigation],
@@ -8,6 +10,7 @@ module.exports = React.createClass({displayName: "exports",
     return { width: '36px', height: '36px' };
   },
   logOut:function() {
+    Cookie.remove('user');
     this.transitionTo('login');
   },
   render:function() {

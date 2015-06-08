@@ -1,6 +1,7 @@
 var React = require('react');
 var Router = require('react-router');
 var $__0=      Router,Route=$__0.Route,RouteHandler=$__0.RouteHandler,Link=$__0.Link;
+var Cookie = require('js-cookie');
 var mui = require('material-ui');
 var $__1=        mui,AppBar=$__1.AppBar,Paper=$__1.Paper,Tabs=$__1.Tabs,Tab=$__1.Tab,SvgIcon=$__1.SvgIcon;
 var Transitions = mui.Styles.Transitions;
@@ -72,11 +73,10 @@ module.exports = React.createClass({displayName: "exports",
     router: React.PropTypes.func
   },
   render:function() {
-    var user = this.context.router.getCurrentParams().user;
     return (
       React.createElement(Paper, {className: "panel", zDepth: 3, style: this.props.style}, 
         React.createElement(AppBar, {iconElementLeft: React.createElement(UserLogoButton, null), 
-                title: React.createElement(UserProfileButton, {name: user, onClick: this.props.userInfo}), 
+                title: React.createElement(UserProfileButton, {onClick: this.props.userInfo}), 
                 zDepth: 0}), 
         React.createElement(Tabs, {initialSelectedIndex: 1}, 
           React.createElement(Tab, {label: React.createElement(HomeIcon, null)}, 

@@ -16,6 +16,7 @@
     "gulp-less": "^3.0.3",
     "gulp-react": "^3.0.1",
     "jquery": "^2.1.4",
+    "js-cookie": "^2.0.0-pre",
     "material-ui": "^0.8.0",
     "react": "^0.13.3",
     "react-async": "^2.1.0",

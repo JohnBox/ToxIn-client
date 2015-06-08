@@ -1,6 +1,7 @@
 var React = require('react');
 var Router = require('react-router');
 var { Route, RouteHandler, Link } = Router;
+var Cookie = require('js-cookie');
 var mui = require('material-ui');
 var { AppBar, Paper, Tabs, Tab, SvgIcon, } = mui;
 var Transitions = mui.Styles.Transitions;
@@ -72,11 +73,10 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
   render() {
-    var user = this.context.router.getCurrentParams().user;
     return (
       <Paper className="panel" zDepth={3} style={this.props.style}>
         <AppBar iconElementLeft={<UserLogoButton/>}
-                title={<UserProfileButton name={user} onClick={this.props.userInfo}/>}
+                title={<UserProfileButton onClick={this.props.userInfo}/>}
                 zDepth={0} />
         <Tabs initialSelectedIndex={1}>
           <Tab label={<HomeIcon/>}>

@@ -1,5 +1,6 @@
 var React = require('react');
 var Router = require('react-router');
+var Cookie = require('js-cookie');
 var { Navigation } = Router;
 var $ = require('jquery');
 var mui = require('material-ui');
@@ -29,7 +30,8 @@ module.exports = React.createClass({
         passwd: this.state.passwd
       },
       success: function (data) {
-        that.transitionTo('main', {user: data.a})
+        Cookie.set('user', data.a);
+        that.transitionTo('main', {user: data.a[0]});
       },
       error: function (e) {
         alert('ERROR');

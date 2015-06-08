@@ -57,7 +57,7 @@ gulp.task('build', function () {
 });
 
 gulp.task('clean build', function () {
-  return gulp.src(path.build + '*.*')
+  return gulp.src([path.build + '*.*', path.build + 'static/*.*'])
     .pipe(clean());
 });
 gulp.task('clean js', function () {

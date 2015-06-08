@@ -1,6 +1,7 @@
 var React = require('react');
 var Router = require('react-router');
 var { Route, RouteHandler, Link, Navigation } = Router;
+var Cookie = require('js-cookie');
 var $ = require('jquery');
 var mui = require('material-ui');
 var { AppBar, Paper, RaisedButton, FontIcon } = mui;
@@ -11,6 +12,7 @@ var Panel = require('./Panel');
 var Container = require('./Container');
 
 module.exports = React.createClass({
+  mixins: [Navigation],
   contextTypes: {
     router: React.PropTypes.func
   },
@@ -35,6 +37,10 @@ module.exports = React.createClass({
     this.setState({showUser: true});
   },
   render() {
+    var username = Cookie.getJSON('user')[0];
+    if (!username) {
+      this.replace('login');
+    }
     var style = this.getStyles();
     var user = this.state.showUser;
     return (

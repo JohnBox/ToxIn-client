@@ -1,4 +1,5 @@
 var React = require('react');
+var $ = require('jquery');
 var ScrollBar = require('react-scrollbar');
 var $__0=       require('material-ui'),Paper=$__0.Paper,TextField=$__0.TextField,Menu=$__0.Menu,SvgIcon=$__0.SvgIcon;
 
@@ -23,33 +24,35 @@ var Icon = React.createClass({displayName: "Icon",
 });
 
 module.exports = React.createClass({displayName: "exports",
+  getDefaultProps:function() {
+    return {url: 'http://0.0.0.0:8000/'};
+  },
   getInitialState:function() {
-    return {
-      users: [
-        {text: 'John Box', icon: React.createElement(Icon, null)},
-        {text: 'Marty Style', icon: React.createElement(Icon, null)},
-        {text: 'Tony Grisoni', icon: React.createElement(Icon, null)},
-        {text: 'John Box', icon: React.createElement(Icon, null)},
-        {text: 'Marty Style', icon: React.createElement(Icon, null)},
-        {text: 'Tony Grisoni', icon: React.createElement(Icon, null)},
-        {text: 'Marty Style', icon: React.createElement(Icon, null)},
-        {text: 'Tony Grisoni', icon: React.createElement(Icon, null)},
-        {text: 'John Box', icon: React.createElement(Icon, null)},
-        {text: 'Marty Style', icon: React.createElement(Icon, null)},
-        {text: 'Tony Grisoni', icon: React.createElement(Icon, null)},
-        {text: 'Marty Style', icon: React.createElement(Icon, null)},
-        {text: 'Tony Grisoni', icon: React.createElement(Icon, null)},
-        {text: 'Leila Wong', icon: React.createElement(Icon, null)}
-      ]
-    };
+    return {contacts: null};
+  },
+  getAllContacts:function() {
+    return new Promise(function(resolve, reject){
+      $.ajax({
+        url: this.props.url + 'getallcontacts/',
+        method: 'POST',
+        data: {user: 'gott'},
+        success: resolve,
+        error: reject
+      });
+    }.bind(this));
   },
   render:function() {
-    var users = this.state.users;
-    return (
-      React.createElement("div", {className: "search_tab"}, 
 
+    var contacts = [];
+    if (!this.state.contacts) {
+      this.getAllContacts().then(function(data){this.setState({contacts: data.a})}.bind(this));
+    } else {
+      contacts = this.state.contacts.map(function(c){return {text: c, icon: React.createElement(Icon, null)};});
+    }
+    return (
+      React.createElement("div", {className: "home_tab"}, 
         React.createElement(ScrollBar, null, 
-          React.createElement(Menu, {menuItems: users, autoWidth: false, zDepth: 0})
+          React.createElement(Menu, {menuItems: contacts, autoWidth: false, zDepth: 0})
         )
       )
     );
