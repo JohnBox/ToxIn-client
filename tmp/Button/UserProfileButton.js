@@ -22,10 +22,11 @@ module.exports = React.createClass({displayName: "exports",
   },
   render:function() {
     var style = this.getStyles();
-    var fullname = Cookie.getJSON('user')[1];
+    var user = Cookie.getJSON('user');
+    var full_name = user.first_name + user.last_name;
     return (
       React.createElement("div", {className: "profile_button", style: style, onClick: this.props.onClick}, 
-        fullname
+        full_name
       )
     );
   }

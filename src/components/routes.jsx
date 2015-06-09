@@ -8,7 +8,7 @@ var StartPage = require('./Auth/StartPage');
 var prefix = '/';
 var routes = (
   <Route name='app' handler={App} path={prefix}>
-    <Route name='main' path=':user' handler={MainPage}/>
+    <Route name='main' path=':username' handler={MainPage}/>
     <Route name='login' path='login/' handler={StartPage}/>
     <DefaultRoute handler={StartPage}/>
   </Route>

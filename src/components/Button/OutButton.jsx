@@ -1,6 +1,6 @@
 var React = require('react');
 var { Navigation } = require('react-router');
-var { RaisedButton, SvgIcon, IconButton } = require('material-ui');
+var { SvgIcon, IconButton } = require('material-ui');
 var Cookie = require('js-cookie');
 
 

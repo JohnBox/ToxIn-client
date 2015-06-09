@@ -46,8 +46,8 @@ module.exports = React.createClass({
     this.setState({window: null});
   },
   render() {
-    var username = Cookie.getJSON('user')[0];
-    if (!username) {
+    var user = Cookie.getJSON('user');
+    if (user === undefined) {
       this.transitionTo('login');
     }
     var style = this.getStyles();

@@ -1,6 +1,6 @@
 var React = require('react');
 var $__0=    require('react-router'),Navigation=$__0.Navigation;
-var $__1=      require('material-ui'),RaisedButton=$__1.RaisedButton,SvgIcon=$__1.SvgIcon,IconButton=$__1.IconButton;
+var $__1=     require('material-ui'),SvgIcon=$__1.SvgIcon,IconButton=$__1.IconButton;
 var Cookie = require('js-cookie');
 
 

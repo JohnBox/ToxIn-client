@@ -1,6 +1,7 @@
 var React = require('react');
 var ScrollBar = require('react-scrollbar');
 var $ = require('jquery');
+var Cookie = require('js-cookie');
 var $__0=        require('material-ui'),Paper=$__0.Paper,TextField=$__0.TextField,Menu=$__0.Menu,SvgIcon=$__0.SvgIcon,Snackbar=$__0.Snackbar;
 var AddIcon = require('../Button/AddContactButton');
 
@@ -35,12 +36,12 @@ module.exports = React.createClass({displayName: "exports",
     return {users: null};
   },
   getAllUsers:function() {
-    var user = this.context.router.getCurrentParams().user;
+    var username = Cookie.getJSON('user').username;
     return new Promise(function(resolve, reject){
       $.ajax({
         url: this.props.url + 'getallusers/',
         method: 'POST',
-        data: {user: user},
+        data: {username: username},
         success: resolve,
         error: reject
       });
@@ -48,8 +49,6 @@ module.exports = React.createClass({displayName: "exports",
 
   },
   contactInfo:function(e,i,p) {
-    alert(i);
-    alert(this.state.users[i][1]);
     this.props.contactInfo(e,i,p);
   },
   render:function() {
@@ -57,7 +56,7 @@ module.exports = React.createClass({displayName: "exports",
     if (!this.state.users) {
       this.getAllUsers().then(function(data){this.setState({users: data.a})}.bind(this));
     } else {
-      users = this.state.users.map(function(u){return {text: u[1], icon: React.createElement(Icon, null)};});
+      users = this.state.users.map(function(u){return {text: u.first_name+' '+u.last_name, icon: React.createElement(Icon, null)};});
     }
     return (
       React.createElement("div", {className: "search_tab"}, 

@@ -1,6 +1,7 @@
 var React = require('react');
 var ScrollBar = require('react-scrollbar');
 var $ = require('jquery');
+var Cookie = require('js-cookie');
 var { Paper, TextField, Menu, SvgIcon, Snackbar } = require('material-ui');
 var AddIcon = require('../Button/AddContactButton');
 
@@ -35,12 +36,12 @@ module.exports = React.createClass({
     return {users: null};
   },
   getAllUsers() {
-    var user = this.context.router.getCurrentParams().user;
+    var username = Cookie.getJSON('user').username;
     return new Promise((resolve, reject)=>{
       $.ajax({
         url: this.props.url + 'getallusers/',
         method: 'POST',
-        data: {user: user},
+        data: {username: username},
         success: resolve,
         error: reject
       });
@@ -48,8 +49,6 @@ module.exports = React.createClass({
 
   },
   contactInfo(e,i,p) {
-    alert(i);
-    alert(this.state.users[i][1]);
     this.props.contactInfo(e,i,p);
   },
   render() {
@@ -57,7 +56,7 @@ module.exports = React.createClass({
     if (!this.state.users) {
       this.getAllUsers().then((data)=>{this.setState({users: data.a})});
     } else {
-      users = this.state.users.map((u)=>({text: u[1], icon: <Icon/>}));
+      users = this.state.users.map((u)=>({text: u.first_name+' '+u.last_name, icon: <Icon/>}));
     }
     return (
       <div className="search_tab">

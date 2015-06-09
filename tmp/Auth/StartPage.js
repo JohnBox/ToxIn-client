@@ -1,5 +1,6 @@
 var React = require('react');
 var Router = require('react-router');
+var Cookie = require('js-cookie');
 var $__0=    Router,Navigation=$__0.Navigation;
 var mui = require('material-ui');
 var $__1=     mui,AppBar=$__1.AppBar,Paper=$__1.Paper;
@@ -17,6 +18,10 @@ module.exports = React.createClass({displayName: "exports",
     this.setState({login: !this.state.login});
   },
   render:function() {
+    var user = Cookie.getJSON('user');
+    if (user !== undefined) {
+      this.transitionTo('main', {username: user.username});
+    }
     var button, form;
     if (this.state.login) {
       button = React.createElement(RightButton, {label: 'Зареєструватися', onClick: this.toggleLogin});
