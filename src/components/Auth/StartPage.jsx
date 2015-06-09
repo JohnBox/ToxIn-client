@@ -1,9 +1,7 @@
 var React = require('react');
-var Router = require('react-router');
 var Cookie = require('js-cookie');
-var { Navigation } = Router;
-var mui = require('material-ui');
-var { AppBar, Paper } = mui;
+var { Navigation } = require('react-router');
+var { AppBar, Paper } = require('material-ui');
 var About = require('./About');
 var RightButton = require('./../Button/RightButton');
 var RegisterForm = require('./RegisterForm');
