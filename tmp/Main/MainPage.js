@@ -36,13 +36,15 @@ module.exports = React.createClass({displayName: "exports",
       }
     };
   },
-  userInfo:function() {
+  userProfile:function() {
     this.setState({window: UserWindow });
   },
-  contactInfo:function(e,i,p) {
+  contactProfile:function(contact) {
+    Cookie.set('contact', contact);
     this.setState({window: ContactWindow });
   },
   closeWindow:function() {
+    Cookie.remove('contact');
     this.setState({window: null});
   },
   render:function() {
@@ -53,7 +55,7 @@ module.exports = React.createClass({displayName: "exports",
     var style = this.getStyles();
     return (
       React.createElement(Paper, {className: "main_page"}, 
-        React.createElement(Panel, {theme: this.props.theme, style: style.panel, userInfo: this.userInfo, contactInfo: this.contactInfo}), 
+        React.createElement(Panel, {theme: this.props.theme, style: style.panel, userInfo: this.userProfile, contactInfo: this.contactProfile}), 
         React.createElement(AppBar, {title: "", iconElementLeft: React.createElement(ToggleButton, {toggle: this.togglePanel}), iconElementRight: React.createElement(OutButton, null), style: style.container, zDepth: 0}), 
         React.createElement(Container, {style: style.container, window: this.state.window, close: this.closeWindow})
       )

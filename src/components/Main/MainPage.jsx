@@ -36,13 +36,15 @@ module.exports = React.createClass({
       }
     };
   },
-  userInfo() {
+  userProfile() {
     this.setState({window: UserWindow });
   },
-  contactInfo(e,i,p) {
+  contactProfile(contact) {
+    Cookie.set('contact', contact);
     this.setState({window: ContactWindow });
   },
   closeWindow() {
+    Cookie.remove('contact');
     this.setState({window: null});
   },
   render() {
@@ -53,7 +55,7 @@ module.exports = React.createClass({
     var style = this.getStyles();
     return (
       <Paper className="main_page">
-        <Panel theme={this.props.theme} style={style.panel} userInfo={this.userInfo} contactInfo={this.contactInfo}/>
+        <Panel theme={this.props.theme} style={style.panel} userInfo={this.userProfile} contactInfo={this.contactProfile}/>
         <AppBar title='' iconElementLeft={<ToggleButton toggle={this.togglePanel}/>} iconElementRight={<OutButton/>} style={style.container} zDepth={0}/>
         <Container style={style.container} window={this.state.window} close={this.closeWindow}/>
       </Paper>

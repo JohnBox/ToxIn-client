@@ -79,9 +79,9 @@ module.exports = React.createClass({displayName: "exports",
         React.createElement(AppBar, {iconElementLeft: React.createElement(UserLogoButton, null), 
                 title: React.createElement(UserProfileButton, {onClick: this.props.userInfo}), 
                 zDepth: 0}), 
-        React.createElement(Tabs, {initialSelectedIndex: 1}, 
+        React.createElement(Tabs, {initialSelectedIndex: 0}, 
           React.createElement(Tab, {label: React.createElement(HomeIcon, null)}, 
-            React.createElement(HomeTab, null)
+            React.createElement(HomeTab, {contactInfo: this.props.contactInfo})
           ), 
           React.createElement(Tab, {label: React.createElement(SearchIcon, null)}, 
             React.createElement(SearchTab, {contactInfo: this.props.contactInfo})

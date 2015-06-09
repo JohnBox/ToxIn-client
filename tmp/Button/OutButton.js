@@ -11,6 +11,8 @@ module.exports = React.createClass({displayName: "exports",
   },
   logOut:function() {
     Cookie.remove('user');
+    Cookie.remove('contact');
+    Cookie.remove('join');
     this.transitionTo('login');
   },
   render:function() {

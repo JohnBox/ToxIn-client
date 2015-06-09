@@ -79,9 +79,9 @@ module.exports = React.createClass({
         <AppBar iconElementLeft={<UserLogoButton/>}
                 title={<UserProfileButton onClick={this.props.userInfo}/>}
                 zDepth={0} />
-        <Tabs initialSelectedIndex={1}>
+        <Tabs initialSelectedIndex={0}>
           <Tab label={<HomeIcon/>}>
-            <HomeTab/>
+            <HomeTab contactInfo={this.props.contactInfo}/>
           </Tab>
           <Tab label={<SearchIcon/>}>
             <SearchTab contactInfo={this.props.contactInfo}/>

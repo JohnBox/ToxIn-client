@@ -23,7 +23,7 @@ module.exports = React.createClass({
   render() {
     var style = this.getStyles();
     var user = Cookie.getJSON('user');
-    var full_name = user.first_name + user.last_name;
+    var full_name = user.first_name +' '+ user.last_name;
     return (
       <div className="profile_button" style={style} onClick={this.props.onClick}>
         {full_name}

@@ -49,7 +49,7 @@ module.exports = React.createClass({displayName: "exports",
 
   },
   contactInfo:function(e,i,p) {
-    this.props.contactInfo(e,i,p);
+    this.props.contactInfo(this.state.users[i]);
   },
   render:function() {
     var users = [];
