@@ -48,8 +48,9 @@ module.exports = React.createClass({displayName: "exports",
     }.bind(this));
 
   },
-  contactInfo:function(e,i,p) {
-    this.props.contactInfo(this.state.users[i]);
+  onUserClick:function(e,i,p) {
+    var contact = this.state.users[i];
+    this.props.contactProfile(contact);
   },
   render:function() {
     var users = [];
@@ -62,7 +63,7 @@ module.exports = React.createClass({displayName: "exports",
       React.createElement("div", {className: "search_tab"}, 
         React.createElement(TextField, {hintText: "Пошук", style: {width: '100%'}, search: true}), 
         React.createElement(ScrollBar, null, 
-          React.createElement(Menu, {menuItems: users, menuItemClassName: "menu_item", onItemClick: this.contactInfo, autoWidth: false, zDepth: 0})
+          React.createElement(Menu, {menuItems: users, onItemClick: this.onUserClick, autoWidth: false, zDepth: 0})
         )
       )
     );

@@ -39,9 +39,9 @@ module.exports = React.createClass({
     return {url: 'http://0.0.0.0:8000/'};
   },
   getInitialState() {
-    return {userProfile: null};
+    return {contact: null};
   },
-  getUserProfile() {
+  getContactProfile() {
     var username = Cookie.getJSON('contact').username;
     return new Promise((resolve, reject)=>{
       ajax({
@@ -56,31 +56,12 @@ module.exports = React.createClass({
   addContact() {
     var user = Cookie.getJSON('user').username;
     var contact = Cookie.getJSON('contact').username;
-    var join = Cookie.get('join') || 0;
     ajax({
       url: this.props.url + 'addcontacttouser/',
       method: 'POST',
       data: {
         user: user,
-        contact: contact,
-        join: join
-      }
-    });
-    Cookie.remove('contact');
-    Cookie.remove('join');
-    this.props.close();
-
-  },
-  abortContact() {
-    var user = Cookie.getJSON('user').username;
-    var contact = Cookie.getJSON('contact').username;
-    ajax({
-      url: this.props.url + 'addcontacttouser/',
-      method: 'POST',
-      data: {
-        user: user,
-        contact: contact,
-        join: -1
+        contact: contact
       }
     });
     Cookie.remove('contact');
@@ -88,15 +69,15 @@ module.exports = React.createClass({
     this.props.close();
   },
   render() {
-    var userProfile;
-    if (!this.state.userProfile) {
-      this.getUserProfile().then((data)=>{this.setState({userProfile: data.a})});
-      userProfile = Cookie.getJSON('contact');
-      userProfile.email = '';
-      userProfile.workplace = '';
-      userProfile.position = '';
+    var contact;
+    if (!this.state.contact) {
+      this.getContactProfile().then((data)=>{this.setState({contact: data.a})});
+      contact = Cookie.getJSON('contact');
+      contact.email = '';
+      contact.workplace = '';
+      contact.position = '';
     } else {
-      userProfile = this.state.userProfile;
+      contact = this.state.contact;
     }
     var join = Cookie.getJSON('join'), button;
     if (join === undefined) {
@@ -104,7 +85,6 @@ module.exports = React.createClass({
     } else {
       button = <RaisedButton primary={true} style={{width: '100%'}} label='Відмінити' onClick={this.abortContact} />;
     }
-
     return (
       <Paper className='window' zDepth={1} rounded={false}>
         <div className="img">
@@ -114,11 +94,11 @@ module.exports = React.createClass({
           {button}
         </div>
         <div className="info">
-          <TextField disabled={true} value={userProfile.first_name} floatingLabelText="Ім`я"/>
-          <TextField disabled={true} value={userProfile.last_name} floatingLabelText="Прізвище"/>
-          <TextField disabled={true} value={userProfile.email} floatingLabelText="Електронна пошта"/>
-          <TextField disabled={true} value={userProfile.workplace} floatingLabelText="Місце роботи"/>
-          <TextField disabled={true} value={userProfile.position} floatingLabelText="Посада"/>
+          <TextField disabled={true} value={contact.first_name} floatingLabelText="Ім`я"/>
+          <TextField disabled={true} value={contact.last_name} floatingLabelText="Прізвище"/>
+          <TextField disabled={true} value={contact.email} floatingLabelText="Електронна пошта"/>
+          <TextField disabled={true} value={contact.workplace} floatingLabelText="Місце роботи"/>
+          <TextField disabled={true} value={contact.position} floatingLabelText="Посада"/>
         </div>
         <CloseButton onClick={this.props.close}/>
       </Paper>

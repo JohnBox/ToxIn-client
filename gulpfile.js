@@ -6,69 +6,62 @@ var source = require('vinyl-source-stream');
 var clean = require('gulp-clean');
 var less = require('gulp-less');
 var concatCss = require('gulp-concat-css');
+var uglifyjs = require('gulp-uglifyjs');
+var refresh = require('gulp-livereload');
+var reactify = require('reactify');
+var watchify = require('watchify');
 
 path = {
-  static: 'src/assets/**',
+  assets: 'src/assets/**',
   html: 'src/index.html',
-  css: 'src/styles/*.less',
-  main_js: 'tmp/index.js',
-  js: ['src/components/**/*.js', 'src/components/*.js'],
+  less: 'src/styles/*.less',
+  main: 'src/components/index.js',
+  js: ['tmp/**/*.js', 'tmp/*.js'],
   jsx: ['src/components/**/*.jsx', 'src/components/*.jsx'],
   tmp: 'tmp/',
   build: 'build/',
   build_static: 'build/static'
 };
-gulp.task('static', function () {
-  return gulp.src(path.static)
-    .pipe(gulp.dest(path.build_static));
-});
 
-gulp.task('html', function () {
-  return gulp.src(path.html)
-    .pipe(gulp.dest(path.build))
-});
+gulp.task('browserify', function() {
+  var bundler = browserify({
+    entries: path.main,
+    transform: [reactify],
+    debug: true,
+    cache: {}, packageCache: {}, fullPaths: true
+  });
+  var watcher  = watchify(bundler);
 
-gulp.task('css', function () {
-  return gulp.src(path.css)
-    .pipe(less())
-    .pipe(gulp.dest(path.build_static));
-});
-
-gulp.task('jsx', function () {
-  return gulp.src(path.jsx)
-    .pipe(react({harmony: true}))
-    .pipe(gulp.dest(path.tmp));
-});
-
-gulp.task('browserify', function () {
-  return browserify({
-      insertGlobals: true,
-      entries: path.main_js,
-      debug: true
+  return watcher
+    .on('update', function () {
+      var updateStart = Date.now();
+      console.log('Updating!');
+      watcher.bundle()
+        .pipe(source('index.js'))
+        .pipe(gulp.dest(path.build_static));
+      console.log('Updated!', (Date.now() - updateStart) + 'ms');
     })
     .bundle()
     .pipe(source('index.js'))
     .pipe(gulp.dest(path.build_static));
 });
 
-
-gulp.task('build', function () {
-  runSequence('clean build', ['jsx', 'html', 'css', 'static'], 'browserify');
+gulp.task('less', function () {
+  gulp.src(path.less)
+    .pipe(less())
+    .pipe(gulp.dest(path.build_static));
 });
 
-gulp.task('clean build', function () {
-  return gulp.src([path.build + '*.*', path.build + 'static/*.*'])
-    .pipe(clean());
-});
-gulp.task('clean js', function () {
-  return gulp.src(['tmp/**', 'tmp/*.*'])
-    .pipe(clean());
+gulp.task('html', function () {
+  gulp.src(path.html)
+    .pipe(gulp.dest(path.build));
 });
 
-gulp.task('watch css', ['css'], function () {
-  gulp.watch(path.css, ['css']);
+gulp.task('asset', function () {
+  gulp.src(path.assets)
+    .pipe(gulp.dest(path.build_static));
 });
 
-gulp.task('watch jsx', ['build'], function () {
-  gulp.watch(path.jsx, ['build']);
+gulp.task('css', function () {
+  gulp.watch(path.less,['less']);
 });

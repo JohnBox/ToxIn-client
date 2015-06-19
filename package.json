@@ -9,12 +9,6 @@
   "author": "gott",
   "license": "ISC",
   "dependencies": {
-    "browserify": "^10.2.3",
-    "gulp": "^3.8.11",
-    "gulp-clean": "^0.3.1",
-    "gulp-concat-css": "^2.2.0",
-    "gulp-less": "^3.0.3",
-    "gulp-react": "^3.0.1",
     "jquery": "^2.1.4",
     "js-cookie": "^2.0.0-pre",
     "material-ui": "^0.8.0",
@@ -22,8 +16,21 @@
     "react-async": "^2.1.0",
     "react-router": "^0.13.3",
     "react-scrollbar": "^0.1.3",
-    "react-tap-event-plugin": "^0.1.7",
-    "run-sequence": "^1.1.0",
-    "vinyl-source-stream": "^1.1.0"
+    "react-tap-event-plugin": "^0.1.7"
+  },
+  "devDependencies": {
+    "browserify": "^10.2.4",
+    "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat-css": "^2.2.0",
+    "gulp-less": "^3.0.3",
+    "gulp-livereload": "^3.8.0",
+    "gulp-react": "^3.0.1",
+    "gulp-uglifyjs": "^0.6.2",
+    "reactify": "^1.1.1",
+    "run-sequence": "^1.1.1",
+    "tiny-lr": "^0.1.6",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.2"
   }
 }

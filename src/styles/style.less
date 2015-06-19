@@ -116,15 +116,14 @@ body {
 .main_page {
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-direction: row;
   background-color: #fff;
   .toggle_button,.out_button {
     margin-top: -6px !important;
   }
 }
 .panel {
-  width: 28%;
+  flex: 1 1 100px;
   float: left;
   height: 100vh;
   display: flex;
@@ -141,7 +140,6 @@ body {
     }
   }
   .profile_button {
-    //border: solid 1px red;
     font-size: 1.4em;
     cursor: pointer;
     padding: 0;
@@ -160,35 +158,28 @@ body {
   }
 }
 .container {
-  flex: 1 1 auto;
-  width: 72%;
+  flex: 4;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   .window {
-    //border: solid 1px red;
-    width: 70%;
-    flex: 1;
+    width: 80%;
+    flex: 1 1 auto;
     display: flex;
-    flex-direction: row;
+     flex-direction: row;
     justify-content: space-between;
     .close_button {
-      //border: solid 1px red;
       align-self: flex-start;
       float: right;
     }
     .info {
-      //border: solid 1px red;
       padding: 16px;
     }
     .img {
-      //border: solid 1px red;
       padding: 16px;
     }
     img {
-      //margin: 16px;
-      //border: solid 1px green;
       height: 300px;
       width: 300px;
     }
@@ -218,3 +209,7 @@ body {
 
 }
 
+#local_video {
+  border: solid 1px red;
+  width: 400px;
+}

@@ -3,6 +3,8 @@ var Router = require('react-router');
 var { Route, RouteHandler, Link, Navigation } = Router;
 var ThemeManager = require('material-ui/lib/styles/theme-manager')();
 require("react-tap-event-plugin")();
+var Cookies = require('js-cookie');
+
 
 module.exports = React.createClass({
   mixins: [Navigation],
@@ -15,16 +17,16 @@ module.exports = React.createClass({
     };
   },
   getInitialState() {
-    return {darkTheme: false};
+    return {darkTheme: Cookies.get('darkTheme')||false};
   },
-  theme() {
-    ThemeManager.setTheme(this.state.darkTheme?ThemeManager.types.DARK:ThemeManager.types.LIGHT);
+  toggleTheme() {
     this.setState({darkTheme: !this.state.darkTheme});
   },
   render() {
+    ThemeManager.setTheme(this.state.darkTheme?ThemeManager.types.DARK:ThemeManager.types.LIGHT);
     return (
       <div className="app">
-        <RouteHandler theme={this.theme}/>
+        <RouteHandler toggleTheme={this.toggleTheme}/>
       </div>
     );
   }

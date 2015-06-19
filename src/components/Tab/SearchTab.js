@@ -48,8 +48,11 @@ module.exports = React.createClass({
     });
 
   },
-  contactInfo(e,i,p) {
-    this.props.contactInfo(this.state.users[i]);
+  onUserClick(e,i,p) {
+    this.props.close();
+    var contact = this.state.users[i];
+    Cookie.set('contact', contact);
+    this.props.set(2);
   },
   render() {
     var users = [];
@@ -62,7 +65,7 @@ module.exports = React.createClass({
       <div className="search_tab">
         <TextField hintText='Пошук' style={{width: '100%'}} search={true}/>
         <ScrollBar>
-          <Menu menuItems={users} menuItemClassName='menu_item' onItemClick={this.contactInfo} autoWidth={false} zDepth={0}/>
+          <Menu menuItems={users} onItemClick={this.onUserClick} autoWidth={false} zDepth={0}/>
         </ScrollBar>
       </div>
     );

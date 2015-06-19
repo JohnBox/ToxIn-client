@@ -76,15 +76,13 @@ module.exports = React.createClass({
   render() {
     return (
       <Paper className="panel" zDepth={3} style={this.props.style}>
-        <AppBar iconElementLeft={<UserLogoButton/>}
-                title={<UserProfileButton onClick={this.props.userInfo}/>}
-                zDepth={0} />
+        <AppBar iconElementLeft={<UserLogoButton/>} title={<UserProfileButton onClick={this.props.setWindow}/>} zDepth={0} />
         <Tabs initialSelectedIndex={0}>
           <Tab label={<HomeIcon/>}>
-            <HomeTab contactInfo={this.props.contactInfo}/>
+            <HomeTab set={this.props.setWindow} close={this.props.closeWindow}/>
           </Tab>
           <Tab label={<SearchIcon/>}>
-            <SearchTab contactInfo={this.props.contactInfo}/>
+            <SearchTab set={this.props.setWindow} close={this.props.closeWindow}/>
           </Tab>
           <Tab label={<FavoriteIcon/>}>
             <FavoriteTab/>
@@ -93,7 +91,7 @@ module.exports = React.createClass({
             <HistoryTab/>
           </Tab>
           <Tab label={<SettingIcon/>}>
-            <SettingTab theme={this.props.theme}/>
+            <SettingTab toggleTheme={this.props.toggleTheme}/>
           </Tab>
         </Tabs>
       </Paper>

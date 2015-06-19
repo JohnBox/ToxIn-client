@@ -17,14 +17,14 @@ module.exports = React.createClass({displayName: "exports",
   getInitialState:function() {
     return {darkTheme: false};
   },
-  theme:function() {
-    ThemeManager.setTheme(this.state.darkTheme?ThemeManager.types.DARK:ThemeManager.types.LIGHT);
+  toggleTheme:function() {
     this.setState({darkTheme: !this.state.darkTheme});
   },
   render:function() {
+    ThemeManager.setTheme(this.state.darkTheme?ThemeManager.types.DARK:ThemeManager.types.LIGHT);
     return (
       React.createElement("div", {className: "app"}, 
-        React.createElement(RouteHandler, {theme: this.theme})
+        React.createElement(RouteHandler, {toggleTheme: this.toggleTheme})
       )
     );
   }

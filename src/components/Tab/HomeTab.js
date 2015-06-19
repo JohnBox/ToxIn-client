@@ -60,7 +60,7 @@ module.exports = React.createClass({
     return {url: 'http://0.0.0.0:8000/'};
   },
   getInitialState() {
-    return {contacts: null, new: true};
+    return {contacts: null};
   },
   getAllContacts() {
     var username = Cookie.getJSON('user').username;
@@ -74,32 +74,22 @@ module.exports = React.createClass({
       });
     });
   },
-  contactInfo(e,i,p) {
-    Cookie.set('join', 1);
-    var contacts = this.state.contacts;
-    var contact = contacts[i];
-    if (contact.new) {
-      var cb = () => {};
-      this.props.contactInfo(contact);
-      contact.new = false;
-      contacts[i] = contact;
-      this.setState({new: false});
-    } else {
-      alert('Message');
-    }
+  onContactClick(e,i,p) {
+    var contact = this.state.contacts[i];
+    Cookie.set('contact', contact);
+    this.props.set(3);
   },
   render() {
-
     var contacts = [];
     if (!this.state.contacts) {
       this.getAllContacts().then((data)=>{this.setState({contacts: data.a})});
     } else {
-      contacts = this.state.contacts.map((c)=>({text: c.first_name+' '+c.last_name, icon: <Icon/>, iconRight: (this.state.new&&c.new)?<NewContactIcon/>:null, disabled: (this.state.new&&!c.new&&!c.on)}));
+      contacts = this.state.contacts.map((c)=>({text: c.first_name+' '+c.last_name+' | '+c.id, icon: <Icon/>, iconRight: c.new?<NewContactIcon/>:null}));
     }
     return (
       <div className="home_tab">
         <ScrollBar>
-          <Menu menuItems={contacts} onItemClick={this.contactInfo} autoWidth={false} zDepth={0}/>
+          <Menu menuItems={contacts} onItemClick={this.onContactClick} autoWidth={false} zDepth={0}/>
         </ScrollBar>
       </div>
     );

@@ -33,18 +33,37 @@ var CloseButton = React.createClass({
   }
 });
 
+var localStream;
+
 module.exports = React.createClass({
   mixins: [Navigation],
   getDefaultProps() {
     return {url: 'http://0.0.0.0:8000/'};
   },
   getInitialState() {
-    return {userProfile: null};
+    return {user: null};
+  },
+  componentDidMount() {
+    alert('re');
+    this.localVideo();
+  },
+  localVideo() {
+    navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+    navigator.getUserMedia({ audio: true, video: true },
+      function (stream) {
+        localStream = stream;
+        document.getElementById('local_video').src = URL.createObjectURL(stream);
+      },
+      function (error) {
+        console.log(error);
+      });
   },
   render() {
     return (
       <Paper className='window' zDepth={1} rounded={false}>
+
         <div className="message">
+          <video id="local_video" autoplay></video>
         </div>
         <CloseButton onClick={this.props.close}/>
       </Paper>

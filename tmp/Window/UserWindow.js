@@ -38,57 +38,57 @@ module.exports = React.createClass({displayName: "exports",
     return {url: 'http://0.0.0.0:8000/'};
   },
   getInitialState:function() {
-    return {edit: false, userProfile: null};
+    return {edit: false, user: null};
   },
   edit:function() {
     this.setState({edit: !this.state.edit});
   },
   save:function() {
-    var username = Cookie.getJSON('user').username;
-    var userProfile = this.state.userProfile;
-    if (userProfile.first_name && userProfile.last_name && userProfile.email) {
+    var user = Cookie.getJSON('user');
+    var username = user.username;
+    if (user.first_name && user.last_name && user.email) {
       ajax({
         url: this.props.url + 'setuserprofile/',
         method: 'POST',
         data: {
           username: username,
-          first_name: userProfile.first_name,
-          last_name: userProfile.last_name,
-          email: userProfile.email,
-          workplace: userProfile.workplace,
-          position: userProfile.position
+          first_name: user.first_name,
+          last_name: user.last_name,
+          email: user.email,
+          workplace: user.workplace,
+          position: user.position
         }
       });
       this.edit();
     }
   },
   firstnameInput:function(e) {
-    var userProfile = this.state.userProfile;
-    userProfile.first_name = e.target.value;
-    this.setState({userProfile: userProfile});
+    var user = this.state.user;
+    user.first_name = e.target.value;
+    this.setState({user: user});
   },
   lastnameInput:function(e) {
-    var userProfile = this.state.userProfile;
-    userProfile.last_name = e.target.value;
-    this.setState({userProfile: userProfile});
+    var user = this.state.user;
+    user.last_name = e.target.value;
+    this.setState({user: user});
   },
   emailInput:function(e) {
-    var userProfile = this.state.userProfile;
-    userProfile.email = e.target.value;
-    this.setState({userProfile: userProfile});
+    var user = this.state.user;
+    user.email = e.target.value;
+    this.setState({user: user});
   },
   workplaceInput:function(e) {
-    var userProfile = this.state.userProfile;
-    userProfile.workplace = e.target.value;
-    this.setState({userProfile: userProfile});
+    var user = this.state.user;
+    user.workplace = e.target.value;
+    this.setState({user: user});
   },
   positionInput:function(e) {
-    var userProfile = this.state.userProfile;
-    userProfile.position = e.target.value;
-    this.setState({userProfile: userProfile});
+    var user = this.state.user;
+    user.position = e.target.value;
+    this.setState({user: user});
   },
   getUserProfile:function() {
-    var username = Cookie.getJSON('user').username;
+    var username = this.props.user.username;
     return new Promise(function(resolve, reject){
       ajax({
         url: this.props.url + 'getuserprofile/',
@@ -100,16 +100,7 @@ module.exports = React.createClass({displayName: "exports",
     }.bind(this));
   },
   render:function() {
-    var userProfile;
-    if (!this.state.userProfile) {
-      this.getUserProfile().then(function(data){this.setState({userProfile: data.a})}.bind(this));
-      userProfile = Cookie.getJSON('user');
-      userProfile.email = '';
-      userProfile.workplace = '';
-      userProfile.position = '';
-    } else {
-      userProfile = this.state.userProfile;
-    }
+    var user = Cookie.getJSON('user');
     var label, disabled, onClick;
     if (this.state.edit) {
       label = 'Зберегти';
@@ -128,11 +119,11 @@ module.exports = React.createClass({displayName: "exports",
           React.createElement(RaisedButton, {style: {width: '100%'}, label: label, onClick: onClick})
         ), 
         React.createElement("div", {className: "info"}, 
-          React.createElement(TextField, {disabled: disabled, value: userProfile.first_name, onChange: this.firstnameInput, floatingLabelText: "Ім`я"}), 
-          React.createElement(TextField, {disabled: disabled, value: userProfile.last_name, onChange: this.lastnameInput, floatingLabelText: "Прізвище"}), 
-          React.createElement(TextField, {disabled: disabled, value: userProfile.email, onChange: this.emailInput, floatingLabelText: "Електронна пошта"}), 
-          React.createElement(TextField, {disabled: disabled, value: userProfile.workplace, onChange: this.workplaceInput, floatingLabelText: "Місце роботи"}), 
-          React.createElement(TextField, {disabled: disabled, value: userProfile.position, onChange: this.positionInput, floatingLabelText: "Посада"})
+          React.createElement(TextField, {disabled: disabled, value: user.first_name, onChange: this.firstnameInput, floatingLabelText: "Ім`я"}), 
+          React.createElement(TextField, {disabled: disabled, value: user.last_name, onChange: this.lastnameInput, floatingLabelText: "Прізвище"}), 
+          React.createElement(TextField, {disabled: disabled, value: user.email, onChange: this.emailInput, floatingLabelText: "Електронна пошта"}), 
+          React.createElement(TextField, {disabled: disabled, value: user.workplace, onChange: this.workplaceInput, floatingLabelText: "Місце роботи"}), 
+          React.createElement(TextField, {disabled: disabled, value: user.position, onChange: this.positionInput, floatingLabelText: "Посада"})
         ), 
         React.createElement(CloseButton, {onClick: this.props.close})
       )

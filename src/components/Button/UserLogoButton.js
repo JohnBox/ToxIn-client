@@ -13,17 +13,17 @@ module.exports = React.createClass({
     return this.context.muiTheme.palette;
   },
   getInitialState() {
-    return {border: 0};
+    return {on: true};
   },
   getStyles() {
-    var imgBorder = ['green', 'yellow', '#F44'];
+    var imgBorder = ['#F33','green'];
     return {
-      border: 'solid 2px '+imgBorder[this.state.border],
+      border: 'solid 2px '+imgBorder[this.state.on+0],
       backgroundColor: this.getTheme().canvasColor
     };
   },
   changeState() {
-    this.setState({border: (this.state.border+1)%3});
+    this.setState({on: !this.state.on});
   },
   render() {
     var style = this.getStyles();

@@ -12,7 +12,14 @@ var Panel = require('./Panel');
 var Container = require('./Container');
 var UserWindow = require('../Window/UserWindow');
 var ContactWindow = require('../Window/ContactWindow');
+var MessageWindow = require('../Window/MessageWindow');
 
+var windowTypes = {
+  NONE: 0,
+  USER: 1,
+  CONTACT: 2,
+  MESSAGE: 3
+};
 
 module.exports = React.createClass({
   mixins: [Navigation],
@@ -20,10 +27,16 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
   getInitialState() {
-    return {openPanel: true, window: null};
+    return {openPanel: true, window: windowTypes.NONE};
   },
   togglePanel() {
     this.setState({openPanel: !this.state.openPanel});
+  },
+  closeWindow() {
+    this.setState({window: null});
+  },
+  setWindow(w) {
+    this.setState({window: w});
   },
   getStyles() {
     return {
@@ -31,33 +44,16 @@ module.exports = React.createClass({
         display: this.state.openPanel?'flex':'none',
       },
       container: {
-        width: this.state.openPanel?'72%':'100%',
         transition: Transitions.easeOut('0ms')
       }
     };
   },
-  userProfile() {
-    this.setState({window: UserWindow });
-  },
-  contactProfile(contact) {
-    Cookie.set('contact', contact);
-    this.setState({window: ContactWindow });
-  },
-  closeWindow() {
-    Cookie.remove('contact');
-    this.setState({window: null});
-  },
   render() {
-    var user = Cookie.getJSON('user');
-    if (user === undefined) {
-      this.transitionTo('login');
-    }
     var style = this.getStyles();
     return (
       <Paper className="main_page">
-        <Panel theme={this.props.theme} style={style.panel} userInfo={this.userProfile} contactInfo={this.contactProfile}/>
-        <AppBar title='' iconElementLeft={<ToggleButton toggle={this.togglePanel}/>} iconElementRight={<OutButton/>} style={style.container} zDepth={0}/>
-        <Container style={style.container} window={this.state.window} close={this.closeWindow}/>
+        <Panel style={style.panel} toggleTheme={this.props.toggleTheme} setWindow={this.setWindow} closeWindow={this.closeWindow}/>
+        <Container window={this.state.window} closeWindow={this.closeWindow} style={style.container} togglePanel={this.togglePanel}/>
       </Paper>
     );
   }

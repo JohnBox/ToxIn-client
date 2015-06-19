@@ -76,15 +76,13 @@ module.exports = React.createClass({displayName: "exports",
   render:function() {
     return (
       React.createElement(Paper, {className: "panel", zDepth: 3, style: this.props.style}, 
-        React.createElement(AppBar, {iconElementLeft: React.createElement(UserLogoButton, null), 
-                title: React.createElement(UserProfileButton, {onClick: this.props.userInfo}), 
-                zDepth: 0}), 
+        React.createElement(AppBar, {iconElementLeft: React.createElement(UserLogoButton, null), title: React.createElement(UserProfileButton, {onClick: this.props.setWindow}), zDepth: 0}), 
         React.createElement(Tabs, {initialSelectedIndex: 0}, 
           React.createElement(Tab, {label: React.createElement(HomeIcon, null)}, 
-            React.createElement(HomeTab, {contactInfo: this.props.contactInfo})
+            React.createElement(HomeTab, null)
           ), 
           React.createElement(Tab, {label: React.createElement(SearchIcon, null)}, 
-            React.createElement(SearchTab, {contactInfo: this.props.contactInfo})
+            React.createElement(SearchTab, null)
           ), 
           React.createElement(Tab, {label: React.createElement(FavoriteIcon, null)}, 
             React.createElement(FavoriteTab, null)
@@ -93,7 +91,7 @@ module.exports = React.createClass({displayName: "exports",
             React.createElement(HistoryTab, null)
           ), 
           React.createElement(Tab, {label: React.createElement(SettingIcon, null)}, 
-            React.createElement(SettingTab, {theme: this.props.theme})
+            React.createElement(SettingTab, {toggleTheme: this.props.toggleTheme})
           )
         )
       )

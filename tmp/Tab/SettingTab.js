@@ -5,16 +5,16 @@ var mui = require('material-ui');
 var $__1=      mui,AppBar=$__1.AppBar,Paper=$__1.Paper,Menu=$__1.Menu;
 
 module.exports = React.createClass({displayName: "exports",
-  onToggle:function(e, i, t) {
-    this.props.theme();
+  onToggle:function() {
+    this.props.toggleTheme();
   },
   render:function() {
-    var mi = [
-      { payload: '1', text: 'Тема', toggle: true}
+    var settings = [
+      { text: 'Тема', toggle: true }
     ];
     return (
       React.createElement("div", {className: "setting_tab"}, 
-        React.createElement(Menu, {menuItems: mi, autoWidth: false, zDepth: 0, onToggle: this.onToggle})
+        React.createElement(Menu, {menuItems: settings, autoWidth: false, zDepth: 0, onToggle: this.onToggle})
       )
     );
   }

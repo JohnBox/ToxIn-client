@@ -56,19 +56,17 @@ module.exports = React.createClass({displayName: "exports",
   addContact:function() {
     var user = Cookie.getJSON('user').username;
     var contact = Cookie.getJSON('contact').username;
-    var join = Cookie.get('join') || 0;
     ajax({
       url: this.props.url + 'addcontacttouser/',
       method: 'POST',
       data: {
         user: user,
         contact: contact,
-        join: join
       }
     });
     Cookie.remove('contact');
     Cookie.remove('join');
-    this.props.close();
+    this.props.closeWindow();
 
   },
   abortContact:function() {
@@ -85,7 +83,7 @@ module.exports = React.createClass({displayName: "exports",
     });
     Cookie.remove('contact');
     Cookie.remove('join');
-    this.props.close();
+    this.props.closeWindow();
   },
   render:function() {
     var userProfile;
@@ -104,7 +102,7 @@ module.exports = React.createClass({displayName: "exports",
     } else {
       button = React.createElement(RaisedButton, {primary: true, style: {width: '100%'}, label: "Відмінити", onClick: this.abortContact});
     }
-
+    alert('contact wondow');
     return (
       React.createElement(Paper, {className: "window", zDepth: 1, rounded: false}, 
         React.createElement("div", {className: "img"}, 

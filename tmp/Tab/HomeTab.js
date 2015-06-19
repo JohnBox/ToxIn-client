@@ -60,7 +60,7 @@ module.exports = React.createClass({displayName: "exports",
     return {url: 'http://0.0.0.0:8000/'};
   },
   getInitialState:function() {
-    return {contacts: null, new: true};
+    return {contacts: null};
   },
   getAllContacts:function() {
     var username = Cookie.getJSON('user').username;
@@ -74,32 +74,27 @@ module.exports = React.createClass({displayName: "exports",
       });
     }.bind(this));
   },
-  contactInfo:function(e,i,p) {
-    Cookie.set('join', 1);
-    var contacts = this.state.contacts;
-    var contact = contacts[i];
+  onContactClick:function(e,i,p) {
+    var contact = this.state.contacts[i];
+    alert(contact.username);
     if (contact.new) {
-      var cb = function()  {};
-      this.props.contactInfo(contact);
-      contact.new = false;
-      contacts[i] = contact;
-      this.setState({new: false});
+      Cookie.set('contact', contact);
+      this.props.contactProfile();
     } else {
       alert('Message');
     }
   },
   render:function() {
-
     var contacts = [];
     if (!this.state.contacts) {
       this.getAllContacts().then(function(data){this.setState({contacts: data.a})}.bind(this));
     } else {
-      contacts = this.state.contacts.map(function(c){return {text: c.first_name+' '+c.last_name, icon: React.createElement(Icon, null), iconRight: (this.state.new&&c.new)?React.createElement(NewContactIcon, null):null, disabled: (this.state.new&&!c.new&&!c.on)};}.bind(this));
+      contacts = this.state.contacts.map(function(c){return {text: c.first_name+' '+c.last_name, icon: React.createElement(Icon, null), iconRight: c.new?React.createElement(NewContactIcon, null):null};});
     }
     return (
       React.createElement("div", {className: "home_tab"}, 
         React.createElement(ScrollBar, null, 
-          React.createElement(Menu, {menuItems: contacts, onItemClick: this.contactInfo, autoWidth: false, zDepth: 0})
+          React.createElement(Menu, {menuItems: contacts, onItemClick: this.onContactClick, autoWidth: false, zDepth: 0})
         )
       )
     );

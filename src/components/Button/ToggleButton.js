@@ -7,7 +7,7 @@ module.exports = React.createClass({
   },
   toggleState() {
     this.setState({state: !this.state.state});
-    this.props.toggle();
+    this.props.togglePanel();
   },
   getStyles() {
     return { width: '36px', height: '36px' };
