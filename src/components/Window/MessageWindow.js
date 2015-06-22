@@ -49,13 +49,11 @@ module.exports = React.createClass({
       remoteVideosEl: 'remotesVideos',
       autoRequestMedia: true
     });
-    webrtc.on('readyToCall', function () {
-      webrtc.joinRoom('444');
-    });
     return (
       <Paper className='window' zDepth={1} rounded={false}>
         <div className="message">
           <video id="localVideo" autoplay></video>
+
         </div>
         <div id="remotesVideos"></div>
         <CloseButton onClick={this.props.close}/>

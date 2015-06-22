@@ -7,6 +7,7 @@ var clean = require('gulp-clean');
 var less = require('gulp-less');
 var concatCss = require('gulp-concat-css');
 var uglifyjs = require('gulp-uglifyjs');
+var minjs = require('gulp-jsmin');
 var refresh = require('gulp-livereload');
 var reactify = require('reactify');
 var watchify = require('watchify');
@@ -16,9 +17,7 @@ path = {
   html: 'src/index.html',
   less: 'src/styles/*.less',
   main: 'src/components/index.js',
-  js: ['tmp/**/*.js', 'tmp/*.js'],
-  jsx: ['src/components/**/*.jsx', 'src/components/*.jsx'],
-  tmp: 'tmp/',
+  js: ['src/components/**/*.js', 'src/components/*.js'],
   build: 'build/',
   build_static: 'build/static'
 };
@@ -27,20 +26,9 @@ gulp.task('browserify', function() {
   var bundler = browserify({
     entries: path.main,
     transform: [reactify],
-    debug: true,
     cache: {}, packageCache: {}, fullPaths: true
   });
-  var watcher  = watchify(bundler);
-
-  return watcher
-    .on('update', function () {
-      var updateStart = Date.now();
-      console.log('Updating!');
-      watcher.bundle()
-        .pipe(source('index.js'))
-        .pipe(gulp.dest(path.build_static));
-      console.log('Updated!', (Date.now() - updateStart) + 'ms');
-    })
+  return bundler
     .bundle()
     .pipe(source('index.js'))
     .pipe(gulp.dest(path.build_static));
@@ -64,4 +52,17 @@ gulp.task('asset', function () {
 
 gulp.task('css', function () {
   gulp.watch(path.less,['less']);
+});
+
+gulp.task('uglify', function () {
+  return uglifyjs('build/static/index.js')
+    .pipe(minjs())
+    .pipe(gulp.dest(path.build_static));
+});
+gulp.task('clean', function () {
+  return clean('build/static/index.js')
+});
+
+gulp.task('build', function () {
+  return runSequence('browserify','uglify');
 });

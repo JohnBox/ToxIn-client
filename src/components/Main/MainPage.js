@@ -27,16 +27,16 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
   getInitialState() {
-    return {openPanel: true, window: windowTypes.NONE};
+    return {openPanel: true, window: windowTypes.NONE, contact: null};
   },
   togglePanel() {
     this.setState({openPanel: !this.state.openPanel});
   },
   closeWindow() {
-    this.setState({window: null});
+    this.setState({window: null, contact: null});
   },
-  setWindow(w) {
-    this.setState({window: w});
+  setWindow(w,c) {
+    this.setState({window: w, contact: c});
   },
   getStyles() {
     return {
@@ -53,7 +53,7 @@ module.exports = React.createClass({
     return (
       <Paper className="main_page">
         <Panel style={style.panel} toggleTheme={this.props.toggleTheme} setWindow={this.setWindow} closeWindow={this.closeWindow}/>
-        <Container window={this.state.window} closeWindow={this.closeWindow} style={style.container} togglePanel={this.togglePanel}/>
+        <Container window={this.state.window} contact={this.state.contact} closeWindow={this.closeWindow} style={style.container} togglePanel={this.togglePanel}/>
       </Paper>
     );
   }

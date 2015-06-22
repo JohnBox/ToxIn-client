@@ -9,11 +9,11 @@
   "author": "gott",
   "license": "ISC",
   "dependencies": {
+    "getscreenmedia": "^1.4.0",
     "jquery": "^2.1.4",
     "js-cookie": "^2.0.0-pre",
-    "material-ui": "^0.8.0",
+    "material-ui": "^0.9.2",
     "react": "^0.13.3",
-    "react-async": "^2.1.0",
     "react-router": "^0.13.3",
     "react-scrollbar": "^0.1.3",
     "react-tap-event-plugin": "^0.1.7"
@@ -23,6 +23,7 @@
     "gulp": "^3.9.0",
     "gulp-clean": "^0.3.1",
     "gulp-concat-css": "^2.2.0",
+    "gulp-jsmin": "^0.1.5",
     "gulp-less": "^3.0.3",
     "gulp-livereload": "^3.8.0",
     "gulp-react": "^3.0.1",

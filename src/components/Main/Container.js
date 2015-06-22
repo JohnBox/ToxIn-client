@@ -30,7 +30,7 @@ module.exports = React.createClass({
         window = <ContactWindow close={this.props.closeWindow}/>;
         break;
       case windowTypes.MESSAGE:
-        window = <MessageWindow close={this.props.closeWindow}/>;
+        window = <MessageWindow close={this.props.closeWindow} contact={this.props.contact}/>;
         break;
       case windowTypes.NONE:
       default:

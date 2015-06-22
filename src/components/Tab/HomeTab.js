@@ -3,9 +3,9 @@ var $ = require('jquery');
 var Cookie = require('js-cookie');
 var ScrollBar = require('react-scrollbar');
 var mui = require('material-ui');
-var { Paper, TextField, Menu, SvgIcon } = mui;
+var { Paper, TextField, Menu, SubheaderMenuItem, SvgIcon, List, ListItem, ListDivider, IconButton, ToggleStarBorder, Avatar, } = mui;
 var StylePropable = mui.Mixins.StylePropable;
-
+var Colors = mui.Styles.Colors;
 
 var Icon = React.createClass({
   getStyles() {
@@ -27,37 +27,9 @@ var Icon = React.createClass({
   }
 });
 
-var NewContactIcon = React.createClass({
-  mixins: [StylePropable],
-  contextTypes: {
-    muiTheme: React.PropTypes.object
-  },
-  getTheme() {
-    return this.context.muiTheme.palette;
-  },
-  getStyles(){
-    return {
-      root: {
-        float: 'right',
-        opacity: '0.7',
-        marginTop: '14px'
-      },
-      path: this.getTheme().textColor
-    }
-  },
-  render() {
-    var style = this.getStyles();
-    return (
-      <SvgIcon style={style.root}>
-        <path fill={style.path} d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z" />
-      </SvgIcon>
-    );
-  }
-});
-
 module.exports = React.createClass({
   getDefaultProps() {
-    return {url: 'http://91.225.146.97:8000/'};
+    return {url: 'http://0.0.0.0:8000/'};
   },
   getInitialState() {
     return {contacts: null};
@@ -75,21 +47,34 @@ module.exports = React.createClass({
     });
   },
   onContactClick(e,i,p) {
-    var contact = this.state.contacts[i];
-    Cookie.set('contact', contact);
-    this.props.set(3);
+    //var contact = this.state.contacts[i];
+    //Cookie.set('contact', contact);
+    alert('asdasd');
+    //this.props.set(3,i);
   },
   render() {
     var contacts = [];
     if (!this.state.contacts) {
       this.getAllContacts().then((data)=>{this.setState({contacts: data.a})});
     } else {
-      contacts = this.state.contacts.map((c)=>({text: c.first_name+' '+c.last_name+' | '+c.id, icon: <Icon/>, iconRight: c.new?<NewContactIcon/>:null}));
+      contacts = this.state.contacts.map((c)=> {
+        return (<ListItem
+          leftAvatar={<Avatar src='static/go.png'/>}
+          onClick={this.onContactClick}
+          rightIconButton={<Avatar src='static/go.png'/>}>{c.first_name} {c.last_name}</ListItem>);
+      });
     }
     return (
       <div className="home_tab">
         <ScrollBar>
-          <Menu menuItems={contacts} onItemClick={this.onContactClick} autoWidth={false} zDepth={0}/>
+          <List subheader="Аудиторії сука">
+            <ListItem leftAvatar={<Avatar src='static/go.png'/>}>Додати</ListItem>
+          </List>
+          <List subheader="Кімнати">
+          </List>
+          <List subheader="Контакти">
+            {contacts}
+          </List>
         </ScrollBar>
       </div>
     );
