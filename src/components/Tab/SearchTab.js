@@ -30,7 +30,7 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
   getDefaultProps() {
-    return {url: 'http://0.0.0.0:8000/'};
+    return {url: 'http://91.225.146.97:8000/'};
   },
   getInitialState() {
     return {users: null};

@@ -5,7 +5,7 @@ var { RaisedButton, TextField } = mui;
 
 module.exports = React.createClass({
   getDefaultProps() {
-    return {url: 'http://0.0.0.0:8000/'}
+    return {url: 'http://91.225.146.97:8000/'}
   },
   getInitialState() {
     return {username: '', first_name: '',last_name: '', email: '', passwd: '', confirm_passwd: ''};

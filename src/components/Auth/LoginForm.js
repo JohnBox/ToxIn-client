@@ -10,7 +10,7 @@ var routes = require('../routes');
 module.exports = React.createClass({
   mixins: [Navigation],
   getDefaultProps() {
-    return {url: 'http://0.0.0.0:8000/'};
+    return {url: 'http://91.225.146.97:8000/'};
   },
   getInitialState() {
     return {username: '', passwd: ''};
