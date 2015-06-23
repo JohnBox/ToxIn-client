@@ -7,7 +7,6 @@ var Cookies = require('js-cookie');
 
 module.exports = React.createClass({
   onToggle() {
-    alert(Cookies.get('darkTheme'));
     Cookies.set('darkTheme', (!Cookies.get('darkTheme')));
     this.props.toggleTheme();
   },

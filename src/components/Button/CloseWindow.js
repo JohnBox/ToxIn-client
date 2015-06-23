@@ -1,16 +1,7 @@
 var React = require('react');
 var mui = require('material-ui');
-var { RaisedButton, Snackbar } = mui;
+var { SvgIcon } = mui;
 var StylePropable = mui.Mixins.StylePropable;
-var $ = require('jquery');
-var Cookie = require('js-cookie');
-
-var windowTypes = {
-  NONE: 0,
-  USER: 1,
-  CONTACT: 2,
-  MESSAGE: 3
-};
 
 module.exports = React.createClass({
   mixins: [StylePropable],
@@ -26,17 +17,13 @@ module.exports = React.createClass({
       color: this.getTheme().textColor
     };
   },
-  onClick() {
-    var user = Cookie.getJSON('user');
-    this.props.onClick(windowTypes.USER);
-  },
   render() {
     var style = this.getStyles();
-    var user = Cookie.getJSON('user');
-    var full_name = user.first_name +' '+ user.last_name;
     return (
-      <div className="profile_button" style={style} onClick={this.onClick}>
-        {full_name}
+      <div className="close_button" onClick={this.props.onClick}>
+        <SvgIcon style={style}>
+          <path fill={style.color} d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+        </SvgIcon>
       </div>
     );
   }
