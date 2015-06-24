@@ -12,14 +12,9 @@ var Panel = require('./Panel');
 var Container = require('./Container');
 var UserWindow = require('../Window/UserWindow');
 var ContactWindow = require('../Window/ContactWindow');
-var MessageWindow = require('../Window/MessageWindow');
+var MessageWindow = require('../Window/VideoWindow');
+var windowTypes = require('../windows');
 
-var windowTypes = {
-  NONE: 0,
-  USER: 1,
-  CONTACT: 2,
-  MESSAGE: 3
-};
 
 module.exports = React.createClass({
   mixins: [Navigation],
@@ -27,13 +22,19 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
   getInitialState() {
-    return {openPanel: true, window: windowTypes.NONE, contact: null};
+    return {openPanel: true, window: windowTypes.NONE, contact: null, a: null, r:null};
   },
   togglePanel() {
     this.setState({openPanel: !this.state.openPanel});
   },
-  closeWindow() {
-    this.setState({window: null, contact: null});
+  closeWindow(r,name) {
+    if (name === 'room') {
+      this.setState({window: windowTypes.NONE, contact: null, r: r });
+    } else if (name === 'audience') {
+      this.setState({window: windowTypes.NONE, contact: null, a: r});
+    } else {
+      this.setState({window: windowTypes.NONE, contact: null, a: null, r: null});
+    }
   },
   setWindow(w,c) {
     this.setState({window: w, contact: c});
@@ -52,7 +53,7 @@ module.exports = React.createClass({
     var style = this.getStyles();
     return (
       <Paper className="main_page">
-        <Panel style={style.panel} toggleTheme={this.props.toggleTheme} setWindow={this.setWindow} closeWindow={this.closeWindow}/>
+        <Panel style={style.panel} toggleTheme={this.props.toggleTheme} setWindow={this.setWindow} closeWindow={this.closeWindow} r={this.state.r} a={this.state.a}/>
         <Container window={this.state.window} contact={this.state.contact} closeWindow={this.closeWindow} style={style.container} togglePanel={this.togglePanel}/>
       </Paper>
     );

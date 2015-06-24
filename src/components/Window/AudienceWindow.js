@@ -6,8 +6,7 @@ var mui = require('material-ui');
 var { AppBar, Paper, RaisedButton, SvgIcon, TextField, DropDownMenu, List, ListItem, ListDivider } = mui;
 var StylePropable = mui.Mixins.StylePropable;
 var CloseButton = require('../Button/CloseWindow');
-var windowTypes = require('../windows');
-
+var GHB = require('../Button/GitHubButton');
 
 module.exports = React.createClass({
   mixins: [Navigation],
@@ -18,26 +17,19 @@ module.exports = React.createClass({
     return {contacts: [], name: null};
   },
   create() {
-    var that = this;
     var username = Cookie.getJSON('user').username;
     var contacts = this.state.contacts.join('/');
     var name = this.state.name;
     if (name&&contacts) {
-        ajax({
-          url: this.props.url + 'createroom/',
-          method: 'POST',
-          data: {
-            username: username,
-            name: name,
-            contacts: contacts
-          },
-          success: function (d) {
-            that.props.close(d.a, 'room');
-          },
-          error: function (e) {
-            alert(e);
-          }
-        });
+      ajax({
+        url: this.props.url + 'createaudience/',
+        method: 'POST',
+        data: {
+          username: username,
+          name: name,
+          contacts: contacts
+        }
+      });
     }
   },
   onCheck(e,id) {
@@ -61,7 +53,7 @@ module.exports = React.createClass({
       <Paper className='window' zDepth={1} rounded={false}>
         <CloseButton onClick={this.props.close}/>
         <div className="room_window">
-          <List subheader='Нова кімната'>
+          <List subheader='Нова Аудиторія'>
             <TextField hintText='Назва' onChange={this.inputName}/>
               {contacts}
           </List>

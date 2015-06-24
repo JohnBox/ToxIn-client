@@ -29,35 +29,43 @@ module.exports = React.createClass({
       });
     });
   },
-  onContactClick(e,i) {
-    var c = this.state.contacts[i];
-    this.props.set(windowTypes.MESSAGE, 'c'+c.id);
-  },
   onRoomClick(e,i) {
     var r = this.state.rooms[i];
-    this.props.set(windowTypes.MESSAGE, 'r'+r.id);
+    this.props.set(windowTypes.VIDEO, 'r'+r.id);
   },
   onAudienceClick(e,i) {
     var a = this.state.audiences[i];
-    this.props.set(windowTypes.MESSAGE, 'a'+a.id);
+    this.props.set(windowTypes.VIDEO, 'a'+a.id);
   },
   newAudience() {
-
+    this.props.set(windowTypes.AUDIENCE, this.state.contacts);
   },
   newRoom() {
     this.props.set(windowTypes.ROOM, this.state.contacts);
   },
+  componentWillReceiveProps(next) {
+    var oldRooms = this.state.rooms;
+    var oldAudiences = this.state.audiences;
+    if (next.r&&this.state.rooms.indexOf(next.r)===-1) {
+      alert('next r ' + next.r.id);
+      oldRooms.push(next.r);
+    }
+    if (next.a) {
+      alert('next a '+next.a.id);
+      oldAudiences.push(next.a);
+    }
+    if (next.contact&&this.state) {
+
+    }
+    this.setState({rooms: oldRooms, audiences: oldAudiences});
+  },
   render() {
-    var contacts = [], rooms = [], audiences = [], c=r=a=null;
+    var rooms = [], audiences = [];
     if (!this.state.contacts&&!this.state.rooms&&!this.state.audiences) {
       this.getAllContacts().then((d)=>{this.setState({contacts: d.a.contacts, rooms: d.a.rooms, audiences: d.a.audiences})});
     } else {
-      contacts = this.state.contacts.map((c)=>({text: c.first_name+' '+c.last_name+' | '+c.id}));
       rooms = this.state.rooms.map((r)=>({text: r.name +' | '+r.id}));
       audiences = this.state.audiences.map((a)=>({text: a.name+' | '+a.id}));
-      if (contacts) {
-        contacts = <Menu menuItems={contacts} onItemTap={this.onContactClick} autoWidth={false} zDepth={0}/>;
-      }
       if (rooms) {
         rooms = <Menu menuItems={rooms} onItemTap={this.onRoomClick} autoWidth={false} zDepth={0}/>;
       }
@@ -70,9 +78,6 @@ module.exports = React.createClass({
         <ScrollBar>
           <FlatButton onClick={this.newAudience} style={{width: '50%'}} label={'Нова аудиторія'}/>
           <FlatButton onClick={this.newRoom} style={{float: 'right', width: '50%'}} label={'Нова кімната'}/>
-          <List subheader='Контакти' subheaderStyle={{fontSize: '1.2em'}}>
-            {contacts}
-          </List>
           <List subheader='Аудиторії' subheaderStyle={{fontSize: '1.2em'}}>
             {audiences}
           </List>

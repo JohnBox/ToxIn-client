@@ -167,21 +167,16 @@ body {
     width: 80%;
     flex: 1 1 auto;
     display: flex;
-     flex-direction: row;
-    justify-content: space-between;
+     flex-direction: column;
+    justify-content: flex-start;
     .close_button {
-      align-self: flex-start;
-      float: right;
+      align-self: flex-end;
     }
-    .info {
-      padding: 56px;
-    }
-    .img {
-      padding: 16px;
-    }
-    img {
-      height: 300px;
-      width: 300px;
+    .video_room {
+      margin-top: -30px;
+      video {
+        width: 50%;
+      }
     }
   }
 
@@ -217,6 +212,3 @@ body {
 
 }
 
-#localVideo {
-  width: 50%;
-}

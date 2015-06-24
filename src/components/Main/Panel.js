@@ -50,7 +50,7 @@ module.exports = React.createClass({
         <AppBar showMenuIconButton={false} title={<UserProfileButton onClick={this.props.setWindow}/>} zDepth={0} />
         <Tabs initialSelectedIndex={0}>
           <Tab label={<HomeIcon/>}>
-            <HomeTab set={this.props.setWindow} close={this.props.closeWindow}/>
+            <HomeTab set={this.props.setWindow} r={this.props.r} a={this.props.a} close={this.props.closeWindow}/>
           </Tab>
           <Tab label={<SearchIcon/>}>
             <SearchTab set={this.props.setWindow} close={this.props.closeWindow}/>
