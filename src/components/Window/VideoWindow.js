@@ -5,6 +5,7 @@ var { ajax } = require('jquery');
 var mui = require('material-ui');
 var { AppBar, Paper, RaisedButton, SvgIcon, TextField, DropDownMenu } = mui;
 var StylePropable = mui.Mixins.StylePropable;
+var SimpleWebRTC = require('simplewebrtc');
 var CloseButton = require('../Button/CloseWindow');
 
 
@@ -19,8 +20,7 @@ module.exports = React.createClass({
     return {rtc: new SimpleWebRTC({
       localVideoEl: 'localVideo',
       remoteVideosEl: 'remotesVideos',
-      autoRequestMedia: true,
-      'force new connection': true
+      autoRequestMedia: true
     })};
   },
   componentWillMount() {
@@ -37,8 +37,7 @@ module.exports = React.createClass({
     this.state.rtc.leaveRoom();
   },
   render() {
-    this.state.rtc.on('readyToCall',()=>{this.state.rtc.joinRoom(this.state.contact)});
-    this.state.rtc.emit('joinedRoom', this.state.contact);
+    this.state.rtc.joinRoom(this.state.contact);
     return (
       <Paper className='window' zDepth={1} rounded={false}>
         <CloseButton onClick={this.props.close}/>
