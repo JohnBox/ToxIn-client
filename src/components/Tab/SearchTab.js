@@ -1,11 +1,11 @@
-var React = require('react');
-var ScrollBar = require('react-scrollbar');
-var $ = require('jquery');
-var Cookie = require('js-cookie');
-var { Paper, TextField, Menu, SvgIcon, Snackbar } = require('material-ui');
-var AddIcon = require('../Button/AddContactButton');
+const React = require('react');
+const ScrollBar = require('react-scrollbar');
+const $ = require('jquery');
+const Cookie = require('js-cookie');
+const { Paper, TextField, Menu, SvgIcon, Snackbar } = require('material-ui');
+const AddIcon = require('../Button/AddContactButton');
 
-var windowTypes = {
+const windowTypes = {
   NONE: 0,
   USER: 1,
   CONTACT: 2,
@@ -17,16 +17,16 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
   getDefaultProps() {
-    return {url: 'http://91.225.146.97:8000/'};
+    return {url: 'http://127.0.0.1:8000/'};
   },
   getInitialState() {
     return {users: null};
   },
-  getAllUsers() {
-    var username = Cookie.getJSON('user').username;
+  getUsersList() {
+    let username = Cookie.getJSON('user').username;
     return new Promise((resolve, reject)=>{
       $.ajax({
-        url: this.props.url + 'getallusers/',
+        url: this.props.url + 'users-list/',
         method: 'POST',
         data: {username: username},
         success: resolve,
@@ -34,19 +34,19 @@ module.exports = React.createClass({
       });
     });
   },
-  onUserClick(e,i) {
-    var contact = this.state.users[i];
-    this.props.set(windowTypes.CONTACT,contact);
+  onUserClick(e, i) {
+    let contact = this.state.users[i];
+    this.props.set(windowTypes.CONTACT, contact);
   },
   onSearch(e) {
-    var that = this;
-    var username = Cookie.getJSON('user').username;
+    const that = this;
+    const username = Cookie.getJSON('user').username;
     $.ajax({
-      url: this.props.url + 'searchusers/',
+      url: this.props.url + 'users-search/',
       method: 'POST',
       data: {
         username: username,
-        q: e.target.value
+        search: e.target.value
       },
       success: function (data) {
         that.setState({users: data.a})
@@ -57,11 +57,11 @@ module.exports = React.createClass({
     });
   },
   render() {
-    var users = [];
+    let users = [];
     if (!this.state.users) {
-      this.getAllUsers().then((data)=>{this.setState({users: data.a})});
+      this.getUsersList().then((data)=>{this.setState({users: data.a})});
     } else {
-      users = this.state.users.map((u)=>({text: u.first_name+' '+u.last_name}));
+      users = this.state.users.map((user)=>({text: user.first_name+' '+user.last_name}));
     }
     return (
       <div className="search_tab">
