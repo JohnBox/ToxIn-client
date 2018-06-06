@@ -42,7 +42,7 @@ module.exports = React.createClass({
     const that = this;
     const username = Cookie.getJSON('user').username;
     $.ajax({
-      url: this.props.url + 'users-search/',
+      url: this.props.url + 'users-list/',
       method: 'POST',
       data: {
         username: username,
