@@ -1,33 +1,31 @@
-var React = require('react');
-var Router = require('react-router');
-var Cookie = require('js-cookie');
-var { Navigation } = Router;
-var { ajax } = require('jquery');
-var mui = require('material-ui');
-var { RaisedButton, TextField } = mui;
-var routes = require('../routes');
+const React = require('react');
+const Router = require('react-router');
+const Cookie = require('js-cookie');
+const { Navigation } = Router;
+const { ajax } = require('jquery');
+const { RaisedButton, TextField } = require('material-ui');
 
 module.exports = React.createClass({
   mixins: [Navigation],
   getDefaultProps() {
-    return {url: 'http://91.225.146.97:8000/'};
+    return {url: 'http://127.0.0.1:8000/'};
   },
   getInitialState() {
-    return {username: '', passwd: ''};
+    return {username: '', password: ''};
   },
   onSubmit(e) {
-    var that = this;
+    let that = this;
     e.preventDefault();
     ajax({
-      url: this.props.url + 'login/',
+      url: this.props.url + 'sign-in/',
       type: 'POST',
       data: {
         username: this.state.username,
-        passwd: this.state.passwd
+        password: this.state.password
       },
       success: function (data) {
         if (!data.e) {
-          var user = data.a;
+          let user = data.a;
           Cookie.set('user', user);
           that.transitionTo('main', {username: user.username});
         } else {
@@ -43,7 +41,7 @@ module.exports = React.createClass({
     this.setState({username: e.target.value});
   },
   passwordInput(e) {
-    this.setState({passwd: e.target.value});
+    this.setState({password: e.target.value});
   },
   render() {
     return (

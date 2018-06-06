@@ -1,7 +1,6 @@
-let React = require('react');
-let { ajax } = require('jquery');
-let mui = require('material-ui');
-let { RaisedButton, TextField } = mui;
+const React = require('react');
+const { ajax } = require('jquery');
+const { RaisedButton, TextField } = require('material-ui');
 
 module.exports = React.createClass({
   getDefaultProps() {
