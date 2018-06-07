@@ -17,7 +17,7 @@ module.exports = React.createClass({
     };
   },
   getInitialState() {
-    return {darkTheme: Cookies.get('darkTheme')||false};
+    return {darkTheme: Cookies.get('darkTheme') === 'true'};
   },
   toggleTheme() {
     this.setState({darkTheme: !this.state.darkTheme});

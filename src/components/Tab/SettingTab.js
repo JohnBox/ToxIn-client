@@ -1,17 +1,17 @@
-var React = require('react');
-var Router = require('react-router');
-var { Route, RouteHandler, Link } = Router;
-var mui = require('material-ui');
-var { AppBar, Paper, Menu } = mui;
-var Cookies = require('js-cookie');
+const React = require('react');
+const Router = require('react-router');
+const { Route, RouteHandler, Link } = Router;
+const mui = require('material-ui');
+const { AppBar, Paper, Menu } = mui;
+const Cookies = require('js-cookie');
 
 module.exports = React.createClass({
   onToggle() {
-    Cookies.set('darkTheme', (!Cookies.get('darkTheme')));
+    Cookies.set('darkTheme', Cookies.get('darkTheme') !== 'true');
     this.props.toggleTheme();
   },
   render() {
-    var settings = [
+    const settings = [
       { text: 'Тема', toggle: true }
     ];
     return (
