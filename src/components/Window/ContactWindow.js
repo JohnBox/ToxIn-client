@@ -13,14 +13,14 @@ module.exports = React.createClass({
     return {url: 'http://127.0.0.1:8000/'};
   },
   addContact() {
-    var user = Cookie.getJSON('user').username;
-    var contact= this.props.contact.username;
+    var user = Cookie.getJSON('user');
+    var contact = this.props.contact;
     ajax({
-      url: this.props.url + 'addcontacttouser/',
+      url: this.props.url + 'create-contact/',
       method: 'POST',
       data: {
-        user: user,
-        contact: contact
+        user: user.username,
+        contact: contact.username
       }
     });
     this.props.close();

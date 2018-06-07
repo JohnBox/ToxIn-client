@@ -31,7 +31,7 @@ module.exports = React.createClass({
     setTimeout(()=>{this.refs.snack.dismiss()}, 4000);
     var user = this.context.router.getCurrentParams().user;
     $.ajax({
-      url: this.props.url + 'addcontacttouser',
+      url: this.props.url + 'create-contact/',
       method: 'POST',
       data: {user: user, contact: this.props.user[0]}
     });

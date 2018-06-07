@@ -20,16 +20,17 @@ module.exports = React.createClass({
   create() {
     var that = this;
     var username = Cookie.getJSON('user').username;
-    var contacts = this.state.contacts.join('/');
+    var contacts = this.state.contacts;
     var name = this.state.name;
     if (name&&contacts) {
         ajax({
-          url: this.props.url + 'createroom/',
+          url: this.props.url + 'create-group/',
           method: 'POST',
           data: {
             username: username,
             name: name,
-            contacts: contacts
+            contacts: contacts,
+            root: false,
           },
           success: function (d) {
             that.props.close(d.a, 'room');
