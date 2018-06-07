@@ -30,7 +30,6 @@ module.exports = React.createClass({
     return (
       <Paper className='window' zDepth={1} rounded={false}>
         <div className="img">
-          <img src="static/go.png" alt=""/>
           <RaisedButton secondary={true} style={{width: '100%'}} label='Додати' onClick={this.addContact} />
         </div>
         <div className="info">

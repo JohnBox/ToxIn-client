@@ -1,31 +1,30 @@
-var React = require('react');
-var Cookie = require('js-cookie');
-var { Route, RouteHandler, Link, Navigation } = require('react-router');
-var { ajax } = require('jquery');
-var mui = require('material-ui');
-var { AppBar, Paper, RaisedButton, SvgIcon, TextField, DropDownMenu } = mui;
-var StylePropable = mui.Mixins.StylePropable;
-var CloseButton = require('../Button/CloseWindow');
+const React = require('react');
+const Cookie = require('js-cookie');
+const { Route, RouteHandler, Link, Navigation } = require('react-router');
+const { ajax } = require('jquery');
+const mui = require('material-ui');
+const { AppBar, Paper, RaisedButton, SvgIcon, TextField, DropDownMenu } = mui;
+const StylePropable = mui.Mixins.StylePropable;
+const CloseButton = require('../Button/CloseWindow');
 
 module.exports = React.createClass({
   getDefaultProps() {
     return {url: 'http://127.0.0.1:8000/'};
   },
   getInitialState() {
-    return {edit: false, user: null};
+    return {edit: false, user: Cookie.getJSON('user')};
   },
   edit() {
     this.setState({edit: !this.state.edit});
   },
   save() {
-    var user = Cookie.getJSON('user');
-    var username = user.username;
+    let user = this.state.user;
     if (user.first_name && user.last_name && user.email) {
       ajax({
-        url: this.props.url + 'setuserprofile/',
+        url: this.props.url + 'user-edit/',
         method: 'POST',
         data: {
-          username: username,
+          username: user.username,
           first_name: user.first_name,
           last_name: user.last_name,
           email: user.email,
@@ -34,35 +33,36 @@ module.exports = React.createClass({
         }
       });
       this.edit();
+      Cookie.set('user', user);
     }
   },
-  firstnameInput(e) {
-    var user = this.state.user;
+  firstNameInput(e) {
+    const user = this.state.user;
     user.first_name = e.target.value;
     this.setState({user: user});
   },
-  lastnameInput(e) {
-    var user = this.state.user;
+  lastNameInput(e) {
+    const user = this.state.user;
     user.last_name = e.target.value;
     this.setState({user: user});
   },
   emailInput(e) {
-    var user = this.state.user;
+    const user = this.state.user;
     user.email = e.target.value;
     this.setState({user: user});
   },
   workplaceInput(e) {
-    var user = this.state.user;
+    const user = this.state.user;
     user.workplace = e.target.value;
     this.setState({user: user});
   },
   positionInput(e) {
-    var user = this.state.user;
+    const user = this.state.user;
     user.position = e.target.value;
     this.setState({user: user});
   },
   getUserProfile() {
-    var username = this.props.user.username;
+    const username = this.props.user.username;
     return new Promise((resolve, reject)=>{
       ajax({
         url: this.props.url + 'getuserprofile/',
@@ -74,8 +74,8 @@ module.exports = React.createClass({
     });
   },
   render() {
-    var user = Cookie.getJSON('user');
-    var label, disabled, onClick;
+    const user = this.state.user;
+    let label, disabled, onClick;
     if (this.state.edit) {
       label = 'Зберегти';
       disabled = false;
@@ -85,16 +85,14 @@ module.exports = React.createClass({
       disabled = true;
       onClick = this.edit;
     }
-
     return (
       <Paper className='window' zDepth={1} rounded={false}>
         <div className="img">
-          <img src="static/go.png" alt=""/>
           <RaisedButton style={{width: '100%'}} label={label} onClick={onClick}/>
         </div>
         <div className="info">
-          <TextField disabled={disabled} value={user.first_name} onChange={this.firstnameInput} floatingLabelText="Ім`я"/>
-          <TextField disabled={disabled} value={user.last_name} onChange={this.lastnameInput} floatingLabelText="Прізвище"/>
+          <TextField disabled={disabled} value={user.first_name} onChange={this.firstNameInput} floatingLabelText="Ім`я"/>
+          <TextField disabled={disabled} value={user.last_name} onChange={this.lastNameInput} floatingLabelText="Прізвище"/>
           <TextField disabled={disabled} value={user.email} onChange={this.emailInput} floatingLabelText="Електронна пошта"/>
           <TextField disabled={disabled} value={user.workplace} onChange={this.workplaceInput} floatingLabelText="Місце роботи"/>
           <TextField disabled={disabled} value={user.position} onChange={this.positionInput} floatingLabelText="Посада"/>
