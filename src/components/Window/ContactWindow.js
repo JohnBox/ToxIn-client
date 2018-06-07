@@ -10,7 +10,7 @@ var CloseButton = require('../Button/CloseWindow');
 module.exports = React.createClass({
   mixins: [Navigation],
   getDefaultProps() {
-    return {url: 'http://91.225.146.97:8000/'};
+    return {url: 'http://127.0.0.1:8000/'};
   },
   addContact() {
     var user = Cookie.getJSON('user').username;

@@ -12,7 +12,7 @@ var windowTypes = require('../windows');
 
 module.exports = React.createClass({
   getDefaultProps() {
-    return {url: 'http://91.225.146.97:8000/'};
+    return {url: 'http://127.0.0.1:8000/'};
   },
   getInitialState() {
     return {contacts: null, rooms: null, audiences: null};
