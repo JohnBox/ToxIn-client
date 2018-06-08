@@ -4,7 +4,7 @@ const { RaisedButton, TextField } = require('material-ui');
 
 module.exports = React.createClass({
   getDefaultProps() {
-    return {url: 'http://127.0.0.1:8000/'}
+    return {url: 'http://192.168.31.128:8000/'}
   },
   getInitialState() {
     return {username: '', first_name: '',last_name: '', email: '', password: '', confirm_password: ''};
