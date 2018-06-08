@@ -1,20 +1,20 @@
-var React = require('react');
-var Cookie = require('js-cookie');
-var { Route, RouteHandler, Link, Navigation } = require('react-router');
-var { ajax } = require('jquery');
-var mui = require('material-ui');
-var { AppBar, Paper, RaisedButton, SvgIcon, TextField, DropDownMenu } = mui;
-var StylePropable = mui.Mixins.StylePropable;
-var CloseButton = require('../Button/CloseWindow');
+const React = require('react');
+const Cookie = require('js-cookie');
+const { Route, RouteHandler, Link, Navigation } = require('react-router');
+const { ajax } = require('jquery');
+const mui = require('material-ui');
+const { AppBar, Paper, RaisedButton, SvgIcon, TextField, DropDownMenu } = mui;
+const StylePropable = mui.Mixins.StylePropable;
+const CloseButton = require('../Button/CloseWindow');
 
 module.exports = React.createClass({
   mixins: [Navigation],
   getDefaultProps() {
-    return {url: 'http://192.168.31.128:8000/'};
+    return {url: 'http://127.0.0.1:8000/'};
   },
   addContact() {
-    var user = Cookie.getJSON('user');
-    var contact = this.props.contact;
+    const user = Cookie.getJSON('user');
+    const contact = this.props.contact;
     ajax({
       url: this.props.url + 'create-contact/',
       method: 'POST',
@@ -26,7 +26,7 @@ module.exports = React.createClass({
     this.props.close();
   },
   render() {
-    var contact = this.props.contact;
+    const contact = this.props.contact;
     return (
       <Paper className='window' zDepth={1} rounded={false}>
         <div className="img">
@@ -39,7 +39,7 @@ module.exports = React.createClass({
           <TextField disabled={true} value={contact.workplace} floatingLabelText="Місце роботи"/>
           <TextField disabled={true} value={contact.position} floatingLabelText="Посада"/>
         </div>
-        <CloseButton onClick={this.props.close}/>
+        <CloseButton onClick={this.props.closeWindow}/>
       </Paper>
     );
   }

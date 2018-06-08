@@ -1,11 +1,11 @@
-var React = require('react');
-var Cookie = require('js-cookie');
-var { Navigation } = require('react-router');
-var { AppBar, Paper } = require('material-ui');
-var About = require('./About');
-var RightButton = require('./../Button/RightButton');
-var RegisterForm = require('./RegisterForm');
-var LoginForm = require('./LoginForm');
+const React = require('react');
+const Cookie = require('js-cookie');
+const { Navigation } = require('react-router');
+const { AppBar, Paper } = require('material-ui');
+const About = require('./About');
+const RightButton = require('./../Button/RightButton');
+const RegisterForm = require('./RegisterForm');
+const LoginForm = require('./LoginForm');
 
 module.exports = React.createClass({
   mixins: [Navigation],
@@ -16,11 +16,11 @@ module.exports = React.createClass({
     this.setState({login: !this.state.login});
   },
   render() {
-    var user = Cookie.getJSON('user');
+    const user = Cookie.getJSON('user');
     if (user !== undefined) {
       this.transitionTo('main', {username: user.username});
     }
-    var button, form;
+    let button, form;
     if (this.state.login) {
       button = <RightButton label={'Зареєструватися'} onClick={this.toggleLogin}/>;
       form = <LoginForm goTo={this.transitionTo}/>;
@@ -31,7 +31,7 @@ module.exports = React.createClass({
     return (
       <div className="start_page">
         <Paper className="paper">
-          <AppBar title='ToxIn' iconElementLeft={<ToxInIcon/>} iconElementRight={button}/>
+          <AppBar title='Mycelium' iconElementLeft={<MyceliumIcon/>} iconElementRight={button}/>
           {form}
           <About/>
         </Paper>
@@ -40,11 +40,11 @@ module.exports = React.createClass({
   }
 });
 
-var ToxInIcon = React.createClass({
+const MyceliumIcon = React.createClass({
   render() {
-    var style = {width: '50px', height: '50px'};
+    const style = {width: '50px', height: '50px'};
     return (
-      <img src="static/ti.png" alt="" style={style}/>
+      <img src="static/mi.png" alt="" style={style}/>
     );
   }
 });

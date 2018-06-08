@@ -9,7 +9,7 @@ const CloseButton = require('../Button/CloseWindow');
 
 module.exports = React.createClass({
   getDefaultProps() {
-    return {url: 'http://192.168.31.128:8000/'};
+    return {url: 'http://127.0.0.1:8000/'};
   },
   getInitialState() {
     return {edit: false, user: Cookie.getJSON('user')};
@@ -97,7 +97,7 @@ module.exports = React.createClass({
           <TextField disabled={disabled} value={user.workplace} onChange={this.workplaceInput} floatingLabelText="Місце роботи"/>
           <TextField disabled={disabled} value={user.position} onChange={this.positionInput} floatingLabelText="Посада"/>
         </div>
-        <CloseButton onClick={this.props.close}/>
+        <CloseButton onClick={this.props.closeWindow}/>
       </Paper>
     );
   }

@@ -12,7 +12,7 @@ const windowTypes = require('../windows');
 
 module.exports = React.createClass({
   getDefaultProps() {
-    return {url: 'http://192.168.31.128:8000/'};
+    return {url: 'http://127.0.0.1:8000/'};
   },
   getInitialState() {
     return {contacts: null, rooms: null, audiences: null};
@@ -30,22 +30,22 @@ module.exports = React.createClass({
     });
   },
   onContactClick(e, i) {
-    let contact = this.state.contacts[i];
-    this.props.set(windowTypes.VIDEO, contact.id);
+    const contact = this.state.contacts[i];
+    this.props.openWindow(windowTypes.VIDEO, contact.id);
   },
   onRoomClick(e,i) {
-    var r = this.state.rooms[i];
-    this.props.set(windowTypes.VIDEO, 'r'+r.id);
+    const room = this.state.rooms[i];
+    this.props.openWindow(windowTypes.VIDEO, room.name);
   },
   onAudienceClick(e,i) {
-    var a = this.state.audiences[i];
-    this.props.set(windowTypes.VIDEO, 'a'+a.id);
+    const audience = this.state.audiences[i];
+    this.props.openWindow(windowTypes.VIDEO, audience.name);
   },
   createAudience() {
-    this.props.set(windowTypes.AUDIENCE, this.state.contacts);
+    this.props.openWindow(windowTypes.AUDIENCE, this.state.contacts);
   },
   createRoom() {
-    this.props.set(windowTypes.ROOM, this.state.contacts);
+    this.props.openWindow(windowTypes.ROOM, this.state.contacts);
   },
   componentWillReceiveProps(next) {
     let oldRooms = this.state.rooms;

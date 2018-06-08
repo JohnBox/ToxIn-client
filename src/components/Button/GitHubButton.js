@@ -1,9 +1,9 @@
-var React = require('react');
-var { SvgIcon } = require('material-ui');
-var mui = require('material-ui');
-var StylePropable = mui.Mixins.StylePropable;
+const React = require('react');
+const { SvgIcon } = require('material-ui');
+const mui = require('material-ui');
+const StylePropable = mui.Mixins.StylePropable;
 
-  module.exports = React.createClass({
+module.exports = React.createClass({
     mixins: [StylePropable],
     contextTypes: {
       muiTheme: React.PropTypes.object
@@ -17,7 +17,7 @@ var StylePropable = mui.Mixins.StylePropable;
       };
     },
     render() {
-      var style = this.getStyles();
+      const style = this.getStyles();
       return (
         <a href={this.props.href?this.props.href:'#'}>
           <SvgIcon style={{width: '36px', height: '36px', margin: '7px' }}>

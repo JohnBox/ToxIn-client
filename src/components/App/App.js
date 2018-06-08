@@ -1,9 +1,9 @@
-var React = require('react');
-var Router = require('react-router');
-var { Route, RouteHandler, Link, Navigation } = Router;
-var ThemeManager = require('material-ui/lib/styles/theme-manager')();
+const React = require('react');
+const Router = require('react-router');
+const { Route, RouteHandler, Link, Navigation } = Router;
+const ThemeManager = require('material-ui/lib/styles/theme-manager')();
 require("react-tap-event-plugin")();
-var Cookies = require('js-cookie');
+const Cookies = require('js-cookie');
 
 
 module.exports = React.createClass({

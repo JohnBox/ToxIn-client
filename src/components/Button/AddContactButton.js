@@ -1,8 +1,8 @@
-var React = require('react');
-var $ = require('jquery');
-var mui = require('material-ui');
-var { IconButton, SvgIcon, Snackbar } = mui;
-var StylePropable = mui.Mixins.StylePropable;
+const React = require('react');
+const $ = require('jquery');
+const mui = require('material-ui');
+const { IconButton, SvgIcon, Snackbar } = mui;
+const StylePropable = mui.Mixins.StylePropable;
 
 module.exports = React.createClass({
   mixins: [StylePropable],
@@ -11,7 +11,7 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
   getDefaultProps() {
-    return {url: 'http://192.168.31.128:8000/'};
+    return {url: 'http://127.0.0.1:8000/'};
   },
   getTheme() {
     return this.context.muiTheme.palette;
@@ -29,7 +29,7 @@ module.exports = React.createClass({
   onSnackBar() {
     this.refs.snack.show();
     setTimeout(()=>{this.refs.snack.dismiss()}, 4000);
-    var user = this.context.router.getCurrentParams().user;
+    const user = this.context.router.getCurrentParams().user;
     $.ajax({
       url: this.props.url + 'create-contact/',
       method: 'POST',
@@ -37,8 +37,8 @@ module.exports = React.createClass({
     });
   },
   render() {
-    var style = this.getStyles();
-    var message = this.props.user[1] + ' доданий у контакти';
+    const style = this.getStyles();
+    const message = this.props.user[1] + ' доданий у контакти';
     return (
       <span>
       <span className='add_contact'>

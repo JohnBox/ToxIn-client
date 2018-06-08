@@ -1,27 +1,27 @@
-var React = require('react');
-var Cookie = require('js-cookie');
-var { Route, RouteHandler, Link, Navigation } = require('react-router');
-var { ajax } = require('jquery');
-var mui = require('material-ui');
-var { AppBar, Paper, RaisedButton, SvgIcon, TextField, DropDownMenu, List, ListItem, ListDivider } = mui;
-var StylePropable = mui.Mixins.StylePropable;
-var CloseButton = require('../Button/CloseWindow');
-var windowTypes = require('../windows');
+const React = require('react');
+const Cookie = require('js-cookie');
+const { Route, RouteHandler, Link, Navigation } = require('react-router');
+const { ajax } = require('jquery');
+const mui = require('material-ui');
+const { AppBar, Paper, RaisedButton, SvgIcon, TextField, DropDownMenu, List, ListItem, ListDivider } = mui;
+const StylePropable = mui.Mixins.StylePropable;
+const CloseButton = require('../Button/CloseWindow');
+const windowTypes = require('../windows');
 
 
 module.exports = React.createClass({
   mixins: [Navigation],
   getDefaultProps() {
-    return {url: 'http://192.168.31.128:8000/'};
+    return {url: 'http://127.0.0.1:8000/'};
   },
   getInitialState() {
     return {contacts: [], name: null};
   },
   create() {
-    var that = this;
-    var username = Cookie.getJSON('user').username;
-    var contacts = this.state.contacts;
-    var name = this.state.name;
+    const that = this;
+    const username = Cookie.getJSON('user').username;
+    const contacts = this.state.contacts;
+    const name = this.state.name;
     if (name&&contacts) {
         ajax({
           url: this.props.url + 'create-group/',
@@ -42,8 +42,8 @@ module.exports = React.createClass({
     }
   },
   onCheck(e,id) {
-    var oldContacts = this.state.contacts;
-    var newContacts;
+    let oldContacts = this.state.contacts;
+    let newContacts;
     if (e.target.checked) {
       oldContacts.push(id);
       newContacts = oldContacts;
@@ -57,10 +57,10 @@ module.exports = React.createClass({
     this.setState({name: e.target.value});
   },
   render() {
-    var contacts = this.props.contacts.map((c)=>{return <ListItem leftCheckbox={<CheckBox onChange={this.onCheck} id={c.id}/>}>{c.first_name+' '+c.last_name}</ListItem>});
+    const contacts = this.props.contacts.map((c)=>{return <ListItem leftCheckbox={<CheckBox onChange={this.onCheck} id={c.id}/>}>{c.first_name+' '+c.last_name}</ListItem>});
     return (
       <Paper className='window' zDepth={1} rounded={false}>
-        <CloseButton onClick={this.props.close}/>
+        <CloseButton onClick={this.props.closeWindow}/>
         <div className="room_window">
           <List subheader='Нова кімната'>
             <TextField hintText='Назва' onChange={this.inputName}/>
@@ -73,7 +73,7 @@ module.exports = React.createClass({
   }
 });
 
-var CheckBox = React.createClass({
+const CheckBox = React.createClass({
   onChange(e) {
     this.props.onChange(e,this.props.id);
   },

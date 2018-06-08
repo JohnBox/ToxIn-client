@@ -1,7 +1,7 @@
-var React = require('react');
-var mui = require('material-ui');
-var { SvgIcon } = mui;
-var StylePropable = mui.Mixins.StylePropable;
+const React = require('react');
+const mui = require('material-ui');
+const { SvgIcon } = mui;
+const StylePropable = mui.Mixins.StylePropable;
 
 module.exports = React.createClass({
   mixins: [StylePropable],
@@ -18,7 +18,7 @@ module.exports = React.createClass({
     };
   },
   render() {
-    var style = this.getStyles();
+    const style = this.getStyles();
     return (
       <div className="close_button" onClick={this.props.onClick}>
         <SvgIcon style={style}>

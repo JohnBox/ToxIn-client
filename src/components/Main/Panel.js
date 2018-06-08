@@ -1,15 +1,15 @@
-var React = require('react');
-var Router = require('react-router');
-var { Route, RouteHandler, Link } = Router;
-var Cookie = require('js-cookie');
-var mui = require('material-ui');
-var { AppBar, Paper, Tabs, Tab, SvgIcon, } = mui;
-var Transitions = mui.Styles.Transitions;
-var UserProfileButton = require('./../Button/UserProfileButton');
-var { HomeTab, SearchTab, FavoriteTab, HistoryTab, StatisticTab, SettingTab } = require('./../Tab/Tab');
+const React = require('react');
+const Router = require('react-router');
+const { Route, RouteHandler, Link } = Router;
+const Cookie = require('js-cookie');
+const mui = require('material-ui');
+const { AppBar, Paper, Tabs, Tab, SvgIcon, } = mui;
+const Transitions = mui.Styles.Transitions;
+const UserProfileButton = require('./../Button/UserProfileButton');
+const { HomeTab, SearchTab, FavoriteTab, HistoryTab, StatisticTab, SettingTab } = require('./../Tab/Tab');
 
 
-var HomeIcon = React.createClass({
+const HomeIcon = React.createClass({
   render() {
     return (
       <SvgIcon style={{marginTop: '4px'}}>
@@ -18,7 +18,7 @@ var HomeIcon = React.createClass({
     );
   }
 });
-var SearchIcon = React.createClass({
+const SearchIcon = React.createClass({
   render() {
     return (
       <SvgIcon style={{marginTop: '4px'}}>
@@ -27,7 +27,7 @@ var SearchIcon = React.createClass({
     );
   }
 });
-var SettingIcon = React.createClass({
+const SettingIcon = React.createClass({
   render() {
     return (
       <SvgIcon style={{marginTop: '4px'}}>
@@ -47,13 +47,21 @@ module.exports = React.createClass({
   render() {
     return (
       <Paper className="panel" zDepth={3} style={this.props.style}>
-        <AppBar showMenuIconButton={false} title={<UserProfileButton onClick={this.props.setWindow}/>} zDepth={0} />
+        <AppBar showMenuIconButton={false}
+                title={<UserProfileButton onClick={this.props.openWindow}/>}
+                zDepth={0} />
         <Tabs initialSelectedIndex={0}>
           <Tab label={<HomeIcon/>}>
-            <HomeTab set={this.props.setWindow} r={this.props.r} a={this.props.a} close={this.props.closeWindow}/>
+            <HomeTab
+              openWindow={this.props.openWindow}
+              rooms={this.props.rooms}
+              audiences={this.props.audiences}
+              closeWindow={this.props.closeWindow}/>
           </Tab>
           <Tab label={<SearchIcon/>}>
-            <SearchTab set={this.props.setWindow} close={this.props.closeWindow}/>
+            <SearchTab
+              openWindow={this.props.openWindow}
+              closeWindow={this.props.closeWindow}/>
           </Tab>
           <Tab label={<SettingIcon/>}>
             <SettingTab toggleTheme={this.props.toggleTheme}/>

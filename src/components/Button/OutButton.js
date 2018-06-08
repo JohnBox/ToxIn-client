@@ -1,7 +1,7 @@
-var React = require('react');
-var { Navigation } = require('react-router');
-var { SvgIcon, IconButton } = require('material-ui');
-var Cookie = require('js-cookie');
+const React = require('react');
+const { Navigation } = require('react-router');
+const { SvgIcon, IconButton } = require('material-ui');
+const Cookie = require('js-cookie');
 
 
 module.exports = React.createClass({
@@ -16,7 +16,7 @@ module.exports = React.createClass({
     this.transitionTo('login');
   },
   render() {
-    var style = this.getStyles();
+    const style = this.getStyles();
     return (
       <IconButton className='out_button' tooltip='Вийти' onClick={this.logOut}>
         <SvgIcon style={style}>

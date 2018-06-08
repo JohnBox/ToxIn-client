@@ -1,11 +1,11 @@
-var React = require('react');
-var mui = require('material-ui');
-var { RaisedButton, Snackbar } = mui;
-var StylePropable = mui.Mixins.StylePropable;
-var $ = require('jquery');
-var Cookie = require('js-cookie');
+const React = require('react');
+const mui = require('material-ui');
+const { RaisedButton, Snackbar } = mui;
+const StylePropable = mui.Mixins.StylePropable;
+const $ = require('jquery');
+const Cookie = require('js-cookie');
 
-var windowTypes = {
+const windowTypes = {
   NONE: 0,
   USER: 1,
   CONTACT: 2,
@@ -27,13 +27,13 @@ module.exports = React.createClass({
     };
   },
   onClick() {
-    var user = Cookie.getJSON('user');
+    const user = Cookie.getJSON('user');
     this.props.onClick(windowTypes.USER);
   },
   render() {
-    var style = this.getStyles();
-    var user = Cookie.getJSON('user');
-    var full_name = user.first_name +' '+ user.last_name;
+    const style = this.getStyles();
+    const user = Cookie.getJSON('user');
+    const full_name = user.first_name +' '+ user.last_name;
     return (
       <div className="profile_button" style={style} onClick={this.onClick}>
         {full_name}

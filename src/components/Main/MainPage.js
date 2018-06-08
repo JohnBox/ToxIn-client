@@ -1,19 +1,19 @@
-var React = require('react');
-var Router = require('react-router');
-var { Route, RouteHandler, Link, Navigation } = Router;
-var Cookie = require('js-cookie');
-var $ = require('jquery');
-var mui = require('material-ui');
-var { AppBar, Paper, RaisedButton, FontIcon } = mui;
-var Transitions = mui.Styles.Transitions;
-var OutButton = require('./../Button/OutButton');
-var ToggleButton = require('./../Button/ToggleButton');
-var Panel = require('./Panel');
-var Container = require('./Container');
-var UserWindow = require('../Window/UserWindow');
-var ContactWindow = require('../Window/ContactWindow');
-var MessageWindow = require('../Window/VideoWindow');
-var windowTypes = require('../windows');
+const React = require('react');
+const Router = require('react-router');
+const { Route, RouteHandler, Link, Navigation } = Router;
+const Cookie = require('js-cookie');
+const $ = require('jquery');
+const mui = require('material-ui');
+const { AppBar, Paper, RaisedButton, FontIcon } = mui;
+const Transitions = mui.Styles.Transitions;
+const OutButton = require('./../Button/OutButton');
+const ToggleButton = require('./../Button/ToggleButton');
+const Panel = require('./Panel');
+const Container = require('./Container');
+const UserWindow = require('../Window/UserWindow');
+const ContactWindow = require('../Window/ContactWindow');
+const MessageWindow = require('../Window/VideoWindow');
+const windowTypes = require('../windows');
 
 
 module.exports = React.createClass({
@@ -22,22 +22,22 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
   getInitialState() {
-    return {openPanel: true, window: windowTypes.NONE, contact: null, a: null, r:null};
+    return {openPanel: true, window: windowTypes.NONE, contact: null, audiences: null, rooms: null};
   },
   togglePanel() {
     this.setState({openPanel: !this.state.openPanel});
   },
-  closeWindow(r,name) {
-    if (name === 'room') {
-      this.setState({window: windowTypes.NONE, contact: null, r: r });
-    } else if (name === 'audience') {
-      this.setState({window: windowTypes.NONE, contact: null, a: r});
-    } else {
-      this.setState({window: windowTypes.NONE, contact: null, a: null, r: null});
-    }
+  closeWindow(room, name) {
+    // if (name === 'room') {
+    //   this.setState({window: windowTypes.NONE, contact: null, r: r });
+    // } else if (name === 'audience') {
+    //   this.setState({window: windowTypes.NONE, contact: null, a: r});
+    // }
+    // } else {
+    this.setState({window: windowTypes.NONE, contact: null, audiences: null, rooms: null});
   },
-  setWindow(w,c) {
-    this.setState({window: w, contact: c});
+  openWindow(window, contact) {
+    this.setState({window: window, contact: contact});
   },
   getStyles() {
     return {
@@ -50,11 +50,22 @@ module.exports = React.createClass({
     };
   },
   render() {
-    var style = this.getStyles();
+    const style = this.getStyles();
     return (
       <Paper className="main_page">
-        <Panel style={style.panel} toggleTheme={this.props.toggleTheme} setWindow={this.setWindow} closeWindow={this.closeWindow} r={this.state.r} a={this.state.a}/>
-        <Container window={this.state.window} contact={this.state.contact} closeWindow={this.closeWindow} style={style.container} togglePanel={this.togglePanel}/>
+        <Panel
+          style={style.panel}
+          toggleTheme={this.props.toggleTheme}
+          openWindow={this.openWindow}
+          closeWindow={this.closeWindow}
+          rooms={this.state.rooms}
+          audiences={this.state.audiences}/>
+        <Container
+          style={style.container}
+          window={this.state.window}
+          contact={this.state.contact}
+          closeWindow={this.closeWindow}
+          togglePanel={this.togglePanel}/>
       </Paper>
     );
   }

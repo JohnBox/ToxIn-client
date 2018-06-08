@@ -13,7 +13,6 @@ var reactify = require('reactify');
 var watchify = require('watchify');
 
 path = {
-  assets: 'src/assets/**',
   html: 'src/index.html',
   less: 'src/styles/*.less',
   main: 'src/components/index.js',
@@ -21,6 +20,21 @@ path = {
   build: 'build/',
   build_static: 'build/static'
 };
+
+gulp.task('less', function () {
+  gulp.src(path.less)
+    .pipe(less())
+    .pipe(gulp.dest(path.build_static));
+});
+
+gulp.task('html', function () {
+  gulp.src(path.html)
+    .pipe(gulp.dest(path.build));
+});
+
+gulp.task('css', function () {
+  gulp.watch(path.less,['less']);
+});
 
 gulp.task('browserify', function() {
   var bundler = browserify({
@@ -34,33 +48,10 @@ gulp.task('browserify', function() {
     .pipe(gulp.dest(path.build_static));
 });
 
-gulp.task('less', function () {
-  gulp.src(path.less)
-    .pipe(less())
-    .pipe(gulp.dest(path.build_static));
-});
-
-gulp.task('html', function () {
-  gulp.src(path.html)
-    .pipe(gulp.dest(path.build));
-});
-
-gulp.task('asset', function () {
-  gulp.src(path.assets)
-    .pipe(gulp.dest(path.build_static));
-});
-
-gulp.task('css', function () {
-  gulp.watch(path.less,['less']);
-});
-
 gulp.task('uglify', function () {
   return uglifyjs('build/static/index.js')
     .pipe(minjs())
     .pipe(gulp.dest(path.build_static));
-});
-gulp.task('clean', function () {
-  return clean('build/static/index.js')
 });
 
 gulp.task('build', function () {

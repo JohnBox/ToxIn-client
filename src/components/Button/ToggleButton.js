@@ -1,5 +1,5 @@
-var React = require('react');
-var { IconButton, SvgIcon } = require('material-ui');
+const React = require('react');
+const { IconButton, SvgIcon } = require('material-ui');
 
 module.exports = React.createClass({
   getInitialState() {
@@ -13,8 +13,8 @@ module.exports = React.createClass({
     return { width: '36px', height: '36px' };
   },
   render: function () {
-    var style = this.getStyles(),
-        icon;
+    const style = this.getStyles();
+    let icon;
     if (this.state.state) {
       icon = (<path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>);
     } else {

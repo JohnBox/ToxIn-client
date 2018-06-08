@@ -1,6 +1,6 @@
-var React = require('react');
-var { Link } = require('react-router');
-var { RaisedButton, FlatButton } = require('material-ui');
+const React = require('react');
+const { Link } = require('react-router');
+const { RaisedButton, FlatButton } = require('material-ui');
 
 module.exports = React.createClass({
   render: function () {

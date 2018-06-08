@@ -1,5 +1,5 @@
-var React = require('react');
-var GitHubButton = require('../Button/GitHubButton');
+const React = require('react');
+const GitHubButton = require('../Button/GitHubButton');
 
 module.exports = React.createClass({
   render: function () {
