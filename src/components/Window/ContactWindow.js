@@ -29,17 +29,18 @@ module.exports = React.createClass({
     const contact = this.props.contact;
     return (
       <Paper className='window' zDepth={1} rounded={false}>
-        <div className="img">
-          <RaisedButton secondary={true} style={{width: '100%'}} label='Додати' onClick={this.addContact} />
-        </div>
+        <CloseButton onClick={this.props.closeWindow}/>
         <div className="info">
           <TextField disabled={true} value={contact.first_name} floatingLabelText="Ім`я"/>
           <TextField disabled={true} value={contact.last_name} floatingLabelText="Прізвище"/>
+          <TextField disabled={true} value={contact.username} floatingLabelText="Логін"/>
           <TextField disabled={true} value={contact.email} floatingLabelText="Електронна пошта"/>
           <TextField disabled={true} value={contact.workplace} floatingLabelText="Місце роботи"/>
           <TextField disabled={true} value={contact.position} floatingLabelText="Посада"/>
         </div>
-        <CloseButton onClick={this.props.closeWindow}/>
+        <div className="img">
+          <RaisedButton secondary={true} style={{width: '100%'}} label='Додати' onClick={this.addContact} />
+        </div>
       </Paper>
     );
   }

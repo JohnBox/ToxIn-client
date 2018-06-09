@@ -87,9 +87,7 @@ module.exports = React.createClass({
     }
     return (
       <Paper className='window' zDepth={1} rounded={false}>
-        <div className="img">
-          <RaisedButton style={{width: '100%'}} label={label} onClick={onClick}/>
-        </div>
+        <CloseButton onClick={this.props.closeWindow}/>
         <div className="info">
           <TextField disabled={disabled} value={user.first_name} onChange={this.firstNameInput} floatingLabelText="Ім`я"/>
           <TextField disabled={disabled} value={user.last_name} onChange={this.lastNameInput} floatingLabelText="Прізвище"/>
@@ -97,7 +95,9 @@ module.exports = React.createClass({
           <TextField disabled={disabled} value={user.workplace} onChange={this.workplaceInput} floatingLabelText="Місце роботи"/>
           <TextField disabled={disabled} value={user.position} onChange={this.positionInput} floatingLabelText="Посада"/>
         </div>
-        <CloseButton onClick={this.props.closeWindow}/>
+        <div className="img">
+          <RaisedButton style={{width: '100%'}} label={label} onClick={onClick}/>
+        </div>
       </Paper>
     );
   }
