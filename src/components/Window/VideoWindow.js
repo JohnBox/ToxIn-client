@@ -33,14 +33,16 @@ module.exports = React.createClass({
 
     }
   },
-  componentWillUpdate() {
+  closeWindow() {
+    this.state.rtc.stopLocalVideo();
     this.state.rtc.leaveRoom();
+    this.props.closeWindow();
   },
   render() {
     this.state.rtc.joinRoom(this.state.contact);
     return (
       <Paper className='window' zDepth={1} rounded={false}>
-        <CloseButton onClick={this.props.closeWindow}/>
+        <CloseButton onClick={this.closeWindow}/>
         <h4>{this.state.contact}</h4>
         <div className="video_room">
           <div id="remotesVideos">

@@ -27,7 +27,7 @@ module.exports = React.createClass({
   togglePanel() {
     this.setState({openPanel: !this.state.openPanel});
   },
-  closeWindow(room, name) {
+  closeWindow() {
     // if (name === 'room') {
     //   this.setState({window: windowTypes.NONE, contact: null, r: r });
     // } else if (name === 'audience') {
