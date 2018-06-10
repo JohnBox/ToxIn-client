@@ -31,7 +31,7 @@ module.exports = React.createClass({
   },
   onContactClick(e, i) {
     const contact = this.state.contacts[i];
-    this.props.openWindow(windowTypes.CONTACT, contact.id);
+    this.props.openWindow(windowTypes.USER, contact.id);
   },
   onRoomClick(e,i) {
     const room = this.state.rooms[i];

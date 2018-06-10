@@ -10,8 +10,8 @@ const OutButton = require('./../Button/OutButton');
 const ToggleButton = require('./../Button/ToggleButton');
 const Panel = require('./Panel');
 const Container = require('./Container');
+const ProfileWindow = require('../Window/ProfileWindow');
 const UserWindow = require('../Window/UserWindow');
-const ContactWindow = require('../Window/ContactWindow');
 const MessageWindow = require('../Window/VideoWindow');
 const windowTypes = require('../windows');
 

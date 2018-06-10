@@ -8,8 +8,8 @@ const { AppBar, Paper, RaisedButton, FontIcon } = mui;
 const Transitions = mui.Styles.Transitions;
 const OutButton = require('./../Button/OutButton');
 const ToggleButton = require('./../Button/ToggleButton');
+const ProfileWindow = require('../Window/ProfileWindow');
 const UserWindow = require('../Window/UserWindow');
-const ContactWindow = require('../Window/ContactWindow');
 const VideoWindow = require('../Window/VideoWindow');
 const RoomWindow = require('../Window/RoomWindow');
 const AudienceWindow = require('../Window/AudienceWindow');
@@ -19,12 +19,12 @@ module.exports = React.createClass({
   render() {
     let window;
     switch (this.props.window) {
-      case windowTypes.USER:
-        window = <UserWindow closeWindow={this.props.closeWindow}/>;
+      case windowTypes.PROFILE:
+        window = <ProfileWindow closeWindow={this.props.closeWindow}/>;
         break;
-      case windowTypes.CONTACT:
-        window = <ContactWindow closeWindow={this.props.closeWindow}
-                                contact={this.props.contact}/>;
+      case windowTypes.USER:
+        window = <UserWindow closeWindow={this.props.closeWindow}
+                             contact={this.props.contact}/>;
         break;
       case windowTypes.VIDEO:
         window = <VideoWindow closeWindow={this.props.closeWindow}

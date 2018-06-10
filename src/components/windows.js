@@ -1,8 +1,9 @@
 module.exports = {
   NONE: 0,
-  USER: 1,
-  CONTACT: 2,
-  VIDEO: 3,
-  ROOM: 4,
-  AUDIENCE: 5
+  PROFILE: 1,
+  USER: 2,
+  CONTACT: 3,
+  VIDEO: 4,
+  ROOM: 5,
+  AUDIENCE: 6
 };
