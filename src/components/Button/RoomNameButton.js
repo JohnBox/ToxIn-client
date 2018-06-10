@@ -18,30 +18,19 @@ module.exports = React.createClass({
   },
   getStyles: function() {
     return {
-      width: '24px',
-      height: '24px',
-      float: 'right',
-      marginTop: '14px',
-      marginBottom: '-14px',
-      color: this.getTheme().textColor
+      color: this.getTheme().textColor,
+      fontSize: '1.4em',
+      padding: '0',
+      margin: '0',
+      marginTop: '20px'
     };
-  },
-  onSnackBar() {
-    this.refs.snack.show();
-    setTimeout(()=>{this.refs.snack.dismiss()}, 4000);
   },
   render() {
     const style = this.getStyles();
-    const message = ' доданий у контакти';
     return (
-      <span>
-      <span className='add_contact'>
-      <SvgIcon style={style} onClick={this.onSnackBar}>
-        <path fill={style.color} d='M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z'/>
-      </SvgIcon>
-      </span>
-        <Snackbar ref='snack' message={message}/>
-      </span>
+      <div className="profile_button" style={style}>
+        {this.props.title}
+      </div>
     );
   }
 });

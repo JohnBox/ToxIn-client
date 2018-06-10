@@ -6,13 +6,16 @@ const { AppBar, Paper, Menu } = mui;
 const Cookies = require('js-cookie');
 
 module.exports = React.createClass({
-  onToggle() {
-    Cookies.set('darkTheme', Cookies.get('darkTheme') !== 'true');
-    this.props.toggleTheme();
+  onToggle(e,i) {
+    if (i === 0) {
+      Cookies.set('darkTheme', Cookies.get('darkTheme') !== 'true');
+      this.props.toggleTheme();
+    }
   },
   render() {
     const settings = [
-      { text: 'Тема', toggle: true, defaultChecked: this.props.darkTheme }
+      { text: 'Тема', toggle: true, checked: this.props.darkTheme},
+      { text: 'Показувати своє відео', toggle: true},
     ];
     return (
       <div className="setting_tab">
