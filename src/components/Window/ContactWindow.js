@@ -9,12 +9,15 @@ const CloseButton = require('../Button/CloseWindow');
 
 module.exports = React.createClass({
   mixins: [Navigation],
+  getInitialState() {
+    return {contact: this.props.contact}
+  },
   getDefaultProps() {
     return {url: 'http://127.0.0.1:8000/'};
   },
   deleteContact() {
     const user = Cookie.getJSON('user');
-    const contact = this.props.contact;
+    const contact = this.state.contact;
     ajax({
       url: this.props.url + 'delete-contact/',
       method: 'POST',
@@ -25,12 +28,20 @@ module.exports = React.createClass({
     });
     this.props.closeWindow();
   },
+  componentWillReceiveProps(next) {
+    if (next.contact !== this.state.contact) {
+      this.setState({contact: next.contact});
+    }
+  },
   render() {
     const contact = this.props.contact;
-    contact.date_joined = contact.date_joined.split('T')[0] + ' '
-      + contact.date_joined.split('T')[1].split('.')[0];
+    let date_joined = '', last_login = '';
+    if (contact.date_joined) {
+      date_joined = contact.date_joined.split('T')[0] + ' '
+        + contact.date_joined.split('T')[1].split('.')[0];
+    }
     if (contact.last_login) {
-      contact.last_login = contact.last_login.split('T')[0] + ' '
+      last_login = contact.last_login.split('T')[0] + ' '
         + contact.last_login.split('T')[1].split('.')[0];
     }
     return (
@@ -43,8 +54,8 @@ module.exports = React.createClass({
           <TextField disabled={true} value={contact.email} floatingLabelText="Електронна пошта"/>
           <TextField disabled={true} value={contact.workplace} floatingLabelText="Місце роботи"/>
           <TextField disabled={true} value={contact.position} floatingLabelText="Посада"/>
-          <TextField disabled={true} value={contact.date_joined} floatingLabelText="Перше підключення"/>
-          <TextField disabled={true} value={contact.last_login} floatingLabelText="Останне підключеня"/>
+          <TextField disabled={true} value={date_joined} floatingLabelText="Перше підключення"/>
+          <TextField disabled={true} value={last_login} floatingLabelText="Останне підключеня"/>
         </div>
         <div className="img">
           <RaisedButton secondary={true} style={{width: '100%'}} label='Видалити' onClick={this.deleteContact} />

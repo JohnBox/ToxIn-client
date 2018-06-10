@@ -14,7 +14,7 @@ let localStream;
 module.exports = React.createClass({
   mixins: [Navigation],
   getDefaultProps() {
-    return {url: 'http://127.0.0.1:8000/', contact: null};
+    return {url: 'http://127.0.0.1:8000/', data: null};
   },
   getInitialState() {
     return {rtc: new SimpleWebRTC({
@@ -24,12 +24,12 @@ module.exports = React.createClass({
     })};
   },
   componentWillMount() {
-    this.setState({contact: this.props.contact});
-    this.state.rtc.joinRoom(this.state.contact);
+    this.setState({data: this.props.data});
+    this.state.rtc.joinRoom(this.state.data);
   },
   componentWillReceiveProps(next) {
-    if (next.contact !== this.state.contact) {
-      this.setState({contact: next.contact});
+    if (next.data !== this.state.data) {
+      this.setState({data: next.data});
     }
   },
   closeWindow() {
@@ -38,7 +38,6 @@ module.exports = React.createClass({
     this.props.closeWindow();
   },
   render() {
-
     return (
       <Paper className='window' zDepth={1} rounded={false}>
         <CloseButton onClick={this.closeWindow}/>
