@@ -41,7 +41,6 @@ module.exports = React.createClass({
     return (
       <Paper className='window' zDepth={1} rounded={false}>
         <CloseButton onClick={this.closeWindow}/>
-        <h4>{this.state.contact}</h4>
         <div className="video_room">
           <div id="remotesVideos">
             <video id="localVideo" autoPlay></video>

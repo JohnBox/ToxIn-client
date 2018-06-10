@@ -33,10 +33,12 @@ module.exports = React.createClass({
     this.props.openWindow(windowTypes.CONTACT, this.state.contacts[i]);
   },
   onRoomClick(e,i) {
-    this.props.openWindow(windowTypes.VIDEO, this.state.rooms[i]);
+    let room = this.state.rooms[i];
+    this.props.openWindow(windowTypes.VIDEO, room);
   },
   onAudienceClick(e,i) {
-    this.props.openWindow(windowTypes.VIDEO, this.state.audiences[i]);
+    let audience = this.state.audiences[i];
+    this.props.openWindow(windowTypes.VIDEO, audience);
   },
   createAudience() {
     this.props.openWindow(windowTypes.AUDIENCE, this.state.contacts);

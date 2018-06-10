@@ -6,7 +6,9 @@ const $ = require('jquery');
 const mui = require('material-ui');
 const { AppBar, Paper, RaisedButton, FontIcon } = mui;
 const Transitions = mui.Styles.Transitions;
+const StylePropable = mui.Mixins.StylePropable;
 const OutButton = require('./../Button/OutButton');
+const RoomNameButton = require('./../Button/RoomNameButton');
 const ToggleButton = require('./../Button/ToggleButton');
 const ProfileWindow = require('../Window/ProfileWindow');
 const UserWindow = require('../Window/UserWindow');
@@ -17,6 +19,19 @@ const AudienceWindow = require('../Window/AudienceWindow');
 const windowTypes = require('../windows');
 
 module.exports = React.createClass({
+  mixins: [StylePropable],
+  contextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+  getTheme() {
+    return this.context.muiTheme.palette;
+  },
+  getStyles: function() {
+    return {
+      userSelect: 'none',
+      color: this.getTheme().textColor
+    };
+  },
   render() {
     let window;
     switch (this.props.window) {
@@ -48,9 +63,11 @@ module.exports = React.createClass({
       default:
         window = null;
     }
+    const style = this.getStyles();
+    let title = this.props.data?this.props.data.name:'';
     return (
       <div className="container">
-        <AppBar title=''
+        <AppBar title={<RoomNameButton title={title}/>}
                 iconElementLeft={<ToggleButton togglePanel={this.props.togglePanel}/>}
                 iconElementRight={<OutButton/>}
                 zDepth={0}/>
