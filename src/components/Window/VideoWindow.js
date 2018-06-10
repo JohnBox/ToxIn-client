@@ -21,7 +21,8 @@ module.exports = React.createClass({
       localVideoEl: 'localVideo',
       remoteVideosEl: 'remotesVideos',
       autoRequestMedia: true
-    })};
+    }),
+    showSelf: true};
   },
   componentWillMount() {
     this.setState({data: this.props.data});
@@ -43,7 +44,7 @@ module.exports = React.createClass({
         <CloseButton onClick={this.closeWindow}/>
         <div className="video_room">
           <div id="remotesVideos">
-            <video id="localVideo" autoPlay></video>
+            {this.state.showSelf?<video id="localVideo" autoPlay></video>:null}
           </div>
         </div>
       </Paper>
