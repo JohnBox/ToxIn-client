@@ -44,6 +44,7 @@ module.exports = React.createClass({
     };
   },
   render() {
+    Cookie.set('showSelfVideo', true);
     const style = this.getStyles();
     return (
       <Paper className="main_page">
