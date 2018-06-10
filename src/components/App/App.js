@@ -26,7 +26,7 @@ module.exports = React.createClass({
     ThemeManager.setTheme(this.state.darkTheme?ThemeManager.types.DARK:ThemeManager.types.LIGHT);
     return (
       <div className="app">
-        <RouteHandler toggleTheme={this.toggleTheme}/>
+        <RouteHandler toggleTheme={this.toggleTheme} darkTheme={this.state.darkTheme}/>
       </div>
     );
   }

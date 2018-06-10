@@ -4,13 +4,7 @@ const $ = require('jquery');
 const Cookie = require('js-cookie');
 const { Paper, TextField, Menu, SvgIcon, Snackbar } = require('material-ui');
 const AddIcon = require('../Button/AddContactButton');
-
-const windowTypes = {
-  NONE: 0,
-  USER: 1,
-  CONTACT: 2,
-  MESSAGE: 3
-};
+const windowTypes = require('../windows');
 
 module.exports = React.createClass({
   contextTypes: {
@@ -35,8 +29,8 @@ module.exports = React.createClass({
     });
   },
   onUserClick(e, i) {
-    let contact = this.state.users[i];
-    this.props.openWindow(windowTypes.CONTACT, contact);
+    let user = this.state.users[i];
+    this.props.openWindow(windowTypes.USER, user);
   },
   onSearch(e) {
     const that = this;

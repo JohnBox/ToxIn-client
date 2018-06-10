@@ -12,11 +12,11 @@ module.exports = React.createClass({
   },
   render() {
     const settings = [
-      { text: 'Тема', toggle: true }
+      { text: 'Тема', toggle: true, defaultChecked: this.props.darkTheme }
     ];
     return (
       <div className="setting_tab">
-        <Menu menuItems={settings} autoWidth={false} zDepth={0} onToggle={this.onToggle}/>
+        <Menu menuItems={settings} autoWidth={false} zDepth={0} onToggle={this.onToggle} />
       </div>
     );
   }

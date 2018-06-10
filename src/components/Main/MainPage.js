@@ -22,22 +22,16 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
   getInitialState() {
-    return {openPanel: true, window: windowTypes.NONE, contact: null, audiences: null, rooms: null};
+    return {openPanel: true, window: windowTypes.NONE, data: null};
   },
   togglePanel() {
     this.setState({openPanel: !this.state.openPanel});
   },
   closeWindow() {
-    // if (name === 'room') {
-    //   this.setState({window: windowTypes.NONE, contact: null, r: r });
-    // } else if (name === 'audience') {
-    //   this.setState({window: windowTypes.NONE, contact: null, a: r});
-    // }
-    // } else {
-    this.setState({window: windowTypes.NONE, contact: null, audiences: null, rooms: null});
+    this.setState({window: windowTypes.NONE, data: null});
   },
-  openWindow(window, contact) {
-    this.setState({window: window, contact: contact});
+  openWindow(window, data) {
+    this.setState({window: window, data: data});
   },
   getStyles() {
     return {
@@ -55,6 +49,7 @@ module.exports = React.createClass({
       <Paper className="main_page">
         <Panel
           style={style.panel}
+          darkTheme={this.props.darkTheme}
           toggleTheme={this.props.toggleTheme}
           openWindow={this.openWindow}
           closeWindow={this.closeWindow}
@@ -63,7 +58,7 @@ module.exports = React.createClass({
         <Container
           style={style.container}
           window={this.state.window}
-          contact={this.state.contact}
+          data={this.state.data}
           closeWindow={this.closeWindow}
           togglePanel={this.togglePanel}/>
       </Paper>

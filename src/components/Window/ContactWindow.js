@@ -12,21 +12,27 @@ module.exports = React.createClass({
   getDefaultProps() {
     return {url: 'http://127.0.0.1:8000/'};
   },
-  addContact() {
+  deleteContact() {
     const user = Cookie.getJSON('user');
     const contact = this.props.contact;
     ajax({
-      url: this.props.url + 'create-contact/',
+      url: this.props.url + 'delete-contact/',
       method: 'POST',
       data: {
         user: user.username,
         contact: contact.username
       }
     });
-    this.props.close();
+    this.props.closeWindow();
   },
   render() {
     const contact = this.props.contact;
+    contact.date_joined = contact.date_joined.split('T')[0] + ' '
+      + contact.date_joined.split('T')[1].split('.')[0];
+    if (contact.last_login) {
+      contact.last_login = contact.last_login.split('T')[0] + ' '
+        + contact.last_login.split('T')[1].split('.')[0];
+    }
     return (
       <Paper className='window' zDepth={1} rounded={false}>
         <CloseButton onClick={this.props.closeWindow}/>
@@ -37,9 +43,11 @@ module.exports = React.createClass({
           <TextField disabled={true} value={contact.email} floatingLabelText="Електронна пошта"/>
           <TextField disabled={true} value={contact.workplace} floatingLabelText="Місце роботи"/>
           <TextField disabled={true} value={contact.position} floatingLabelText="Посада"/>
+          <TextField disabled={true} value={contact.date_joined} floatingLabelText="Перше підключення"/>
+          <TextField disabled={true} value={contact.last_login} floatingLabelText="Останне підключеня"/>
         </div>
         <div className="img">
-          <RaisedButton secondary={true} style={{width: '100%'}} label='Додати' onClick={this.addContact} />
+          <RaisedButton secondary={true} style={{width: '100%'}} label='Видалити' onClick={this.deleteContact} />
         </div>
       </Paper>
     );

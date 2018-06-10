@@ -30,16 +30,13 @@ module.exports = React.createClass({
     });
   },
   onContactClick(e, i) {
-    const contact = this.state.contacts[i];
-    this.props.openWindow(windowTypes.USER, contact.id);
+    this.props.openWindow(windowTypes.CONTACT, this.state.contacts[i]);
   },
   onRoomClick(e,i) {
-    const room = this.state.rooms[i];
-    this.props.openWindow(windowTypes.VIDEO, room.name);
+    this.props.openWindow(windowTypes.VIDEO, this.state.rooms[i]);
   },
   onAudienceClick(e,i) {
-    const audience = this.state.audiences[i];
-    this.props.openWindow(windowTypes.VIDEO, audience.name);
+    this.props.openWindow(windowTypes.VIDEO, this.state.audiences[i]);
   },
   createAudience() {
     this.props.openWindow(windowTypes.AUDIENCE, this.state.contacts);

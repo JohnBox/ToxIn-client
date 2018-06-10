@@ -10,6 +10,7 @@ const OutButton = require('./../Button/OutButton');
 const ToggleButton = require('./../Button/ToggleButton');
 const ProfileWindow = require('../Window/ProfileWindow');
 const UserWindow = require('../Window/UserWindow');
+const ContactWindow = require('../Window/ContactWindow');
 const VideoWindow = require('../Window/VideoWindow');
 const RoomWindow = require('../Window/RoomWindow');
 const AudienceWindow = require('../Window/AudienceWindow');
@@ -24,20 +25,24 @@ module.exports = React.createClass({
         break;
       case windowTypes.USER:
         window = <UserWindow closeWindow={this.props.closeWindow}
-                             contact={this.props.contact}/>;
+                             user={this.props.data}/>;
+        break;
+      case windowTypes.CONTACT:
+        window = <ContactWindow closeWindow={this.props.closeWindow}
+                             contact={this.props.data}/>;
         break;
       case windowTypes.VIDEO:
         window = <VideoWindow closeWindow={this.props.closeWindow}
-                              contact={this.props.contact}/>;
+                              data={this.props.data}/>;
         break;
       case windowTypes.ROOM:
         window = <RoomWindow closeWindow={this.props.closeWindow}
                              openWindow={this.props.openWindow}
-                             contacts={this.props.contact}/>;
+                             contacts={this.props.data}/>;
         break;
       case windowTypes.AUDIENCE:
         window = <AudienceWindow closeWindow={this.props.closeWindow}
-                                 contacts={this.props.contact}/>;
+                                 contacts={this.props.data}/>;
         break;
       case windowTypes.NONE:
       default:

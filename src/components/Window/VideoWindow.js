@@ -24,13 +24,12 @@ module.exports = React.createClass({
     })};
   },
   componentWillMount() {
-    this.setState({contact: this.props.contact})
+    this.setState({contact: this.props.contact});
+    this.state.rtc.joinRoom(this.state.contact);
   },
   componentWillReceiveProps(next) {
     if (next.contact !== this.state.contact) {
       this.setState({contact: next.contact});
-    } else {
-
     }
   },
   closeWindow() {
@@ -39,7 +38,7 @@ module.exports = React.createClass({
     this.props.closeWindow();
   },
   render() {
-    this.state.rtc.joinRoom(this.state.contact);
+
     return (
       <Paper className='window' zDepth={1} rounded={false}>
         <CloseButton onClick={this.closeWindow}/>

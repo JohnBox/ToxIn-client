@@ -14,7 +14,7 @@ module.exports = React.createClass({
   },
   addContact() {
     const user = Cookie.getJSON('user');
-    const contact = this.props.contact;
+    const contact = this.props.data;
     ajax({
       url: this.props.url + 'create-contact/',
       method: 'POST',
@@ -27,7 +27,8 @@ module.exports = React.createClass({
   },
   render() {
     const user = Cookie.getJSON('user');
-    const contact = this.props.contact;
+    console.log(this.props.data);
+    const contact = this.props.user;
     let label, disabled = user.contacts.includes(contact.id);
     if (disabled) {
       label = 'Доданий';
