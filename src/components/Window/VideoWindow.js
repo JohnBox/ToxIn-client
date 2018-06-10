@@ -9,8 +9,6 @@ const SimpleWebRTC = require('simplewebrtc');
 const CloseButton = require('../Button/CloseWindow');
 
 
-let localStream;
-
 module.exports = React.createClass({
   mixins: [Navigation],
   getDefaultProps() {
@@ -22,7 +20,7 @@ module.exports = React.createClass({
       remoteVideosEl: 'remotesVideos',
       autoRequestMedia: true
     }),
-    showSelf: true};
+    showSelf: Cookie.get('showSelfVideo') === 'true'};
   },
   componentWillMount() {
     this.setState({data: this.props.data});

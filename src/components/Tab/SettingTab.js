@@ -10,12 +10,14 @@ module.exports = React.createClass({
     if (i === 0) {
       Cookies.set('darkTheme', Cookies.get('darkTheme') !== 'true');
       this.props.toggleTheme();
+    } else {
+      Cookies.set('showSelfVideo', e.target.checked);
     }
   },
   render() {
     const settings = [
       { text: 'Тема', toggle: true, checked: this.props.darkTheme},
-      { text: 'Показувати своє відео', toggle: true},
+      { text: 'Показувати своє відео', toggle: true, checked: true},
     ];
     return (
       <div className="setting_tab">

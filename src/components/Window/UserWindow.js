@@ -23,6 +23,7 @@ module.exports = React.createClass({
         contact: contact.username
       }
     });
+    Cookie.set('updateContactsList', true);
     this.props.closeWindow();
   },
   render() {

@@ -63,7 +63,11 @@ module.exports = React.createClass({
   },
   render() {
     let rooms = [], audiences = [], contacts = [];
-    if (!this.state.contacts && !this.state.rooms && !this.state.audiences) {
+    if (Cookie.get('updateContactsList') === 'true' ||
+      (!this.state.contacts && !this.state.rooms && !this.state.audiences)) {
+      if (Cookie.get('updateContactsList') === 'true') {
+        Cookie.remove('updateContactsList');
+      }
       this.getAllContacts().then((res)=>{console.log(res.a);this.setState({
         contacts: res.a.contacts, rooms: res.a.rooms, audiences: res.a.audiences})});
     } else {
