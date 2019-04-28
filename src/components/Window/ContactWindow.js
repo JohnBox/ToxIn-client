@@ -13,7 +13,7 @@ module.exports = React.createClass({
     return {contact: this.props.contact}
   },
   getDefaultProps() {
-    return {url: 'http://127.0.0.1:8000/'};
+    return {url: 'http://93.73.179.185:8000/'};
   },
   deleteContact() {
     const user = Cookie.getJSON('user');

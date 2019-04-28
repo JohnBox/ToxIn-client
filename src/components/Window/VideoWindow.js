@@ -12,7 +12,7 @@ const CloseButton = require('../Button/CloseWindow');
 module.exports = React.createClass({
   mixins: [Navigation],
   getDefaultProps() {
-    return {url: 'http://127.0.0.1:8000/', data: null};
+    return {url: 'http://93.73.179.185:8000/', data: null};
   },
   getInitialState() {
     return {rtc: new SimpleWebRTC({
@@ -20,11 +20,11 @@ module.exports = React.createClass({
       remoteVideosEl: 'remotesVideos',
       autoRequestMedia: true
     }),
-    showSelf: Cookie.get('showSelfVideo') === 'true'};
+    showSelf: Cookie.get('showSelfVideo')?Cookie.get('showSelfVideo') === 'true':true};
   },
   componentWillMount() {
     this.setState({data: this.props.data});
-    this.state.rtc.joinRoom(this.state.data);
+    this.state.rtc.joinRoom(this.props.data.name);
   },
   componentWillReceiveProps(next) {
     if (next.data !== this.state.data) {
@@ -42,7 +42,7 @@ module.exports = React.createClass({
         <CloseButton onClick={this.closeWindow}/>
         <div className="video_room">
           <div id="remotesVideos">
-            {this.state.showSelf?<video id="localVideo" autoPlay></video>:null}
+            {this.state.showSelf?<video id="localVideo" muted autoPlay></video>:null}
           </div>
         </div>
       </Paper>

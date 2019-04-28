@@ -39,12 +39,11 @@ module.exports = React.createClass({
         display: this.state.openPanel?'flex':'none',
       },
       container: {
-        transition: Transitions.easeOut('0ms')
+        transition: Transitions.easeOut('10ms')
       }
     };
   },
   render() {
-    Cookie.set('showSelfVideo', true);
     const style = this.getStyles();
     return (
       <Paper className="main_page">

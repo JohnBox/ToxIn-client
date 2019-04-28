@@ -8,7 +8,7 @@ const { RaisedButton, TextField } = require('material-ui');
 module.exports = React.createClass({
   mixins: [Navigation],
   getDefaultProps() {
-    return {url: 'http://127.0.0.1:8000/'};
+    return {url: 'http://93.73.179.185:8000/'};
   },
   getInitialState() {
     return {username: '', password: ''};
